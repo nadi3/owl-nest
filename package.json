@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No test yet, it's coming soon\""
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
