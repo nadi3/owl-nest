@@ -1,31 +1,33 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { MainLayout } from './components/layout/MainLayout';
-import { LandingPage } from './pages/LandingPage';
-import { ProjectsPage } from './pages/ProjectsPage'; // Ajout
-import { StackPage } from './pages/StackPage';       // Ajout
-import { Box, Typography } from '@mui/material';     // Pour le placeholder Services
-
-// Placeholder simple pour Services (on le fera au prochain tour si tu veux)
-const Services = () => (
-    <Box sx={{ textAlign: 'center', mt: 10, opacity: 0.5 }}>
-        <Typography variant="h4">System Monitor</Typography>
-        <Typography>Module en cours de calibration...</Typography>
-    </Box>
-);
+import { Box, CssBaseline } from '@mui/material';
+import { Sidebar } from './components/Sidebar';
+import { Home } from './pages/Home';
+import { Portfolio } from './pages/Portfolio';
+import { Login } from './pages/Login';
+import { Useless } from './pages/Useless';
+import { Services } from './pages/Services';
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<MainLayout />}>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/projects" element={<ProjectsPage />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/stack" element={<StackPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <Sidebar />
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, p: 4, minHeight: '100vh', bgcolor: 'background.default' }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/useless" element={<Useless />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Box>
+      </Box>
+    </BrowserRouter>
+  );
 }
 
 export default App;
