@@ -10,10 +10,10 @@
     "disabled": "Coming soon",
     "enabled": "Launch",
     "items": {
-      "fleeing-button": {
-        "title": "Fleeing Button",
+      "fleeing-mouse": {
+        "title": "Catch the mouse",
         "subtitle": "UX / Interaction",
-        "description": "A little coordination challenge: this button will do anything to avoid your cursor."
+        "description": "A little challenge: this mouse will do anything to avoid your cursor."
       },
       "infinite-button": {
         "title": "Time-Wasting Button",
@@ -36,6 +36,11 @@
         "hour": "H",
         "minute": "m"
       }
+    },
+    "fleeing-mouse": {
+      "run": "AAAAAH!",
+      "idle": "ZZZZZZ",
+      "score": "Score:"
     }
   },
   "services": {

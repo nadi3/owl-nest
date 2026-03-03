@@ -3,11 +3,12 @@ import MainLayout from '@/layouts/MainLayout';
 import Home from '@/pages/Home';
 import PublicServices from '@/pages/PublicServices.tsx';
 import Portfolio from '@/pages/Portfolio';
-import UselessIndex from '@/pages/UselessIndex.tsx';
+import UselessIndex from '@/pages/useless/UselessIndex.tsx';
 import PrivateIndex from '@/pages/PrivateIndex.tsx';
 import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
 import UselessLayout from '@/layouts/UselessLayout.tsx';
+import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
         element: <UselessLayout />,
         children: [
           { index: true, element: <UselessIndex /> },
-          // { path: 'gravity', element: <GravityPage /> },
+          { path: 'fleeing', element: <FleeingButtonPage /> },
         ],
       },
       {

@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
-import { PageHeader } from '@/components/common/PageHeader';
-import { NestCard } from '@/components/common/NestCard';
-import { NestButton } from '@/components/common/NestButton';
+import { PageHeader } from '@/components/common/PageHeader.tsx';
+import { NestCard } from '@/components/common/NestCard.tsx';
+import { NestButton } from '@/components/common/NestButton.tsx';
 import { Clock, ChevronRightIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getUselessWidgets } from '@/services/uselessService';
+import { getUselessWidgets } from '@/services/uselessService.ts';
 import { useTranslation } from 'react-i18next';
 
 const UselessIndex = () => {

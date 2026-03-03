@@ -10,10 +10,10 @@
     "disabled": "Bientôt disponible",
     "enabled": "Lancer",
     "items": {
-      "fleeing-button": {
-        "title": "Bouton fuyard",
+      "fleeing-mouse": {
+        "title": "Attrape souris",
         "subtitle": "UX / Interaction",
-        "description": "Un petit défi de coordination : ce bouton fera tout pour éviter ton curseur."
+        "description": "Un petit défi : cette souris fera tout pour éviter ton curseur."
       },
       "infinite-button": {
         "title": "Bouton passe-temps",
@@ -36,6 +36,11 @@
         "hour": "H",
         "minute": "m"
       }
+    },
+    "fleeing-mouse": {
+      "run": "AAAAAH !",
+      "idle": "ZZZZZZ",
+      "score": "Score :"
     }
   },
   "services": {
