@@ -1,101 +1,120 @@
 {
   "title": "Owl Nest",
   "home": {
-    "title": "Home",
-    "subtitle": "Modular system for digital exploration and self-hosted services."
+    "title": "Welcome",
+    "subtitle": "My technical space: a mix of self-hosting, technical projects, and a few experiments."
   },
   "useless": {
-    "title": "Useless Lab",
-    "desc": "Little pointless experiments.",
-    "disabled": "In development",
-    "enabled": "Launch experiment",
+    "title": "The Lab",
+    "desc": "Small projects to test ideas, not necessarily aiming to be useful.",
+    "disabled": "Coming soon",
+    "enabled": "Launch",
     "items": {
-      "hex-clock": {
-        "title": "Hex Clock",
-        "subtitle": "Time / Logic",
-        "description": "Time translated into colors and base 16. Essential for never knowing the exact time."
-      },
       "fleeing-button": {
         "title": "Fleeing Button",
-        "subtitle": "Interactions",
-        "description": "A challenge for your coordination. This button categorically refuses to be clicked."
+        "subtitle": "UX / Interaction",
+        "description": "A little coordination challenge: this button will do anything to avoid your cursor."
       },
-      "excuse-engine": {
-        "title": "Excuse Engine",
-        "subtitle": "Social / API",
-        "description": "Generates credible technical excuses for your code delivery delays."
+      "infinite-button": {
+        "title": "Time-Wasting Button",
+        "subtitle": "UX / Interaction",
+        "description": "A button that changes position with each click, to help you waste time in a fun way."
+      },
+      "wait-button": {
+        "title": "Waiting Button",
+        "subtitle": "UX / Interaction",
+        "description": "A button that simulates an endless wait, to test your patience and compare it with other users."
+      }
+    },
+    "hex-clock": {
+      "title": "Hex Clock",
+      "tooltip": "Visualization of time progression. Each bar represents a cycle (Year, Month, Day, Hour, Minute) and changes color according to its progress (0-100% on the HSL spectrum).",
+      "labels": {
+        "year": "Y",
+        "month": "M",
+        "day": "D",
+        "hour": "H",
+        "minute": "m"
       }
     }
   },
   "services": {
     "title": "Public Services",
-    "desc": "Tools and public services.",
-    "disabled": "In development",
-    "enabled": "Open tool",
+    "desc": "Some practical tools accessible to everyone.",
+    "disabled": "Coming soon",
+    "enabled": "Open",
     "items": {
-      "json-formatter": {
-        "title": "JSON Formatter",
-        "subtitle": "Utilities",
-        "description": "Cleaning and validation tool for JSON structures for development."
-      },
-      "unit-converter": {
-        "title": "Unit Converter",
-        "subtitle": "System",
-        "description": "Quick conversion between bases (Hex, Dec, Bin) and storage units."
+      "destiny-wheel": {
+        "title": "Wheel of Destiny",
+        "subtitle": "For the undecided",
+        "description": "Enter a list of choices, spin the wheel, and get a random result."
       }
     }
   },
   "portfolio": {
-    "title": "Portfolio",
-    "desc": "Presentation of my projects.",
+    "title": "Projects & Portfolio",
+    "desc": "What I've built, from server infrastructure to embedded code.",
     "items": {
       "owl-nest-infra": {
-        "title": "Owl Nest Infrastructure",
-        "subtitle": "Systems / Docker",
-        "description": "Self-hosted architecture on Raspberry Pi 5 with Docker orchestration, Traefik Reverse Proxy and security via Cloudflare Zero Trust."
-      },
-      "projet-embarque-x": {
-        "title": "Embedded Project X",
-        "subtitle": "C++ / STM32",
-        "description": "Real-time control system for [insert function]."
-      },
-      "analyseur-logique": {
-        "title": "Logic Analyzer",
-        "subtitle": "Python / Signal",
-        "description": "Processing and visualization of digital signals via serial protocols."
+        "title": "Owl Nest Infra",
+        "subtitle": "Docker / Raspberry Pi",
+        "description": "The entire architecture behind this site!"
       }
     }
   },
   "private": {
     "title": "Private Area",
-    "desc": "Personal and private space.",
+    "desc": "Behind the scenes. Internal server management and personal files.",
     "protected": {
-      "title": "Protected Infrastructure",
-      "desc": "All connections are routed through Cloudflare Zero Trust and Authentik SSO."
+      "title": "Secure Access",
+      "desc": "This area is protected by Authentik and Cloudflare Zero Trust."
     },
     "items": {
       "nextcloud": {
         "title": "Nextcloud",
-        "subtitle": "Storage / Cloud",
-        "description": "Private storage instance and collaborative suite self-hosted on USB SSD."
+        "subtitle": "Cloud Storage",
+        "description": "My private alternative to Google Drive, installed directly on my SSD."
       },
       "sonarqube": {
         "title": "SonarQube",
-        "subtitle": "Quality / Analysis",
-        "description": "Technical debt and security analysis for Owl Nest repositories."
+        "subtitle": "Code Quality",
+        "description": "The tool that monitors my code to track bugs and technical debt."
       }
     }
   },
   "credits": {
     "title": "Open Source Credits",
-    "desc": "Owl Nest relies on robust open source technologies.",
-    "site": "Official Repository",
+    "desc": "This site was built with tools I appreciate and that move the web forward.",
+    "site": "View source code",
     "descriptions": {
-      "react": "Library for building reactive user interfaces.",
-      "mui": "Design System and React component library.",
-      "framer-motion": "Powerful animation engine for smooth micro-interactions.",
-      "lucide": "Set of clean and lightweight vector icons.",
-      "traefik": "Modern reverse proxy and edge router for Docker."
+      "react": "The framework for the interface.",
+      "mui": "For components and the design system.",
+      "framer-motion": "For smooth animations and transitions.",
+      "lucide": "For simple and lightweight icons.",
+      "traefik": "The orchestrator that manages traffic to my containers."
     }
+  },
+  "errors": {
+    "400": { "title": "Oops!", "message": "There is an issue with the request sent." },
+    "401": { "title": "Identify yourself", "message": "You must be logged in to see this." },
+    "403": { "title": "Access denied", "message": "You do not have permission to enter here." },
+    "404": { "title": "Page not found", "message": "This area does not exist or has been moved." },
+    "408": { "title": "It's taking a while...", "message": "The server took too long to respond." },
+    "429": {
+      "title": "Slow down!",
+      "message": "Too many requests at once. Take a short break."
+    },
+    "500": { "title": "Server error", "message": "The system encountered an unexpected bug." },
+    "502": { "title": "Bad gateway", "message": "The service is not responding correctly." },
+    "503": {
+      "title": "Maintenance",
+      "message": "I'm probably tinkering with something."
+    },
+    "504": { "title": "Timeout", "message": "The connection with the service has expired." },
+    "unknown": {
+      "title": "Unknown error",
+      "message": "I don't know what's happening, but it's not working."
+    },
+    "back": "Back to home"
   }
 }
