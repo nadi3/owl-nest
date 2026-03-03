@@ -7,6 +7,7 @@ import UselessIndex from '@/pages/UselessIndex.tsx';
 import PrivateIndex from '@/pages/PrivateIndex.tsx';
 import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
+import UselessLayout from '@/layouts/UselessLayout.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'useless',
+        element: <UselessLayout />,
         children: [
           { index: true, element: <UselessIndex /> },
           // { path: 'gravity', element: <GravityPage /> },

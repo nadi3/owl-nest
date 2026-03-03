@@ -25,6 +25,17 @@
         "subtitle": "UX / Interaction",
         "description": "Un bouton qui simule une attente interminable, pour tester ta patience et la comparer aux autres utilisateurs."
       }
+    },
+    "hex-clock": {
+      "title": "Horloge hex",
+      "tooltip": "Visualisation de la progression temporelle. Chaque barre représente un cycle (An, Mois, Jour, Heure, Minute) et change de couleur selon son avancement (0-100% sur le spectre HSL).",
+      "labels": {
+        "year": "A",
+        "month": "M",
+        "day": "J",
+        "hour": "H",
+        "minute": "m"
+      }
     }
   },
   "services": {
