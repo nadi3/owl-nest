@@ -1,10 +1,9 @@
 import { createTheme, type ThemeOptions, type Shadows } from '@mui/material/styles';
-import React from 'react';
+import { responsiveFontSizes } from '@mui/material';
 
-// 1. Préparation des ombres (Exactement 25 éléments)
-const customShadows = Array(25).fill('none') as Shadows;
-customShadows[1] = '0 2px 4px rgba(0,0,0,0.05)'; // Notre ombre standard
-customShadows[2] = '0 4px 12px rgba(0,0,0,0.08)'; // Pour les hovers
+const customShadows = new Array(25).fill('none') as Shadows;
+customShadows[1] = '0 2px 4px rgba(0,0,0,0.05)';
+customShadows[2] = '0 4px 12px rgba(0,0,0,0.08)';
 
 const themeOptions: ThemeOptions = {
   palette: {
@@ -12,70 +11,81 @@ const themeOptions: ThemeOptions = {
     primary: {
       main: '#003A69',
       contrastText: '#FFFFFF',
+      dark: '#002746',
+      light: '#95c4da',
     },
     secondary: {
-      main: '#2EFFFF',
-      contrastText: '#003A69',
+      main: '#FA8072',
+      contrastText: '#FFFFFF',
+      dark: '#D96C5F',
+      light: '#fabfba',
     },
     success: {
       main: '#00B80C',
+      contrastText: '#FFFFFF',
+      dark: '#00930A',
+      light: '#befac1',
     },
     error: {
       main: '#82001E',
+      contrastText: '#FFFFFF',
+      dark: '#680018',
+      light: '#fbb9c7',
     },
     background: {
       default: '#F4F6F8',
       paper: '#FFFFFF',
     },
     text: {
-      primary: '#001E3C',
+      primary: '#101727',
       secondary: '#4D5F71',
     },
+    divider: '#E0E4E8',
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h1: { fontFamily: '"Rubik", sans-serif', fontWeight: 700 },
-    h2: { fontFamily: '"Rubik", sans-serif', fontWeight: 700 },
-    h3: { fontFamily: '"Rubik", sans-serif', fontWeight: 500 },
-    h4: { fontFamily: '"Rubik", sans-serif', fontWeight: 500 },
-    h5: { fontFamily: '"Rubik", sans-serif', fontWeight: 500 },
-    h6: { fontFamily: '"Rubik", sans-serif', fontWeight: 500 },
+    h1: { fontFamily: '"Rubik", sans-serif', fontWeight: 700, color: '#003A69' },
+    h2: { fontFamily: '"Rubik", sans-serif', fontWeight: 700, color: '#003A69' },
+    h3: { fontFamily: '"Rubik", sans-serif', fontWeight: 500, color: '#003A69' },
+    h4: { fontFamily: '"Rubik", sans-serif', fontWeight: 500, color: '#003A69' },
+    h5: { fontFamily: '"Rubik", sans-serif', fontWeight: 500, color: '#003A69' },
+    h6: { fontFamily: '"Rubik", sans-serif', fontWeight: 500, color: '#003A69' },
     body1: { fontSize: '1rem', lineHeight: 1.5 },
     button: { textTransform: 'none', fontWeight: 600 },
-    // Ajout du variant personnalisé "code"
-    code: {
-      fontFamily: '"JetBrains Mono", "Fira Code", monospace',
-      fontSize: '0.9rem',
-      backgroundColor: '#F0F2F5',
-      padding: '2px 4px',
-      borderRadius: '4px',
-    },
   },
   shape: {
     borderRadius: 8,
   },
   shadows: customShadows,
   components: {
-    MuiButton: {
+    MuiGrid: {
+      defaultProps: {
+        spacing: 2,
+      },
+    },
+    MuiDivider: {
       styleOverrides: {
         root: {
-          borderRadius: 8,
-          padding: '8px 20px',
-          transition: 'all 0.2s ease-in-out',
-          '&:hover': {
-            backgroundColor: '#004A85', // Un bleu un peu plus clair
-            boxShadow: '0 4px 12px rgba(0, 58, 105, 0.2)',
-          },
+          borderColor: '#E0E4E8',
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: '#001E3C',
+          borderRadius: 4,
+          fontSize: '0.75rem',
         },
       },
     },
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundImage: 'none', // Supprime l'overlay MUI en mode sombre
+          backgroundImage: 'none',
         },
         rounded: {
-          borderRadius: 12, // Plus doux pour les conteneurs principaux
+          borderRadius: 12,
         },
       },
     },
@@ -91,22 +101,7 @@ const themeOptions: ThemeOptions = {
   },
 };
 
-export const owlTheme = createTheme(themeOptions);
+let theme = createTheme(themeOptions);
+theme = responsiveFontSizes(theme);
 
-/** * Extension des types pour TypeScript
- * Permet d'utiliser <Typography variant="code">
- */
-declare module '@mui/material/styles' {
-  interface TypographyVariants {
-    code: React.CSSProperties;
-  }
-  interface TypographyVariantsOptions {
-    code?: React.CSSProperties;
-  }
-}
-
-declare module '@mui/material/Typography' {
-  interface TypographyPropsVariantOverrides {
-    code: true;
-  }
-}
+export const owlTheme = theme;

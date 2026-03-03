@@ -1,0 +1,101 @@
+{
+  "title": "Owl Nest",
+  "home": {
+    "title": "Home",
+    "subtitle": "Modular system for digital exploration and self-hosted services."
+  },
+  "useless": {
+    "title": "Useless Lab",
+    "desc": "Little pointless experiments.",
+    "disabled": "In development",
+    "enabled": "Launch experiment",
+    "items": {
+      "hex-clock": {
+        "title": "Hex Clock",
+        "subtitle": "Time / Logic",
+        "description": "Time translated into colors and base 16. Essential for never knowing the exact time."
+      },
+      "fleeing-button": {
+        "title": "Fleeing Button",
+        "subtitle": "Interactions",
+        "description": "A challenge for your coordination. This button categorically refuses to be clicked."
+      },
+      "excuse-engine": {
+        "title": "Excuse Engine",
+        "subtitle": "Social / API",
+        "description": "Generates credible technical excuses for your code delivery delays."
+      }
+    }
+  },
+  "services": {
+    "title": "Public Services",
+    "desc": "Tools and public services.",
+    "disabled": "In development",
+    "enabled": "Open tool",
+    "items": {
+      "json-formatter": {
+        "title": "JSON Formatter",
+        "subtitle": "Utilities",
+        "description": "Cleaning and validation tool for JSON structures for development."
+      },
+      "unit-converter": {
+        "title": "Unit Converter",
+        "subtitle": "System",
+        "description": "Quick conversion between bases (Hex, Dec, Bin) and storage units."
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "desc": "Presentation of my projects.",
+    "items": {
+      "owl-nest-infra": {
+        "title": "Owl Nest Infrastructure",
+        "subtitle": "Systems / Docker",
+        "description": "Self-hosted architecture on Raspberry Pi 5 with Docker orchestration, Traefik Reverse Proxy and security via Cloudflare Zero Trust."
+      },
+      "projet-embarque-x": {
+        "title": "Embedded Project X",
+        "subtitle": "C++ / STM32",
+        "description": "Real-time control system for [insert function]."
+      },
+      "analyseur-logique": {
+        "title": "Logic Analyzer",
+        "subtitle": "Python / Signal",
+        "description": "Processing and visualization of digital signals via serial protocols."
+      }
+    }
+  },
+  "private": {
+    "title": "Private Area",
+    "desc": "Personal and private space.",
+    "protected": {
+      "title": "Protected Infrastructure",
+      "desc": "All connections are routed through Cloudflare Zero Trust and Authentik SSO."
+    },
+    "items": {
+      "nextcloud": {
+        "title": "Nextcloud",
+        "subtitle": "Storage / Cloud",
+        "description": "Private storage instance and collaborative suite self-hosted on USB SSD."
+      },
+      "sonarqube": {
+        "title": "SonarQube",
+        "subtitle": "Quality / Analysis",
+        "description": "Technical debt and security analysis for Owl Nest repositories."
+      }
+    }
+  },
+  "credits": {
+    "title": "Open Source Credits",
+    "desc": "Owl Nest relies on robust open source technologies.",
+    "site": "Official Repository",
+    "descriptions": {
+      "react": "Library for building reactive user interfaces.",
+      "mui": "Design System and React component library.",
+      "framer-motion": "Powerful animation engine for smooth micro-interactions.",
+      "lucide": "Set of clean and lightweight vector icons.",
+      "traefik": "Modern reverse proxy and edge router for Docker."
+    }
+  }
+}

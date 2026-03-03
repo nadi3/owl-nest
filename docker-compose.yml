@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build: .
+    container_name: owl-nest-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - web-proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.owl-nest.rule=Host(`owl-nest.ch`)"
+      - "traefik.http.routers.owl-nest.entrypoints=web"
+      - "traefik.http.services.owl-nest.loadbalancer.server.port=80"
+
+networks:
+  web-proxy:
+    external: true
