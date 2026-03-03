@@ -1,37 +1,41 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import prettier from 'eslint-plugin-prettier'
-import eslintConfigPrettier from 'eslint-config-prettier'
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
+import pluginPrettier from 'eslint-plugin-prettier';
+import configPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: ['dist']
+    ignores: ['dist', 'node_modules', 'eslint.config.js'],
   },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'prettier':XHprettier
+      '@typescript-eslint': tseslint.plugin,
+      react: pluginReact,
+      'react-hooks': pluginReactHooks,
+      'react-refresh': pluginReactRefresh,
+      prettier: pluginPrettier,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-      'prettier/prettier': 'error', // Tout formatage incorrect devient une erreur
+      'prettier/prettier': 'error',
+      'react-refresh/only-export-components': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn' // On tolère le warn au début, mais vise l'error plus tard
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
-  eslintConfigPrettier // Doit être en dernier pour désactiver les règles conflictuelles
-)
+  configPrettier,
+);

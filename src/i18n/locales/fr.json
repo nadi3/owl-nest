@@ -1,0 +1,109 @@
+{
+  "title": "Owl Nest",
+  "home": {
+    "title": "Bienvenue",
+    "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
+  },
+  "useless": {
+    "title": "Le Lab",
+    "desc": "Des petits projets pour tester des idées, sans forcément chercher à être utile.",
+    "disabled": "Bientôt disponible",
+    "enabled": "Lancer",
+    "items": {
+      "fleeing-button": {
+        "title": "Bouton fuyard",
+        "subtitle": "UX / Interaction",
+        "description": "Un petit défi de coordination : ce bouton fera tout pour éviter ton curseur."
+      },
+      "infinite-button": {
+        "title": "Bouton passe-temps",
+        "subtitle": "UX / Interaction",
+        "description": "Un bouton qui change de position à chaque clic, pour te faire perdre du temps de manière ludique."
+      },
+      "wait-button": {
+        "title": "Bouton d'attente",
+        "subtitle": "UX / Interaction",
+        "description": "Un bouton qui simule une attente interminable, pour tester ta patience et la comparer aux autres utilisateurs."
+      }
+    }
+  },
+  "services": {
+    "title": "Services Publics",
+    "desc": "Quelques outils pratiques accessibles à tout le monde.",
+    "disabled": "Bientôt disponible",
+    "enabled": "Ouvrir",
+    "items": {
+      "destiny-wheel": {
+        "title": "Roue du destin",
+        "subtitle": "Pour les indécis",
+        "description": "Entre une liste de choix, lance la roue et obtiens un résultat aléatoire."
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Projets & Portfolio",
+    "desc": "Ce que j'ai construit, de l'infrastructure serveur au code embarqué.",
+    "items": {
+      "owl-nest-infra": {
+        "title": "Owl Nest Infra",
+        "subtitle": "Docker / Raspberry Pi",
+        "description": "Toute l'architecture derrière ce site !"
+      }
+    }
+  },
+  "private": {
+    "title": "Espace Privé",
+    "desc": "L'envers du décor. Gestion interne du serveur et fichiers personnels.",
+    "protected": {
+      "title": "Accès Sécurisé",
+      "desc": "Cette zone est protégée par Authentik et Cloudflare Zero Trust."
+    },
+    "items": {
+      "nextcloud": {
+        "title": "Nextcloud",
+        "subtitle": "Stockage Cloud",
+        "description": "Mon alternative privée à Google Drive, installée directement sur mon SSD."
+      },
+      "sonarqube": {
+        "title": "SonarQube",
+        "subtitle": "Qualité du code",
+        "description": "L'outil qui surveille mon code pour traquer les bugs et la dette technique."
+      }
+    }
+  },
+  "credits": {
+    "title": "Crédits Open Source",
+    "desc": "Ce site a été construit avec des outils que j'apprécie et qui font avancer le web.",
+    "site": "Voir le code source",
+    "descriptions": {
+      "react": "Le framework pour l'interface.",
+      "mui": "Pour les composants et le design system.",
+      "framer-motion": "Pour les animations et les transitions fluides.",
+      "lucide": "Pour les icônes simples et légères.",
+      "traefik": "Le chef d'orchestre qui gère le trafic vers mes conteneurs."
+    }
+  },
+  "errors": {
+    "400": { "title": "Oups !", "message": "Il y a un souci avec la requête envoyée." },
+    "401": { "title": "Identifie-toi", "message": "Tu dois être connecté pour voir ça." },
+    "403": { "title": "Accès refusé", "message": "Tu n'as pas les permissions pour entrer ici." },
+    "404": { "title": "Page introuvable", "message": "Cette zone n'existe pas ou a été déplacée." },
+    "408": { "title": "C'est long...", "message": "Le serveur a mis trop de temps à répondre." },
+    "429": {
+      "title": "Doucement !",
+      "message": "Trop de requêtes d'un coup. Fais une petite pause."
+    },
+    "500": { "title": "Erreur serveur", "message": "Le système a rencontré un bug imprévu." },
+    "502": { "title": "Mauvaise passerelle", "message": "Le service ne répond pas correctement." },
+    "503": {
+      "title": "Maintenance",
+      "message": "Je suis sûrement en train de bricoler quelque chose."
+    },
+    "504": { "title": "Temps écoulé", "message": "La connexion avec le service a expiré." },
+    "unknown": {
+      "title": "Erreur inconnue",
+      "message": "Je ne sais pas ce qu'il se passe, mais ça ne marche pas."
+    },
+    "back": "Retour à l'accueil"
+  }
+}
