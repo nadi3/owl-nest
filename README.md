@@ -122,11 +122,10 @@ We follow a structured approach to version control:
 -   **No Hardcoded Values**: Always use the design tokens from `src/theme/theme.ts` via the `sx` prop or `styled` components. Avoid hardcoding colors, spacing, or font sizes.
 -   **Internationalization (i18n)**: Never hardcode user-facing strings in components. Add keys to `src/i18n/locales/en.json` and `fr.json` and use the `useTranslation` hook.
 
-### Quality Control
-
-Before pushing any code, you **must** run the following commands to ensure consistency:
--   **`npm run lint`**: Checks for syntax errors and style violations.
--   **`npm run format`**: Automatically formats the code according to our Prettier configuration.
+### Automated quality assurance (CI/CD)
+The project uses GitHub Actions to enforce standards:
+- **CI**: Every push triggers linting, type-checking, and a Docker build test.
+- **Deployment**: To deploy a change to the production Raspberry Pi, add the `deploy` label to a Pull Request.
 
 ### Recommended Practices
 
@@ -137,7 +136,6 @@ Before pushing any code, you **must** run the following commands to ensure consi
     2.  Internal components and layouts.
     3.  Types, services, and constants.
     4.  Styles and theme.
-
 
 ## Deployment
 
