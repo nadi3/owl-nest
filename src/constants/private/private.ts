@@ -1,4 +1,4 @@
-import type { PrivateService } from '@/types/private';
+import type { PrivateService } from '@/types/private/private.ts';
 
 export const PRIVATE_SERVICES: PrivateService[] = [
   {

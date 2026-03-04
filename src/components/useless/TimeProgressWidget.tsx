@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Tooltip, Typography, Stack, IconButton } from '@mui/material';
 import { Info } from 'lucide-react';
-import { percentToHex, getTimeProgress } from '@/utils/timeUtils';
+import { percentToHex, getTimeProgress } from '@/utils/useless/timeUtils.ts';
 import { useTranslation } from 'react-i18next';
 
 const ProgressBar = ({ label, percent }: { label: string; percent: number }) => (

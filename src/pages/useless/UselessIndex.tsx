@@ -4,7 +4,7 @@ import { NestCard } from '@/components/common/NestCard.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 import { Clock, ChevronRightIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getUselessWidgets } from '@/services/uselessService.ts';
+import { getUselessWidgets } from '@/services/useless/uselessService.ts';
 import { useTranslation } from 'react-i18next';
 
 const UselessIndex = () => {

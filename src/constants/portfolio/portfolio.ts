@@ -1,4 +1,4 @@
-import type { Portfolio } from '@/types/portfolio';
+import type { Portfolio } from '@/types/portfolio/portfolio.ts';
 
 export const PORTFOLIO_DATA: Portfolio[] = [
   {

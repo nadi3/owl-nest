@@ -1,4 +1,4 @@
-import type { UselessWidget } from '@/types/useless';
+import type { UselessWidget } from '@/types/useless/useless.ts';
 
 export const USELESS_WIDGETS: UselessWidget[] = [
   {
