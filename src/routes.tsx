@@ -1,10 +1,10 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import MainLayout from '@/layouts/MainLayout';
 import Home from '@/pages/Home';
-import PublicServices from '@/pages/PublicServices.tsx';
-import Portfolio from '@/pages/Portfolio';
+import PublicTools from '@/pages/tools/PublicTools.tsx';
+import Portfolio from '@/pages/portfolio/Portfolio.tsx';
 import UselessIndex from '@/pages/useless/UselessIndex.tsx';
-import PrivateIndex from '@/pages/PrivateIndex.tsx';
+import PrivateIndex from '@/pages/private/PrivateIndex.tsx';
 import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
 import UselessLayout from '@/layouts/UselessLayout.tsx';
@@ -32,8 +32,8 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'services',
-        element: <PublicServices />,
+        path: 'tools',
+        element: <PublicTools />,
       },
       {
         path: 'portfolio',

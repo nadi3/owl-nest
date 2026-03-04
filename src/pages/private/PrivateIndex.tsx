@@ -1,8 +1,8 @@
 import { Box, Typography, Stack, Paper } from '@mui/material';
-import { PageHeader } from '@/components/common/PageHeader';
-import { NestCard } from '@/components/common/NestCard';
+import { PageHeader } from '@/components/common/PageHeader.tsx';
+import { NestCard } from '@/components/common/NestCard.tsx';
 import { Lock, ShieldCheck, BarChart3 } from 'lucide-react';
-import { getPrivateServices } from '@/services/privateService';
+import { getPrivateServices } from '@/services/private/privateService.ts';
 import { useTranslation } from 'react-i18next';
 import { owlTheme } from '@/theme/theme.ts';
 

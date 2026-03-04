@@ -27,7 +27,7 @@ const Sidebar = () => {
   const menuItems = [
     { text: 'home.title', icon: <Home />, path: '/home' },
     { text: 'useless.title', icon: <Ghost />, path: '/useless' },
-    { text: 'services.title', icon: <Gift />, path: '/services' },
+    { text: 'tools.title', icon: <Gift />, path: '/tools' },
     { text: 'portfolio.title', icon: <Briefcase />, path: '/portfolio' },
     /*{ text: 'private.title', icon: <Lock />, path: '/private' },*/
   ];

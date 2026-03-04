@@ -1,7 +1,7 @@
 import { Box, Typography, Stack } from '@mui/material';
-import { PageHeader } from '@/components/common/PageHeader';
-import { NestCard } from '@/components/common/NestCard';
-import { getPortfolio } from '@/services/portfolioService';
+import { PageHeader } from '@/components/common/PageHeader.tsx';
+import { NestCard } from '@/components/common/NestCard.tsx';
+import { getPortfolio } from '@/services/portfolio/portfolioService.ts';
 import { useTranslation } from 'react-i18next';
 
 const Portfolio = () => {

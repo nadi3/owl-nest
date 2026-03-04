@@ -43,8 +43,8 @@
       "score": "Score:"
     }
   },
-  "services": {
-    "title": "Public Services",
+  "tools": {
+    "title": "Public Tools",
     "desc": "Some practical tools accessible to everyone.",
     "disabled": "Coming soon",
     "enabled": "Open",
