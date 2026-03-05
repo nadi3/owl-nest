@@ -10,11 +10,18 @@ import AudioVisualizerControls from '@/components/tools/AudioVisualizerControls.
 const AudioVisualizer: React.FC = () => {
   // TODO: Implement full-screen layout wrapping the Canvas and overlaying the Controls
   return (
-    <Box sx={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      {/* 3D Background / Fullscreen visualization */}
+    <Box
+      sx={{
+        position: 'relative',
+        width: '100%',
+        height: 'calc(100vh - 100px)',
+        overflow: 'hidden',
+        borderRadius: 2,
+        boxShadow: 3,
+      }}
+    >
       <AudioVisualizerCanvas />
 
-      {/* Absolute positioned controls overlay */}
       <Box sx={{ position: 'absolute', bottom: 16, left: 16, right: 16, zIndex: 10 }}>
         <AudioVisualizerControls />
       </Box>

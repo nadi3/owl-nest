@@ -7,7 +7,7 @@ import type { AudioVisualizerState } from '@/types/tools/audioVisualizer.ts';
  */
 export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
   audioFile: null,
-  isPlaying: false,
+  isPlaying: true,
   settings: {
     backgroundColor: '#0a0a0a', // Dark background to make colors pop
     bassColor: '#ff3366', // Red/Pink for bass
