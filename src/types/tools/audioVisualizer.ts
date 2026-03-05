@@ -16,6 +16,8 @@ export interface VisualizerSettings {
   trebleColor: string;
   /** The shape pattern of the audio visualizer. */
   shape: VisualizerShape;
+  /** The opacity of the rendered frequency waves (0 to 1). */
+  opacity: number;
 }
 
 export interface AudioVisualizerState {

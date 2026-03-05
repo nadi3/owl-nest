@@ -1,11 +1,13 @@
-/**
- * @file AudioVisualizerControls.tsx
- * @description Control panel for the Audio Visualizer.
- * Allows users to upload an MP3 file, toggle playback, and adjust shapes/colors.
- */
-
 import React from 'react';
-import { Box, Stack, Typography, MenuItem, Select, type SelectChangeEvent } from '@mui/material';
+import {
+  Box,
+  Stack,
+  Typography,
+  MenuItem,
+  Select,
+  type SelectChangeEvent,
+  Slider,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
 import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';
@@ -17,22 +19,17 @@ const AudioVisualizerControls: React.FC = () => {
   const { isPlaying, settings, setAudioFile, setIsPlaying, updateSetting } =
     useAudioVisualizerStore();
 
-  // Handle file selection
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     if (file) {
       setAudioFile(file);
-      // TODO : handle the actual audio loading in the service later
-      console.log('File uploaded:', file.name);
     }
   };
 
-  // Handle shape change from Select
   const handleShapeChange = (event: SelectChangeEvent<string>) => {
     updateSetting('shape', event.target.value as VisualizerShape);
   };
 
-  // Helper component to render a color picker block
   const ColorPicker = ({
     label,
     settingKey,
@@ -46,7 +43,7 @@ const AudioVisualizerControls: React.FC = () => {
       </Typography>
       <input
         type="color"
-        value={settings[settingKey]}
+        value={settings[settingKey] as string}
         onChange={(e) => updateSetting(settingKey, e.target.value)}
         style={{
           width: '32px',
@@ -80,20 +77,38 @@ const AudioVisualizerControls: React.FC = () => {
           </NestButton>
         </Stack>
 
-        <Box sx={{ minWidth: 120 }}>
-          <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
-            {t('tools.audioVisualizer.controls.shape', 'Shape')}
-          </Typography>
-          <Select
-            size="small"
-            value={settings.shape}
-            onChange={handleShapeChange}
-            sx={{ backgroundColor: 'background.paper' }}
-          >
-            <MenuItem value="line">Line</MenuItem>
-            <MenuItem value="circle">Circle</MenuItem>
-          </Select>
-        </Box>
+        <Stack direction="row" spacing={3} alignItems="center">
+          <Box sx={{ minWidth: 100 }}>
+            <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
+              {t('tools.audioVisualizer.controls.shape', 'Shape')}
+            </Typography>
+            <Select
+              size="small"
+              value={settings.shape}
+              onChange={handleShapeChange}
+              sx={{ backgroundColor: 'background.paper' }}
+            >
+              <MenuItem value="line">Line</MenuItem>
+              <MenuItem value="circle">Circle</MenuItem>
+            </Select>
+          </Box>
+
+          <Box sx={{ width: 120 }}>
+            <Typography variant="caption" color="text.secondary" display="block">
+              {t('tools.audioVisualizer.controls.opacity', 'Opacity')}
+            </Typography>
+            <Slider
+              size="small"
+              value={settings.opacity}
+              min={0.1}
+              max={1}
+              step={0.05}
+              onChange={(_, newValue) => updateSetting('opacity', newValue as number)}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
+            />
+          </Box>
+        </Stack>
 
         <Stack direction="row" spacing={2}>
           <ColorPicker label="Background" settingKey="backgroundColor" />

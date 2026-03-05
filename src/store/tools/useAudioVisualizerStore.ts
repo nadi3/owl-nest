@@ -17,6 +17,7 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
     midColor: owlTheme.palette.error.main,
     trebleColor: owlTheme.palette.secondary.main,
     shape: 'line',
+    opacity: 0.85,
   },
 
   setAudioFile: (file) => {

@@ -152,7 +152,7 @@ const VisualizerScene: React.FC = () => {
           color={settings.bassColor}
           side={THREE.DoubleSide}
           transparent
-          opacity={0.85}
+          opacity={settings.opacity}
           toneMapped={false}
         />
       </mesh>
@@ -161,7 +161,7 @@ const VisualizerScene: React.FC = () => {
           color={settings.midColor}
           side={THREE.DoubleSide}
           transparent
-          opacity={0.85}
+          opacity={settings.opacity}
           toneMapped={false}
         />
       </mesh>
@@ -170,7 +170,7 @@ const VisualizerScene: React.FC = () => {
           color={settings.trebleColor}
           side={THREE.DoubleSide}
           transparent
-          opacity={0.85}
+          opacity={settings.opacity}
           toneMapped={false}
         />
       </mesh>
