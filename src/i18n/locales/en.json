@@ -68,6 +68,17 @@
       "default_choice_1": "Choice 1",
       "default_choice_2": "Choice 2",
       "default_choice_3": "Choice 3"
+    },
+    "tools": {
+      "audioVisualizer": {
+        "title": "3D Audio Visualizer",
+        "description": "Upload an MP3 and watch the music come to life in 3D.",
+        "controls": {
+          "upload": "Upload MP3",
+          "shape": "Wave Shape",
+          "colors": "Theme Colors"
+        }
+      }
     }
   },
   "portfolio": {

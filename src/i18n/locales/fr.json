@@ -68,6 +68,16 @@
       "default_choice_1": "Choix 1",
       "default_choice_2": "Choix 2",
       "default_choice_3": "Choix 3"
+    },
+    "audio-visualizer": {
+      "title": "Visualiseur Audio 3D",
+      "subtitle": "Visualiseur Audio 3D",
+      "description": "Chargez un MP3 et regardez la musique prendre vie en 3D.",
+      "controls": {
+        "upload": "Charger MP3",
+        "shape": "Forme de l'onde",
+        "colors": "Couleurs du thème"
+      }
     }
   },
   "portfolio": {
