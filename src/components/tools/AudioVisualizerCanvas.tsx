@@ -13,10 +13,6 @@ import { audioVisualizerService } from '@/services/tools/audioVisualizerService.
 
 const SEGMENTS = 64;
 
-/**
- * Utilitaire pour créer une géométrie de "Ruban" vide (un long rectangle composé de triangles).
- * Il possède SEGMENTS + 1 points en bas, et SEGMENTS + 1 points en haut.
- */
 const createRibbonGeometry = (segments: number) => {
   const pts = segments + 1;
   const positions = new Float32Array(pts * 2 * 3);
@@ -87,7 +83,7 @@ const VisualizerScene: React.FC = () => {
         p0x = p1x = p2x = p3x = x;
         p0z = p1z = p2z = p3z = zOffset;
 
-        p0y = -viewport.height * 0.2;
+        p0y = 0;
         p1y = p0y + bassH;
         p2y = p1y + midH;
         p3y = p2y + trebleH;
@@ -145,8 +141,8 @@ const VisualizerScene: React.FC = () => {
     trebleGeo.attributes.position.needsUpdate = true;
   });
 
-  return (
-    <group>
+  const renderRibbons = () => (
+    <>
       <mesh geometry={bassGeo}>
         <meshBasicMaterial
           color={settings.bassColor}
@@ -174,6 +170,13 @@ const VisualizerScene: React.FC = () => {
           toneMapped={false}
         />
       </mesh>
+    </>
+  );
+
+  return (
+    <group>
+      <group>{renderRibbons()}</group>
+      {settings.shape === 'line' && <group scale={[1, -1, 1]}>{renderRibbons()}</group>}
     </group>
   );
 };
