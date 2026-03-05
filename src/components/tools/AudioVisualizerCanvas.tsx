@@ -82,12 +82,7 @@ const VisualizerScene: React.FC = () => {
     meshRef.current.instanceMatrix.needsUpdate = true;
   });
 
-  return (
-    <instancedMesh
-      ref={meshRef}
-      args={[baseGeometry, baseMaterial, NUM_BARS]}
-    />
-  );
+  return <instancedMesh ref={meshRef} args={[baseGeometry, baseMaterial, NUM_BARS]} />;
 };
 
 const AudioVisualizerCanvas: React.FC = () => {
