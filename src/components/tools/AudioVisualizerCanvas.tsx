@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
+import { audioVisualizerService } from '@/services/tools/audioVisualizerService.ts';
 
 const NUM_BARS = 90;
 const BARS_PER_BAND = NUM_BARS / 3;
@@ -43,9 +44,10 @@ const VisualizerScene: React.FC = () => {
   }, [settings.bassColor, settings.midColor, settings.trebleColor, colorObject]);
 
   // Rendering loop
-  useFrame((state) => {
+  useFrame(() => {
     if (!meshRef.current) return;
-    const time = state.clock.elapsedTime;
+
+    const frequencyData = audioVisualizerService.getFrequencyData();
 
     // Responsive elements
     const availableWidth = viewport.width * 0.9;
@@ -55,11 +57,12 @@ const VisualizerScene: React.FC = () => {
     const maxAmplitude = viewport.height * 0.25;
 
     for (let i = 0; i < NUM_BARS; i++) {
-      const simulatedFrequency = isPlaying
-        ? Math.abs(Math.sin(time * 2 + i * 0.1)) * maxAmplitude + 0.1
-        : 0.1;
+      let scaleY = 0.1;
 
-      const scaleY = simulatedFrequency;
+      if (isPlaying && frequencyData) {
+        const normalizedValue = frequencyData[i] / 255;
+        scaleY = normalizedValue * maxAmplitude * 1.5 + 0.1;
+      }
 
       if (settings.shape === 'line') {
         const x = (i - NUM_BARS / 2) * spacing;
