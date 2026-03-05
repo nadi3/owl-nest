@@ -92,7 +92,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
   );
 
   return (
-    <NestCard title={'Contrôles'}>
+    <NestCard title={t('tools.audioVisualizer.controls.title')}>
       <Stack
         direction={{ xs: 'column', md: 'row' }}
         spacing={3}
@@ -101,27 +101,27 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
       >
         <Stack direction="row" spacing={2} alignItems="center">
           <NestButton nestVariant="contained" component="label">
-            {t('tools.audioVisualizer.controls.upload', 'Upload MP3')}
+            {t('tools.audioVisualizer.controls.upload')}
             <input type="file" accept="audio/mp3, audio/wav" hidden onChange={handleFileUpload} />
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={handleLoadDemo}>
-            {t('tools.audioVisualizer.controls.demo', 'Try Demo')}
+            {t('tools.audioVisualizer.controls.demo')}
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
-            {isPlaying ? 'Pause' : 'Play'}
+            {t(isPlaying ? 'tools.audioVisualizer.controls.pause' : 'tools.audioVisualizer.controls.play')}
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={onToggleFullscreen}>
-            {t('tools.audioVisualizer.controls.fullscreen', 'Fullscreen')}
+            {t('tools.audioVisualizer.controls.fullscreen')}
           </NestButton>
         </Stack>
 
         <Stack direction="row" spacing={3} alignItems="center">
           <Box sx={{ minWidth: 100 }}>
             <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
-              {t('tools.audioVisualizer.controls.shape', 'Shape')}
+              {t('tools.audioVisualizer.controls.shape')}
             </Typography>
             <Select
               size="small"
@@ -129,14 +129,14 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               onChange={handleShapeChange}
               sx={{ backgroundColor: 'background.paper' }}
             >
-              <MenuItem value="line">Line</MenuItem>
-              <MenuItem value="circle">Circle</MenuItem>
+              <MenuItem value="line">{t('tools.audioVisualizer.shapes.line')}</MenuItem>
+              <MenuItem value="circle">{t('tools.audioVisualizer.shapes.circle')}</MenuItem>
             </Select>
           </Box>
 
           <Box sx={{ width: 120 }}>
             <Typography variant="caption" color="text.secondary" display="block">
-              {t('tools.audioVisualizer.controls.opacity', 'Opacity')}
+              {t('tools.audioVisualizer.controls.opacity')}
             </Typography>
             <Slider
               size="small"
@@ -159,7 +159,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
                       onChange={(e) => updateSetting('showImage', e.target.checked)}
                     />
                   }
-                  label={t('tools.audioVisualizer.controls.showImage', 'Center Image')}
+                  label={t('tools.audioVisualizer.controls.showImage')}
                   sx={{
                     '& .MuiFormControlLabel-label': {
                       fontSize: '0.75rem',
@@ -170,7 +170,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
 
                 {settings.showImage && (
                   <NestButton nestVariant="contained" component="label" size="small">
-                    {t('tools.audioVisualizer.controls.uploadImage', 'Change Image')}
+                    {t('tools.audioVisualizer.controls.uploadImage')}
                     <input
                       type="file"
                       accept="image/png, image/jpeg, image/webp"
@@ -185,10 +185,10 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
         </Stack>
 
         <Stack direction="row" spacing={2}>
-          <ColorPicker label="Background" settingKey="backgroundColor" />
-          <ColorPicker label="Bass" settingKey="bassColor" />
-          <ColorPicker label="Mids" settingKey="midColor" />
-          <ColorPicker label="Treble" settingKey="trebleColor" />
+          <ColorPicker label={t('tools.audioVisualizer.colors.background')} settingKey="backgroundColor" />
+          <ColorPicker label={t('tools.audioVisualizer.colors.bass')} settingKey="bassColor" />
+          <ColorPicker label={t('tools.audioVisualizer.colors.mids')} settingKey="midColor" />
+          <ColorPicker label={t('tools.audioVisualizer.colors.treble')} settingKey="trebleColor" />
         </Stack>
       </Stack>
     </NestCard>

@@ -9,10 +9,10 @@ export const PUBLIC_TOOLS: PublicTool[] = [
     path: '/tools/wheel',
   },
   {
-    id: 'audio-visualizer',
-    titleKey: 'tools.audio-visualizer.title',
-    subtitleKey: 'tools.audio-visualizer.subtitle',
-    descriptionKey: 'tools.audio-visualizer.description',
+    id: 'audioVisualizer',
+    titleKey: 'tools.audioVisualizer.title',
+    subtitleKey: 'tools.audioVisualizer.subtitle',
+    descriptionKey: 'tools.audioVisualizer.description',
     path: '/tools/visualizer',
   },
 ];
