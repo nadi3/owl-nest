@@ -110,7 +110,11 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
-            {t(isPlaying ? 'tools.audioVisualizer.controls.pause' : 'tools.audioVisualizer.controls.play')}
+            {t(
+              isPlaying
+                ? 'tools.audioVisualizer.controls.pause'
+                : 'tools.audioVisualizer.controls.play'
+            )}
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={onToggleFullscreen}>
@@ -185,7 +189,10 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
         </Stack>
 
         <Stack direction="row" spacing={2}>
-          <ColorPicker label={t('tools.audioVisualizer.colors.background')} settingKey="backgroundColor" />
+          <ColorPicker
+            label={t('tools.audioVisualizer.colors.background')}
+            settingKey="backgroundColor"
+          />
           <ColorPicker label={t('tools.audioVisualizer.colors.bass')} settingKey="bassColor" />
           <ColorPicker label={t('tools.audioVisualizer.colors.mids')} settingKey="midColor" />
           <ColorPicker label={t('tools.audioVisualizer.colors.treble')} settingKey="trebleColor" />
