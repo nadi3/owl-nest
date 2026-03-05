@@ -51,9 +51,23 @@
     "items": {
       "destiny-wheel": {
         "title": "Wheel of Destiny",
-        "subtitle": "For the undecided",
+        "subtitle": "Let chance decide for you",
         "description": "Enter a list of choices, spin the wheel, and get a random result."
       }
+    },
+    "wheel": {
+      "title": "Wheel of Destiny",
+      "subtitle": "Let chance decide for you",
+      "config": "Configuration",
+      "wheel_name": "Wheel Name",
+      "spin": "Spin the wheel!",
+      "new_choice": "New option",
+      "choices": "{{count}} / 16 choices",
+      "fullscreen": "Fullscreen",
+      "default_title": "Wheel of Destiny",
+      "default_choice_1": "Choice 1",
+      "default_choice_2": "Choice 2",
+      "default_choice_3": "Choice 3"
     }
   },
   "portfolio": {

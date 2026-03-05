@@ -9,6 +9,7 @@ import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
 import UselessLayout from '@/layouts/UselessLayout.tsx';
 import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
+import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -32,8 +33,11 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'tools',
-        element: <PublicTools />,
+        path: '/tools',
+        children: [
+          { index: true, element: <PublicTools /> },
+          { path: 'wheel', element: <WheelOfDestiny /> },
+        ],
       },
       {
         path: 'portfolio',

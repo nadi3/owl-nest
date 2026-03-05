@@ -12,7 +12,7 @@ const Home = () => {
 
   const sections = [
     { title: 'useless.title', desc: 'useless.desc', path: '/useless' },
-    { title: 'services.title', desc: 'services.desc', path: '/services' },
+    { title: 'tools.title', desc: 'tools.desc', path: '/tools' },
     { title: 'portfolio.title', desc: 'portfolio.desc', path: '/portfolio' },
     { title: 'private.title', desc: 'private.desc', path: '/private' },
   ];

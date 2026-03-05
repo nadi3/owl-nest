@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import { Stack, TextField, IconButton, Checkbox, Box, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import { NestButton } from '@/components/common/NestButton.tsx';
+import { useWheelStore } from '@/store/tools/useWheelStore.ts';
+import { useTranslation } from 'react-i18next';
+
+const ChoiceManager: React.FC = () => {
+  const { t } = useTranslation();
+  const { choices, addChoice, removeChoice, toggleChoice, updateChoice } = useWheelStore();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleAdd = () => {
+    if (inputValue.trim()) {
+      addChoice(inputValue.trim());
+      setInputValue('');
+    }
+  };
+
+  return (
+    <Stack spacing={2}>
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <TextField
+          label={t('tools.wheel.new_choice')}
+          size="small"
+          fullWidth
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
+        />
+        <NestButton nestColor="primary" onClick={handleAdd} sx={{ minWidth: '40px' }}>
+          <AddIcon />
+        </NestButton>
+      </Box>
+
+      <Stack spacing={1} sx={{ maxHeight: '400px', overflowY: 'auto' }}>
+        {choices.map((choice) => (
+          <Box key={choice.id} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Checkbox
+              checked={choice.isActive}
+              onChange={() => toggleChoice(choice.id)}
+              color="primary"
+            />
+            <TextField
+              size="small"
+              fullWidth
+              value={choice.text}
+              onChange={(e) => updateChoice(choice.id, { text: e.target.value })}
+            />
+            <input
+              type="color"
+              value={choice.color}
+              onChange={(e) => updateChoice(choice.id, { color: e.target.value })}
+              style={{
+                width: '30px',
+                height: '30px',
+                border: 'none',
+                cursor: 'pointer',
+                borderRadius: '4px',
+              }}
+            />
+            <IconButton onClick={() => removeChoice(choice.id)} color="error" size="small">
+              <DeleteIcon />
+            </IconButton>
+          </Box>
+        ))}
+      </Stack>
+      <Typography variant="caption" color="text.secondary">
+        {t('tools.wheel.choices', { count: choices.length })}
+      </Typography>
+    </Stack>
+  );
+};
+
+export default ChoiceManager;
