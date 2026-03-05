@@ -4,12 +4,13 @@
  * Uses continuous custom BufferGeometries (Ribbons) for a stacked area chart effect.
  */
 
-import React, { useMemo } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import { Box } from '@mui/material';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
 import { audioVisualizerService } from '@/services/tools/audioVisualizerService.ts';
+import { useTexture } from '@react-three/drei';
 
 const SEGMENTS = 64;
 
@@ -31,6 +32,35 @@ const createRibbonGeometry = (segments: number) => {
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setIndex(indices);
   return geometry;
+};
+
+const CenterImage: React.FC<{ url: string }> = ({ url }) => {
+  const texture = useTexture(url);
+  const { viewport } = useThree();
+  const imageRadius = Math.min(viewport.width, viewport.height) * 0.2;
+  React.useEffect(() => {
+    if (!texture) return;
+
+    if (texture.image && texture.image instanceof HTMLImageElement) {
+      const imageAspect = texture.image.width / texture.image.height;
+      if (imageAspect > 1) {
+        texture.repeat.set(1 / imageAspect, 1);
+        texture.offset.set((1 - 1 / imageAspect) / 2, 0);
+      } else {
+        texture.repeat.set(1, imageAspect);
+        texture.offset.set(0, (1 - imageAspect) / 2);
+      }
+    }
+
+    texture.needsUpdate = true;
+  }, [texture]);
+
+  return (
+    <mesh position={[0, 0, 0]}>
+      <circleGeometry args={[imageRadius, 64]} />
+      <meshBasicMaterial map={texture} transparent toneMapped={false} />
+    </mesh>
+  );
 };
 
 const VisualizerScene: React.FC = () => {
@@ -182,7 +212,9 @@ const VisualizerScene: React.FC = () => {
 };
 
 const AudioVisualizerCanvas: React.FC = () => {
-  const backgroundColor = useAudioVisualizerStore((state) => state.settings.backgroundColor);
+  const settings = useAudioVisualizerStore((state) => state.settings);
+  const backgroundColor = settings.backgroundColor;
+  const imageUrl = settings.customImage || '/logo-owl.png';
 
   return (
     <Box
@@ -195,6 +227,11 @@ const AudioVisualizerCanvas: React.FC = () => {
     >
       <Canvas camera={{ position: [0, 0, 25], fov: 50 }}>
         <VisualizerScene />
+        {settings.shape === 'circle' && settings.showImage && (
+          <Suspense fallback={null}>
+            <CenterImage url={imageUrl} />
+          </Suspense>
+        )}
       </Canvas>
     </Box>
   );

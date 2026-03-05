@@ -13,6 +13,8 @@ import {
   Select,
   type SelectChangeEvent,
   Slider,
+  FormControlLabel,
+  Switch,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
@@ -35,6 +37,14 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
     const file = event.target.files?.[0] || null;
     if (file) {
       setAudioFile(file);
+    }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      updateSetting('customImage', imageUrl);
     }
   };
 
@@ -138,6 +148,39 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               valueLabelDisplay="auto"
               valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
             />
+
+            {settings.shape === 'circle' && (
+              <Stack direction="row" spacing={2} alignItems="center">
+                <FormControlLabel
+                  control={
+                    <Switch
+                      size="small"
+                      checked={settings.showImage}
+                      onChange={(e) => updateSetting('showImage', e.target.checked)}
+                    />
+                  }
+                  label={t('tools.audioVisualizer.controls.showImage', 'Center Image')}
+                  sx={{
+                    '& .MuiFormControlLabel-label': {
+                      fontSize: '0.75rem',
+                      color: 'text.secondary',
+                    },
+                  }}
+                />
+
+                {settings.showImage && (
+                  <NestButton nestVariant="contained" component="label" size="small">
+                    {t('tools.audioVisualizer.controls.uploadImage', 'Change Image')}
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg, image/webp"
+                      hidden
+                      onChange={handleImageUpload}
+                    />
+                  </NestButton>
+                )}
+              </Stack>
+            )}
           </Box>
         </Stack>
 

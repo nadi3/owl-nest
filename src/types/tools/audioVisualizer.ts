@@ -18,6 +18,10 @@ export interface VisualizerSettings {
   shape: VisualizerShape;
   /** The opacity of the rendered frequency waves (0 to 1). */
   opacity: number;
+  /** Determines if the center image is displayed */
+  showImage: boolean;
+  /** URL (blob) of the uploaded image. Null = logo by default */
+  customImage: string | null;
 }
 
 export interface AudioVisualizerState {
