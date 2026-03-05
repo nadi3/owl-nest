@@ -20,7 +20,13 @@ import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';
 import { NestCard } from '@/components/common/NestCard.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 
-const AudioVisualizerControls: React.FC = () => {
+interface AudioVisualizerControlsProps {
+  onToggleFullscreen: () => void;
+}
+
+const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
+  onToggleFullscreen,
+}) => {
   const { t } = useTranslation();
   const { isPlaying, settings, setAudioFile, setIsPlaying, updateSetting } =
     useAudioVisualizerStore();
@@ -95,6 +101,10 @@ const AudioVisualizerControls: React.FC = () => {
 
           <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
             {isPlaying ? 'Pause' : 'Play'}
+          </NestButton>
+
+          <NestButton nestVariant="ghost" onClick={onToggleFullscreen}>
+            {t('tools.audioVisualizer.controls.fullscreen', 'Fullscreen')}
           </NestButton>
         </Stack>
 

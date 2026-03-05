@@ -48,7 +48,7 @@ const VisualizerScene: React.FC = () => {
   useFrame(() => {
     const frequencyData = audioVisualizerService.getFrequencyData();
 
-    const availableWidth = viewport.width * 0.9;
+    const availableWidth = viewport.width * 1.02;
     const spacing = availableWidth / SEGMENTS;
     const circleRadius = Math.min(viewport.width, viewport.height) * 0.2;
     const maxAmplitude = viewport.height * 0.15;
