@@ -25,6 +25,7 @@ The project is currently in its early "nesting" phase. The experiment list is ju
 -   **Internationalization (i18n)**: Fully bilingual interface (English/French) built with `react-i18next`.
 -   **Hexadecimal Time Tracker**: A visual widget tracking the year/month/day's progress through a hexadecimal lens.
 -   **Fleeing Button Game**: A classic interactive "catch me if you can" component to test mouse interactions and basic physics.
+-   **Decision Wheel**: A customizable spinning wheel for random choices.
 
 ## Tech Stack
 The Owl Nest frontend is built with a modern, performant, and type-safe stack. Every dependency is chosen to balance developer productivity with a high-quality end-user experience.
@@ -186,7 +187,6 @@ Creating a suite of useful, privacy-focused web tools:
 
 -   **Audio Visualizer**: A 3D MP3 visualizer to bring music to life in the browser.
 -   **Text Processing**: A comprehensive text cleaner with multiple formatting and filtering options.
--   **Decision Wheel**: A customizable spinning wheel for random choices.
 -   **Secure Secrets**: A password sharing service and a customizable QR code generator.
 -   **Client-Side Anonymizer**: A photo face-blurring tool with zero cloud storage, everything stays in your browser.
 -   **Ephemeral Collaboration**: Shared checklists via unique URLs for temporary collaborative tasks (e.g., shopping lists, todo, etc.).
