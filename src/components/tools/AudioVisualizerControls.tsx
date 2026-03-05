@@ -1,3 +1,9 @@
+/**
+ * @file AudioVisualizerControls.tsx
+ * @description Control panel for the Audio Visualizer.
+ * Allows users to upload an MP3 file, load a default demo, and adjust visual settings.
+ */
+
 import React from 'react';
 import {
   Box,
@@ -23,6 +29,17 @@ const AudioVisualizerControls: React.FC = () => {
     const file = event.target.files?.[0] || null;
     if (file) {
       setAudioFile(file);
+    }
+  };
+
+  const handleLoadDemo = async () => {
+    try {
+      const response = await fetch('/demo.mp3');
+      const blob = await response.blob();
+      const file = new File([blob], 'demo.mp3', { type: 'audio/mpeg' });
+      setAudioFile(file);
+    } catch (error) {
+      console.error('Failed to load demo audio:', error);
     }
   };
 
@@ -70,6 +87,10 @@ const AudioVisualizerControls: React.FC = () => {
           <NestButton nestVariant="contained" component="label">
             {t('tools.audioVisualizer.controls.upload', 'Upload MP3')}
             <input type="file" accept="audio/mp3, audio/wav" hidden onChange={handleFileUpload} />
+          </NestButton>
+
+          <NestButton nestVariant="ghost" onClick={handleLoadDemo}>
+            {t('tools.audioVisualizer.controls.demo', 'Try Demo')}
           </NestButton>
 
           <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
