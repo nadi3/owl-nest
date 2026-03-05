@@ -68,6 +68,33 @@
       "default_choice_1": "Choix 1",
       "default_choice_2": "Choix 2",
       "default_choice_3": "Choix 3"
+    },
+    "audioVisualizer": {
+      "title": "Visualiseur Audio 3D",
+      "subtitle": "Visualiseur Audio 3D",
+      "description": "Chargez un MP3 et regardez la musique prendre vie en 3D.",
+      "controls": {
+        "title": "Contrôles",
+        "upload": "Charger MP3",
+        "demo": "Essayer la démo",
+        "play": "Lecture",
+        "pause": "Pause",
+        "fullscreen": "Plein écran",
+        "shape": "Forme de l'onde",
+        "opacity": "Opacité",
+        "showImage": "Image centrale",
+        "uploadImage": "Changer l'image"
+      },
+      "shapes": {
+        "line": "Ligne",
+        "circle": "Cercle"
+      },
+      "colors": {
+        "background": "Fond",
+        "bass": "Basses",
+        "mids": "Moyens",
+        "treble": "Aigus"
+      }
     }
   },
   "portfolio": {

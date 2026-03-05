@@ -68,6 +68,33 @@
       "default_choice_1": "Choice 1",
       "default_choice_2": "Choice 2",
       "default_choice_3": "Choice 3"
+    },
+    "audioVisualizer": {
+      "title": "3D Audio Visualizer",
+      "subtitle": "3D Audio Visualizer",
+      "description": "Upload an MP3 and watch the music come to life in 3D.",
+      "controls": {
+        "title": "Controls",
+        "upload": "Upload MP3",
+        "demo": "Try Demo",
+        "play": "Play",
+        "pause": "Pause",
+        "fullscreen": "Fullscreen",
+        "shape": "Wave Shape",
+        "opacity": "Opacity",
+        "showImage": "Center Image",
+        "uploadImage": "Change Image"
+      },
+      "shapes": {
+        "line": "Line",
+        "circle": "Circle"
+      },
+      "colors": {
+        "background": "Background",
+        "bass": "Bass",
+        "mids": "Mids",
+        "treble": "Treble"
+      }
     }
   },
   "portfolio": {

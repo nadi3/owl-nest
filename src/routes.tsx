@@ -10,6 +10,7 @@ import ErrorPage from '@/pages/ErrorPage.tsx';
 import UselessLayout from '@/layouts/UselessLayout.tsx';
 import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
+import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <PublicTools /> },
           { path: 'wheel', element: <WheelOfDestiny /> },
+          { path: 'visualizer', element: <AudioVisualizer /> },
         ],
       },
       {

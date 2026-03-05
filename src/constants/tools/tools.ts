@@ -8,4 +8,11 @@ export const PUBLIC_TOOLS: PublicTool[] = [
     descriptionKey: 'tools.items.destiny-wheel.description',
     path: '/tools/wheel',
   },
+  {
+    id: 'audioVisualizer',
+    titleKey: 'tools.audioVisualizer.title',
+    subtitleKey: 'tools.audioVisualizer.subtitle',
+    descriptionKey: 'tools.audioVisualizer.description',
+    path: '/tools/visualizer',
+  },
 ];
