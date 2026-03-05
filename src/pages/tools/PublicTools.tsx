@@ -5,10 +5,12 @@ import { NestButton } from '@/components/common/NestButton.tsx';
 import { getPublicTools } from '@/services/tools/toolsService.ts';
 import { useTranslation } from 'react-i18next';
 import { ChevronRightIcon, Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const PublicTools = () => {
   const { t } = useTranslation();
   const tools = getPublicTools();
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -25,6 +27,7 @@ const PublicTools = () => {
                 nestVariant={tool.disabled ? 'ghost' : 'contained'}
                 startIcon={tool.disabled ? <Clock size={18} /> : <ChevronRightIcon size={18} />}
                 disabled={tool.disabled}
+                onClick={() => !tool.disabled && navigate(tool.path)}
               >
                 {tool.disabled ? t('tools.disabled') : t('tools.enabled')}
               </NestButton>

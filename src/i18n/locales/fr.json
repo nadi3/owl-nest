@@ -50,10 +50,24 @@
     "enabled": "Ouvrir",
     "items": {
       "destiny-wheel": {
-        "title": "Roue du destin",
-        "subtitle": "Pour les indécis",
+        "title": "Roue de la destinée",
+        "subtitle": "Laissez le hasard décider pour vous",
         "description": "Entre une liste de choix, lance la roue et obtiens un résultat aléatoire."
       }
+    },
+    "wheel": {
+      "title": "Roue de la destinée",
+      "subtitle": "Laissez le hasard décider pour vous",
+      "config": "Configuration",
+      "wheel_name": "Nom de la roue",
+      "spin": "Lancer !",
+      "new_choice": "Nouvelle option",
+      "choices": "{{count}} / 16 choix",
+      "fullscreen": "Plein écran",
+      "default_title": "Roue de la destinée",
+      "default_choice_1": "Choix 1",
+      "default_choice_2": "Choix 2",
+      "default_choice_3": "Choix 3"
     }
   },
   "portfolio": {

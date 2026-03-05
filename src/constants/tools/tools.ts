@@ -6,6 +6,6 @@ export const PUBLIC_TOOLS: PublicTool[] = [
     titleKey: 'tools.items.destiny-wheel.title',
     subtitleKey: 'tools.items.destiny-wheel.subtitle',
     descriptionKey: 'tools.items.destiny-wheel.description',
-    disabled: true,
+    path: '/tools/wheel',
   },
 ];
