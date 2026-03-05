@@ -58,7 +58,8 @@ const VisualizerScene: React.FC = () => {
     const treblePos = trebleGeo.attributes.position.array as Float32Array;
 
     for (let i = 0; i <= SEGMENTS; i++) {
-      const dataI = i === SEGMENTS ? 0 : i;
+      const halfSegments = SEGMENTS / 2;
+      const dataI = i <= halfSegments ? i : SEGMENTS - i;
 
       let bassH = 0.05,
         midH = 0.05,
