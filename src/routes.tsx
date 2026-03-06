@@ -11,6 +11,7 @@ import UselessLayout from '@/layouts/UselessLayout.tsx';
 import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
+import SufferingPage from '@/pages/useless/SufferingPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <UselessIndex /> },
           { path: 'fleeing', element: <FleeingButtonPage /> },
+          { path: 'suffering', element: <SufferingPage /> },
         ],
       },
       {
