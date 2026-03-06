@@ -42,6 +42,35 @@
       "idle": "ZZZZZZ",
       "score": "Score :"
     },
+    "wait-button": {
+      "global_record": "Record actuel : {{time}}s de pur néant.",
+      "new_record_warning": "NOUVEAU RECORD ! Vous êtes officiellement la personne qui a perdu le plus de temps ici !",
+      "infinite_progress": "Progression : ∞",
+      "start": "Cliquez et MAINTENEZ",
+      "hold": "NE LÂCHEZ PAS !",
+      "ready": "Prêt à perdre un peu de temps ?",
+      "milestones": {
+        "10": "Pas mal pour un début.",
+        "30": "Trente secondes. C'est... un choix.",
+        "60": "Une minute. Vous êtes officiellement entré dans la zone 'rien à faire'.",
+        "120": "Deux minutes ! Votre détermination est aussi impressionnante qu'inquiétante.",
+        "300": "Cinq minutes. Je commence à m'inquiéter pour votre doigt."
+      },
+      "random_pool": [
+        "Toujours là ?",
+        "Est-ce votre pic de productivité ?",
+        "J'ai vu un oiseau dehors. Vous devriez regarder aussi.",
+        "Cliquer est un art, et vous en êtes le maître.",
+        "La patience est une vertu, mais là, c'est une obsession.",
+        "La barre de progression se moque de vous.",
+        "Confucius a dit : Celui qui tient le bouton ne tient rien d'autre.",
+        "Erreur 404 : Objectif non trouvé.",
+        "Votre souris commence à transpirer.",
+        "Essayez-vous de prouver quelque chose ?",
+        "Si vous arrêtez maintenant, le bouton gagne.",
+        "Je ne suis qu'un script, mais même moi, je m'ennuie."
+      ]
+    },
     "suffering": {
       "title": "Le bouton sensible",
       "description": "Un exercice de cruauté digitale gratuite.",

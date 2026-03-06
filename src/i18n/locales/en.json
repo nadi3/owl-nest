@@ -42,6 +42,35 @@
       "idle": "ZZZZZZ",
       "score": "Score:"
     },
+    "wait-button": {
+      "global_record": "Current record: {{time}}s of pure void.",
+      "new_record_warning": "NEW RECORD! You are officially the person who lost the most time here!",
+      "infinite_progress": "Progress: ∞",
+      "start": "Click and HOLD",
+      "hold": "DON'T LET GO!",
+      "ready": "Ready to waste some time?",
+      "milestones": {
+        "10": "Not bad for a start.",
+        "30": "Thirty seconds. That's... a choice.",
+        "60": "One minute. You've officially entered the 'nothing to do' zone.",
+        "120": "Two minutes! Your determination is as impressive as it is concerning.",
+        "300": "Five minutes. I'm starting to worry about your finger."
+      },
+      "random_pool": [
+        "Still there?",
+        "Is this your peak productivity?",
+        "I saw a bird outside. You should look too.",
+        "Clicking is an art, and you're a master.",
+        "Patience is a virtue, but this is an obsession.",
+        "The progress bar is laughing at you.",
+        "Confucius say: He who holds button, holds nothing else.",
+        "Error 404: Purpose not found.",
+        "Your mouse is starting to sweat.",
+        "Are you trying to prove something?",
+        "If you stop now, the button wins.",
+        "I'm actually just a script, but even I'm bored."
+      ]
+    },
     "suffering": {
       "title": "The sensitive button",
       "description": "An exercise in gratuitous digital cruelty.",
