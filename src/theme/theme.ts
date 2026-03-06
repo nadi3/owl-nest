@@ -32,6 +32,12 @@ const themeOptions: ThemeOptions = {
       dark: '#680018',
       light: '#fbb9c7',
     },
+    warning: {
+      main: '#FF9800',
+      contrastText: '#FFFFFF',
+      dark: '#D97B00',
+      light: '#ffcc80',
+    },
     background: {
       default: '#F4F6F8',
       paper: '#FFFFFF',
