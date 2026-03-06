@@ -9,12 +9,11 @@ export const USELESS_WIDGETS: UselessWidget[] = [
     path: '/useless/fleeing',
   },
   {
-    id: 'infinite-button',
-    titleKey: 'useless.items.infinite-button.title',
-    subtitleKey: 'useless.items.infinite-button.subtitle',
-    descriptionKey: 'useless.items.infinite-button.description',
-    path: '/useless/infinite',
-    disabled: true,
+    id: 'suffering',
+    titleKey: 'useless.items.suffering.title',
+    subtitleKey: 'useless.items.suffering.subtitle',
+    descriptionKey: 'useless.items.suffering.description',
+    path: '/useless/suffering',
   },
   {
     id: 'wait-button',

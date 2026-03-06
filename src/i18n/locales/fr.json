@@ -15,10 +15,9 @@
         "subtitle": "UX / Interaction",
         "description": "Un petit défi : cette souris fera tout pour éviter ton curseur."
       },
-      "infinite-button": {
-        "title": "Bouton passe-temps",
-        "subtitle": "UX / Interaction",
-        "description": "Un bouton qui change de position à chaque clic, pour te faire perdre du temps de manière ludique."
+      "suffering": {
+        "title": "Le Bouton Sensible",
+        "description": "Un exercice de cruauté digitale gratuite."
       },
       "wait-button": {
         "title": "Bouton d'attente",
@@ -41,6 +40,10 @@
       "run": "AAAAAH !",
       "idle": "ZZZZZZ",
       "score": "Score :"
+    },
+    "suffering": {
+      "title": "Le Bouton Sensible",
+      "description": "Un exercice de cruauté digitale gratuite."
     }
   },
   "tools": {
