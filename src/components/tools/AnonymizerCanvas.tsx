@@ -1,10 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { Box } from '@mui/material';
 import { useAnonymizerStore } from '@/store/tools/useAnonymizerStore.ts';
 
-export const AnonymizerCanvas = () => {
+export interface AnonymizerCanvasRef {
+  downloadImage: (filename?: string) => void;
+}
+
+export const AnonymizerCanvas = forwardRef<AnonymizerCanvasRef, {}>((_, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { imageSrc, faces } = useAnonymizerStore();
+
+  useImperativeHandle(ref, () => ({
+    downloadImage: (filename = 'anonymized-photo.jpg') => {
+      if (!canvasRef.current) return;
+
+      const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.9);
+
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = dataUrl;
+      link.click();
+    },
+  }));
 
   useEffect(() => {
     if (!imageSrc || !canvasRef.current) return;
@@ -57,4 +74,6 @@ export const AnonymizerCanvas = () => {
       <canvas ref={canvasRef} style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
     </Box>
   );
-};
+});
+
+AnonymizerCanvas.displayName = 'AnonymizerCanvas';

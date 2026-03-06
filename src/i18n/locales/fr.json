@@ -5,7 +5,8 @@
     "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
   },
   "common": {
-    "reset": "Réinitialiser"
+    "reset": "Réinitialiser",
+    "download": "Télécharger"
   },
   "useless": {
     "title": "Le Lab",

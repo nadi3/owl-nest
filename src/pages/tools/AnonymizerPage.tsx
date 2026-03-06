@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react';
+import { type ChangeEvent, useRef } from 'react';
 import {
   Box,
   Button,
@@ -12,10 +12,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useAnonymizerStore } from '@/store/tools/useAnonymizerStore.ts';
 import { detectFaces } from '@/services/tools/faceDetectionService.ts';
-import { AnonymizerCanvas } from '@/components/tools/AnonymizerCanvas.tsx';
+import {
+  AnonymizerCanvas,
+  type AnonymizerCanvasRef,
+} from '@/components/tools/AnonymizerCanvas.tsx';
 
 export const AnonymizerPage = () => {
   const { t } = useTranslation();
+  // Référence typée pointant vers les méthodes exposées du Canvas
+  const canvasRef = useRef<AnonymizerCanvasRef>(null);
+
   const {
     imageSrc,
     faces,
@@ -37,7 +43,6 @@ export const AnonymizerPage = () => {
       const src = event.target?.result as string;
       setImageSrc(src);
 
-      // Create an offscreen image to feed to TensorFlow
       const img = new Image();
       img.src = src;
       img.onload = async () => {
@@ -52,6 +57,12 @@ export const AnonymizerPage = () => {
       };
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleDownload = () => {
+    if (canvasRef.current) {
+      canvasRef.current.downloadImage(`anonymized_${Date.now()}.jpg`);
+    }
   };
 
   if (!imageSrc) {
@@ -73,10 +84,15 @@ export const AnonymizerPage = () => {
   return (
     <Grid container spacing={3} sx={{ p: 3 }}>
       <Grid item xs={12} md={8}>
-        <Typography variant="h5" gutterBottom>
-          {t('tools.anonymizer.preview')}
-        </Typography>
-        <AnonymizerCanvas />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h5" gutterBottom sx={{ mb: 0 }}>
+            {t('tools.anonymizer.preview')}
+          </Typography>
+          <Button variant="contained" color="primary" onClick={handleDownload}>
+            {t('common.download')}
+          </Button>
+        </Box>
+        <AnonymizerCanvas ref={canvasRef} />
       </Grid>
       <Grid item xs={12} md={4}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
