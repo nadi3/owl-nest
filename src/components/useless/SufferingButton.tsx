@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, keyframes } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { SufferingMan } from './SufferingMan';
 import { SpeechBubble } from './SpeechBubble';
 import { getSufferingColor, getSufferingText } from '@/utils/useless/sufferingLogic.ts';
@@ -13,9 +14,14 @@ const shake = keyframes`
 `;
 
 export const SufferingButton = () => {
+  const { t } = useTranslation();
   const [clicks, setClicks] = useState(0);
   const [pos, setPos] = useState({ x: 50, y: 50 });
   const [exploded, setExploded] = useState(false);
+
+  const phrases = t('useless.suffering.phrases', { returnObjects: true }) as string[];
+  const finalMessage = t('useless.suffering.final_message');
+  const explosion = t('useless.suffering.explosion');
 
   const level = Math.floor(clicks / 10);
   const isShaking = clicks > 60;
@@ -23,7 +29,7 @@ export const SufferingButton = () => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (clicks >= 99) {
+    if (clicks >= phrases.length) {
       setExploded(true);
       return;
     }
@@ -45,7 +51,7 @@ export const SufferingButton = () => {
           transform: 'translate(-50%, -50%)',
         }}
       >
-        💥
+        {explosion}
       </Box>
     );
   }
@@ -66,7 +72,7 @@ export const SufferingButton = () => {
         zIndex: 100,
       }}
     >
-      <SpeechBubble text={getSufferingText(clicks)} />
+      <SpeechBubble text={getSufferingText(clicks, phrases, finalMessage)} />
 
       <Box
         sx={{
