@@ -13,6 +13,8 @@ import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
 import SufferingPage from '@/pages/useless/SufferingPage.tsx';
 import InfiniteWaitPage from './pages/useless/InfiniteWaitPage';
+import { AnonymizerLayout } from '@/layouts/AnonymizerLayout.tsx';
+import { AnonymizerPage } from '@/pages/tools/AnonymizerPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +45,16 @@ export const router = createBrowserRouter([
           { index: true, element: <PublicTools /> },
           { path: 'wheel', element: <WheelOfDestiny /> },
           { path: 'visualizer', element: <AudioVisualizer /> },
+          {
+            path: 'anonymizer',
+            element: <AnonymizerLayout />,
+            children: [
+              {
+                index: true,
+                element: <AnonymizerPage />,
+              },
+            ],
+          },
         ],
       },
       {
