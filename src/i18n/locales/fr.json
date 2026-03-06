@@ -71,6 +71,10 @@
         "Je ne suis qu'un script, mais même moi, je m'ennuie."
       ]
     },
+    "impatience": {
+      "title": "Calmez-vous !",
+      "message": "On dirait que vous êtes pressé. Prenez une grande respiration, détendez votre doigt, et essayez de nouveau. Parfois, la meilleure chose à faire est de ne rien faire du tout."
+    },
     "suffering": {
       "title": "Le bouton sensible",
       "description": "Un exercice de cruauté digitale gratuite.",

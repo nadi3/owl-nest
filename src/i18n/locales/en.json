@@ -71,6 +71,10 @@
         "I'm actually just a script, but even I'm bored."
       ]
     },
+    "impatience": {
+      "title": "Calm down!",
+      "message": "It looks like you're in a hurry. Take a deep breath and try to relax. Sometimes, the best things come to those who wait... or at least to those who don't click frantically."
+    },
     "suffering": {
       "title": "The sensitive button",
       "description": "An exercise in gratuitous digital cruelty.",
