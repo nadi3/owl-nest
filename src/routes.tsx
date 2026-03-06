@@ -12,6 +12,7 @@ import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
 import SufferingPage from '@/pages/useless/SufferingPage.tsx';
+import InfiniteWaitPage from './pages/useless/InfiniteWaitPage';
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
           { index: true, element: <UselessIndex /> },
           { path: 'fleeing', element: <FleeingButtonPage /> },
           { path: 'suffering', element: <SufferingPage /> },
+          { path: 'wait', element: <InfiniteWaitPage /> },
         ],
       },
       {

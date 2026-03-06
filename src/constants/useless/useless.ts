@@ -21,6 +21,5 @@ export const USELESS_WIDGETS: UselessWidget[] = [
     subtitleKey: 'useless.items.wait-button.subtitle',
     descriptionKey: 'useless.items.wait-button.description',
     path: '/useless/wait',
-    disabled: true,
   },
 ];
