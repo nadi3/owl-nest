@@ -4,6 +4,9 @@
     "title": "Bienvenue",
     "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
   },
+  "common": {
+    "reset": "Réinitialiser"
+  },
   "useless": {
     "title": "Le Lab",
     "desc": "Des petits projets pour tester des idées, sans forcément chercher à être utile.",
@@ -235,6 +238,15 @@
         "mids": "Moyens",
         "treble": "Aigus"
       }
+    },
+    "anonymizer": {
+      "title": "Anonymiseur de Photo",
+      "subtitle": "Floutez les visages sur vos photos",
+      "description": "Téléchargez une photo, et cet outil détectera les visages pour les flouter automatiquement, protégeant ainsi la vie privée de vos amis et de votre famille.",
+      "upload": "Charger une photo",
+      "preview": "Prévisualisation",
+      "facesDetected": "{{count}} visage(s) détecté(s)",
+      "blurFace": "Flouter ce visage"
     }
   },
   "portfolio": {
