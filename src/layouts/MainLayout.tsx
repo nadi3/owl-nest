@@ -2,8 +2,14 @@ import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Footer from '@/components/common/Footer.tsx';
 import Sidebar from '@/components/common/Sidebar.tsx';
+import i18n from 'i18next';
+import { useKonamiCode } from '@/hooks/useKonamiCode.ts';
 
 const MainLayout = () => {
+  useKonamiCode(() => {
+    i18n.changeLanguage('gl');
+  });
+  const isGlitched = i18n.language === 'gl';
   return (
     <Box
       sx={{
@@ -11,6 +17,11 @@ const MainLayout = () => {
         height: '100vh',
         width: '100vw',
         overflow: 'hidden',
+        filter: isGlitched ? 'contrast(1.2) hue-rotate(45deg)' : 'none',
+        transition: 'filter 0.5s ease',
+        '& *': {
+          fontFamily: isGlitched ? '"Courier New", monospace !important' : 'inherit',
+        },
       }}
     >
       <Sidebar />
