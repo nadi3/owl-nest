@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, keyframes, Typography } from '@mui/material';
+import { Box, keyframes } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SufferingMan } from './SufferingMan';
 import { SpeechBubble } from './SpeechBubble';
 import { getSufferingColor, getSufferingText } from '@/utils/useless/sufferingLogic.ts';
+import { HandDrawnTombstone } from '@/components/useless/CustomTombstone.tsx';
 
 const shake = keyframes`
   0% { transform: translate(0, 0); }
@@ -189,15 +190,16 @@ export const SufferingButton = () => {
           isDead ? (
             <motion.div
               key="dead"
-              initial={{ y: 50, opacity: 0, scale: 0.5 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 10, delay: 0.2 }}
+              initial={{ y: -1000, opacity: 0, rotate: -10 }}
+              animate={{ y: 0, opacity: 1, rotate: 0 }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 25,
+                duration: 1,
+              }}
             >
-              <Typography
-                sx={{ fontSize: '5rem', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }}
-              >
-                🪦
-              </Typography>
+              <HandDrawnTombstone />
             </motion.div>
           ) : (
             <motion.div key="exploding" style={{ position: 'relative', zIndex: 101 }}>
