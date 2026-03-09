@@ -15,4 +15,11 @@ export const PUBLIC_TOOLS: PublicTool[] = [
     descriptionKey: 'tools.audioVisualizer.description',
     path: '/tools/visualizer',
   },
+  {
+    id: 'anonymizer',
+    titleKey: 'tools.anonymizer.title',
+    subtitleKey: 'tools.anonymizer.subtitle',
+    descriptionKey: 'tools.anonymizer.description',
+    path: '/tools/anonymizer',
+  },
 ];
