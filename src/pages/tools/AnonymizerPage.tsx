@@ -19,7 +19,6 @@ import {
 
 export const AnonymizerPage = () => {
   const { t } = useTranslation();
-  // Référence typée pointant vers les méthodes exposées du Canvas
   const canvasRef = useRef<AnonymizerCanvasRef>(null);
 
   const {
@@ -83,7 +82,7 @@ export const AnonymizerPage = () => {
 
   return (
     <Grid container spacing={3} sx={{ p: 3 }}>
-      <Grid item xs={12} md={8}>
+      <Grid size={8}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h5" gutterBottom sx={{ mb: 0 }}>
             {t('tools.anonymizer.preview')}
@@ -94,7 +93,7 @@ export const AnonymizerPage = () => {
         </Box>
         <AnonymizerCanvas ref={canvasRef} />
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid size={4}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h6">
             {t('tools.anonymizer.facesDetected', { count: faces.length })}
