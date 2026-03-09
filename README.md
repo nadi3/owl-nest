@@ -98,7 +98,7 @@ By default, the deployment configuration is tailored for an automated infrastruc
 -   **Network**: It expects an external Docker network named `web-proxy`.
 -   **Labels**: Traefik labels are pre-configured to handle routing and TLS certificates.
 
-For a complete overview of the infrastructure (including the Traefik setup and global orchestration), please refer to the [owl-infra](https://www.google.com/search?q=https://github.com/nadi3/owl-infra) repository.
+For a complete overview of the infrastructure (including the Traefik setup and global orchestration), please refer to the [owl-infra](https://github.com/nadi3/owl-infra) repository.
 
 ### Standalone Docker Deployment
 If you wish to run the container without a global reverse proxy or the `web-proxy` network, you must adapt the `docker-compose.yml`:
