@@ -9,7 +9,17 @@ A personal digital sanctuary and creative laboratory where useful web utilities,
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript)
 ![MUI](https://img.shields.io/badge/MUI-7.x-007FFF?style=flat-square&logo=mui)
+![Dependabot](https://img.shields.io/badge/dependabot-enabled-blue.svg?logo=dependabot)
 ![Status](https://img.shields.io/badge/Status-Work--in--Progress-orange?style=flat-square)
+![CI Status](https://github.com/nadi3/owl-nest/actions/workflows/ci.yml/badge.svg)
+
+## Table of Contents
+- [Goal and Features](#goal-and-features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Roadmap](#roadmap)
+- [License](#license)
 
 ## Goal and features
 
@@ -21,12 +31,25 @@ Owl Nest is my personal digital headquarters, a "living" laboratory where I cons
 -   **Engineering Log**: A transparent portfolio showcasing my journey through software development, hardware hacking, and robotics.
 
 ### Current Features
-The project is currently in its early "nesting" phase. The experiment list is just starting to grow:
--   **Internationalization (i18n)**: Fully bilingual interface (English/French) built with `react-i18next`.
--   **Hexadecimal Time Tracker**: A visual widget tracking the year/month/day's progress through a hexadecimal lens.
--   **Fleeing Button Game**: A classic interactive "catch me if you can" component to test mouse interactions and basic physics.
--   **Decision Wheel**: A customizable spinning wheel for random choices.
--   **Audio Visualizer**: A 3D MP3 visualizer to bring music to life in the browser.
+
+The project is growing. Here is what is currently available:
+
+#### Public Toolbox
+Small, efficient web utilities for daily use:
+- **Wheel of Destiny**: A fully customizable spinning wheel for random choices.
+- **3D Audio Visualizer**: An immersive 3D environment to visualize your MP3 files in real-time.
+
+#### The Lab
+A creative playground for interactive frontend experiments:
+- **The Sensitive Button**: An exercise in digital empathy (or cruelty) where a button reacts to your clicks.
+- **Fleeing Mouse**: A physics-based game where you must try to click a mouse that desperately avoids your cursor.
+- **Infinite Wait**: A social experiment tracking how long you can hold a button while facing the void.
+- **Hexadecimal Time Tracker**: A unique visual clock where time progression dictates the UI's color spectrum.
+
+#### Core Capabilities
+- **Multi-language Support**: Fully localized in English and French.
+- **Hidden Interactions**: Includes an Impatience Detector and Konami Code support for technical easter eggs.
+
 
 ## Tech Stack
 The Owl Nest frontend is built with a modern, performant, and type-safe stack. Every dependency is chosen to balance developer productivity with a high-quality end-user experience.
@@ -41,34 +64,6 @@ The Owl Nest frontend is built with a modern, performant, and type-safe stack. E
 -   **[React Hook Form](https://react-hook-form.com/)** & **[Zod](https://zod.dev/)**: Paired together for robust, type-safe form management and schema validation.
 -   **[Lucide React](https://lucide.dev/)**: A library of beautiful, consistent icons used throughout the dashboard and experiments.
 -   **[i18next](https://www.i18next.com/)**: Powers the internationalization framework, allowing the project to be fully bilingual (FR/EN) from the ground up.
-  
-## Project Structure
-
-The project follows a modular and strictly typed architecture to ensure scalability and maintainability.
-```text
-src/
-├── components/          # Reusable UI components
-│   └── common/          # Atomic components (Buttons, Cards, Sidebar)
-├── constants/           # Static data and configuration constants
-├── i18n/                # Internationalization config and translation files
-├── layouts/             # Page templates
-├── pages/               # Page components and sub-modules
-├── services/            # Business logic and data fetching
-├── theme/               # Centralized MUI theme and design tokens
-├── types/               # TypeScript interfaces and type definitions
-├── utils/               # Helper functions and technical utilities
-├── App.tsx              # Main application entry point
-├── routes.tsx           # Centralized routing configuration
-└── main.tsx             # React DOM rendering and providers setup
-```
-
-### Key Directories
-
--   **`src/components/common`**: This is the heart of the Design System. Every generic element lives here to ensure visual consistency.
--   **`src/pages`**: Each major section of the site has its own directory or file. For complex services, we use a sub-directory containing the index and specific sub-pages.
--   **`src/layouts`**: We decouple the navigation and global structure from the page content. This allows us to have different layouts (e.g., a standard one for services and a specific one for "useless" experiments).
--   **`src/services`**: Logic for retrieving data (currently from constants, later from APIs) is isolated here to keep components focused on the UI.
--   **`src/theme`**: A single source of truth for colors, shadows, and typography. No hardcoded CSS values should exist outside this folder.
 
 ## Getting Started
 
@@ -98,46 +93,7 @@ npm run dev
 
 Once started, the application is typically accessible at `http://localhost:5173`.
 
-**Maintenance Commands:**
--   `npm run build`: Compile and optimize the project for production.
--   `npm run lint`: Run the linter to check for code quality issues.
--   `npm run format`: Automatically fix code formatting using Prettier.
-
-## Contributing & Standards
-To maintain the high quality and modularity of the Owl Nest, all contributions must adhere to the following standards.
-
-### Branching & Commits
-
-We follow a structured approach to version control:
--   **Branch Naming**: Use descriptive prefixes:
-    -   `feat/feature-name` for new features or experiments.
-    -   `fix/bug-name` for bug fixes.
-    -   `docs/changes` for documentation updates.
-    -   `refactor/change-name` for code improvements without functional changes.
--   **Conventional Commits**: Commit messages must be clear and prefixed following the [conventional commits conventions](https://www.conventionalcommits.org/en/v1.0.0/). This keeps the history readable and allows for automated changelogs.
-
-### Development Rules
-
--   **Naming Conventions**:
-    -   **Components**: Use `PascalCase` for files and component names (e.g., `NestButton.tsx`).
-    -   **Hooks/Utilities/Services**: Use `camelCase` (e.g., `uselessService.ts`).
--   **No Hardcoded Values**: Always use the design tokens from `src/theme/theme.ts` via the `sx` prop or `styled` components. Avoid hardcoding colors, spacing, or font sizes.
--   **Internationalization (i18n)**: Never hardcode user-facing strings in components. Add keys to `src/i18n/locales/en.json` and `fr.json` and use the `useTranslation` hook.
-
-### Automated quality assurance (CI/CD)
-The project uses GitHub Actions to enforce standards:
-- **CI**: Every push triggers linting, type-checking, and a Docker build test.
-- **Deployment**: To deploy a change to the production Raspberry Pi, add the `deploy` label to a Pull Request.
-
-### Recommended Practices
-
--   **Type Safety**: Avoid using `any`. Define interfaces in `src/types/` for all data structures and service responses.
--   **Documentation**: Use brief JSDoc comments (in English) for complex logic or specific component props to explain the "why" behind the implementation.
--   **Imports Organization**: Keep imports tidy by grouping them:
-    1.  React and third-party libraries.
-    2.  Internal components and layouts.
-    3.  Types, services, and constants.
-    4.  Styles and theme.
+> For detailed contribution guidelines, coding standards, and advanced commands, please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Deployment
 
@@ -150,14 +106,13 @@ By default, the deployment configuration is tailored for an automated infrastruc
 -   **Network**: It expects an external Docker network named `web-proxy`.
 -   **Labels**: Traefik labels are pre-configured to handle routing and TLS certificates.
 
-For a complete overview of the infrastructure (including the Traefik setup and global orchestration), please refer to the [owl-infra](https://www.google.com/search?q=https://github.com/nadi3/owl-infra) repository.
+For a complete overview of the infrastructure (including the Traefik setup and global orchestration), please refer to the [owl-infra](https://github.com/nadi3/owl-infra) repository.
 
 ### Standalone Docker Deployment
 If you wish to run the container without a global reverse proxy or the `web-proxy` network, you must adapt the `docker-compose.yml`:
 1.  **Remove the external network**: Change the `networks` section to use a local driver instead of `external: true`.
 2.  **Expose ports**: Add a `ports` mapping to access Nginx directly (e.g., `- "8080:80"`).
 3.  **Remove Traefik labels**: The labels are ignored if Traefik is not present, but can be cleaned up for clarity.
-    
 
 ### Build Process
 The `dockerfile` uses a multi-stage build:
@@ -166,36 +121,9 @@ The `dockerfile` uses a multi-stage build:
 
 ## Roadmap
 
-The development of Owl Nest is divided into several iterative phases. The goal is to evolve from a simple dashboard to a fully integrated personal ecosystem.
+I use **GitHub Projects** and **Issues** to track the evolution of Owl Nest. 
 
-### Infrastructure & Automation
--   **CI/CD Pipeline**: Implement GitHub Actions for automated linting, formatting, and testing on every push.
--   **Automated Deployment**: Set up a robust deployment workflow to sync the production environment with the latest stable branch.
-
-### The Lab
-Expanding the collection of visual and interactive experiments:
-
--   **The Infinite Wait**: A progress bar that never ends, tracking and displaying the record time a user spent pushing on a button.
--   **The Reluctant Button**: A button that moves and begs the user to stop clicking on an empty page.
--   **Excuse Generator**: A specialized tool to generate professional developer excuses or classic procrastination reasons.
--   **Impatience Detector**: A hidden monitor that triggers a "Slow down!" message if it detects frantic clicking.
--   **Technical Easter Eggs**: Integration of a Konami Code and a developer-only horoscope hidden in the browser console.
--   **Physics Playground**: A "Gravity" toggle that makes the page elements collapse, requiring the user to "rebuild" the UI.
--  **Interactive Terminal**: A CLI-style interface for power users to navigate the website and trigger experiments through commands—keyboard-only, the way it was meant to be.
-
-### Public Toolbox
-Creating a suite of useful, privacy-focused web tools:
-
--   **Text Processing**: A comprehensive text cleaner with multiple formatting and filtering options.
--   **Secure Secrets**: A password sharing service and a customizable QR code generator.
--   **Client-Side Anonymizer**: A photo face-blurring tool with zero cloud storage, everything stays in your browser.
--   **Ephemeral Collaboration**: Shared checklists via unique URLs for temporary collaborative tasks (e.g., shopping lists, todo, etc.).
-
-### Hardware & IoT Integration
-Bridging the gap between code and the physical world:
--   **LED Simulator**: A digital point of light that will eventually control a physical LED in my home lab.
--   **Home Weather Dashboard**: A real-time display connected to an ESP32 with sensors measuring local humidity and temperature.
-
+To see what's currently being developed or to suggest a new feature/experiment, please visit: **[Owl Nest Project Board](https://github.com/users/nadi3/projects/2)**
 
 ## License
 
