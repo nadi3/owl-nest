@@ -13,6 +13,14 @@ A personal digital sanctuary and creative laboratory where useful web utilities,
 ![Status](https://img.shields.io/badge/Status-Work--in--Progress-orange?style=flat-square)
 ![CI Status](https://github.com/nadi3/owl-nest/actions/workflows/ci.yml/badge.svg)
 
+## Table of Contents
+- [Goal and Features](#goal-and-features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Deployment](#deployment)
+- [Roadmap](#roadmap)
+- [License](#license)
+
 ## Goal and features
 
 ### Project Goal
