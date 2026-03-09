@@ -56,34 +56,6 @@ The Owl Nest frontend is built with a modern, performant, and type-safe stack. E
 -   **[React Hook Form](https://react-hook-form.com/)** & **[Zod](https://zod.dev/)**: Paired together for robust, type-safe form management and schema validation.
 -   **[Lucide React](https://lucide.dev/)**: A library of beautiful, consistent icons used throughout the dashboard and experiments.
 -   **[i18next](https://www.i18next.com/)**: Powers the internationalization framework, allowing the project to be fully bilingual (FR/EN) from the ground up.
-  
-## Project Structure
-
-The project follows a modular and strictly typed architecture to ensure scalability and maintainability.
-```text
-src/
-├── components/          # Reusable UI components
-│   └── common/          # Atomic components (Buttons, Cards, Sidebar)
-├── constants/           # Static data and configuration constants
-├── i18n/                # Internationalization config and translation files
-├── layouts/             # Page templates
-├── pages/               # Page components and sub-modules
-├── services/            # Business logic and data fetching
-├── theme/               # Centralized MUI theme and design tokens
-├── types/               # TypeScript interfaces and type definitions
-├── utils/               # Helper functions and technical utilities
-├── App.tsx              # Main application entry point
-├── routes.tsx           # Centralized routing configuration
-└── main.tsx             # React DOM rendering and providers setup
-```
-
-### Key Directories
-
--   **`src/components/common`**: This is the heart of the Design System. Every generic element lives here to ensure visual consistency.
--   **`src/pages`**: Each major section of the site has its own directory or file. For complex services, we use a sub-directory containing the index and specific sub-pages.
--   **`src/layouts`**: We decouple the navigation and global structure from the page content. This allows us to have different layouts (e.g., a standard one for services and a specific one for "useless" experiments).
--   **`src/services`**: Logic for retrieving data (currently from constants, later from APIs) is isolated here to keep components focused on the UI.
--   **`src/theme`**: A single source of truth for colors, shadows, and typography. No hardcoded CSS values should exist outside this folder.
 
 ## Getting Started
 
@@ -113,10 +85,7 @@ npm run dev
 
 Once started, the application is typically accessible at `http://localhost:5173`.
 
-**Maintenance Commands:**
--   `npm run build`: Compile and optimize the project for production.
--   `npm run lint`: Run the linter to check for code quality issues.
--   `npm run format`: Automatically fix code formatting using Prettier.
+> For detailed contribution guidelines, coding standards, and advanced commands, please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Deployment
 
@@ -147,20 +116,6 @@ The `dockerfile` uses a multi-stage build:
 I use **GitHub Projects** and **Issues** to track the evolution of Owl Nest. 
 
 To see what's currently being developed or to suggest a new feature/experiment, please visit: **[Owl Nest Project Board](https://github.com/users/nadi3/projects/2)**
-
-### Public Toolbox
-Creating a suite of useful, privacy-focused web tools:
-
--   **Text Processing**: A comprehensive text cleaner with multiple formatting and filtering options.
--   **Secure Secrets**: A password sharing service and a customizable QR code generator.
--   **Client-Side Anonymizer**: A photo face-blurring tool with zero cloud storage, everything stays in your browser.
--   **Ephemeral Collaboration**: Shared checklists via unique URLs for temporary collaborative tasks (e.g., shopping lists, todo, etc.).
-
-### Hardware & IoT Integration
-Bridging the gap between code and the physical world:
--   **LED Simulator**: A digital point of light that will eventually control a physical LED in my home lab.
--   **Home Weather Dashboard**: A real-time display connected to an ESP32 with sensors measuring local humidity and temperature.
-
 
 ## License
 
