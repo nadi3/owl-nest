@@ -38,6 +38,7 @@ The project is growing. Here is what is currently available:
 Small, efficient web utilities for daily use:
 - **Wheel of Destiny**: A fully customizable spinning wheel for random choices.
 - **3D Audio Visualizer**: An immersive 3D environment to visualize your MP3 files in real-time.
+- **Photo anonymizer**: A tool to obfuscate faces in photos using AI, perfect for sharing images while preserving privacy.
 
 #### The Lab
 A creative playground for interactive frontend experiments:
@@ -49,7 +50,6 @@ A creative playground for interactive frontend experiments:
 #### Core Capabilities
 - **Multi-language Support**: Fully localized in English and French.
 - **Hidden Interactions**: Includes an Impatience Detector and Konami Code support for technical easter eggs.
-
 
 ## Tech Stack
 The Owl Nest frontend is built with a modern, performant, and type-safe stack. Every dependency is chosen to balance developer productivity with a high-quality end-user experience.
