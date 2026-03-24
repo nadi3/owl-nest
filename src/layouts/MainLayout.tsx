@@ -50,7 +50,12 @@ const MainLayout = () => {
           backgroundColor: 'background.default',
         }}
       >
-        <Outlet />
+        <Box sx={{ scrollSnapAlign: 'start' }} />
+
+        <Box sx={{ flexGrow: 1 }}>
+          <Outlet />
+        </Box>
+
         <Box sx={{ scrollSnapAlign: 'end' }}>
           <Footer />
         </Box>

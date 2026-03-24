@@ -319,6 +319,7 @@
     "title": "Crédits Open Source",
     "desc": "Ce site a été construit avec des outils que j'apprécie et qui font avancer le web.",
     "site": "Voir le code source",
+    "see": "Voir les crédits",
     "descriptions": {
       "react": "Le framework pour l'interface.",
       "mui": "Pour les composants et le design system.",
