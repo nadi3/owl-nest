@@ -1,47 +1,38 @@
-import { Typography, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { NestCard } from '@/components/common/NestCard';
-import { useTheme } from '@mui/material/styles';
-import { PageHeader } from '@/components/common/PageHeader.tsx';
+import React from 'react';
+import { Box } from '@mui/material';
+import HeroSection from '@/components/home/HeroSection.tsx';
+import LabSection from '@/components/home/LabSection.tsx';
+import ToolsSection from '@/components/home/ToolsSection.tsx';
+import PortfolioSection from '@/components/home/PortfolioSection.tsx';
+import PrivateSection from '@/components/home/PrivateSection.tsx';
 
-const Home = () => {
-  const theme = useTheme();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-
-  const sections = [
-    { title: 'useless.title', desc: 'useless.desc', path: '/useless' },
-    { title: 'tools.title', desc: 'tools.desc', path: '/tools' },
-    { title: 'portfolio.title', desc: 'portfolio.desc', path: '/portfolio' },
-    { title: 'private.title', desc: 'private.desc', path: '/private' },
-  ];
-
+/**
+ * Owl Nest Home Page.
+ * Implements an IMMERSIVE SCROLL EXPERIENCE (CSS Scroll Snapping)
+ * and ORCHESTRATED ANIMATIONS (Staggered Children).
+ */
+const Home: React.FC = () => {
   return (
-    <Box>
-      <PageHeader title={t('title')} zone={'HOME'} description={t('home.subtitle')} />
-
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
-          gap: 4,
-        }}
-      >
-        {sections.map((section) => (
-          <Box
-            key={section.title}
-            onClick={() => navigate(section.path)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <NestCard title={t(section.title)} accentColor={theme.palette.secondary.main}>
-              <Typography variant="body2" color="text.secondary">
-                {t(section.desc)}
-              </Typography>
-            </NestCard>
-          </Box>
-        ))}
-      </Box>
+    <Box
+      sx={{
+        // Core Logic for CSS Scroll Snapping
+        height: '100vh',
+        overflowY: 'scroll',
+        scrollSnapType: 'y mandatory', // Snap vertically, always.
+        '& section': {
+          scrollSnapAlign: 'start', // Align start of section to start of viewport
+        },
+        // Hide default scrollbar for total immersion (optional but recommended for this style)
+        '&::-webkit-scrollbar': { display: 'none' },
+        msOverflowStyle: 'none', // IE and Edge
+        scrollbarWidth: 'none', // Firefox
+      }}
+    >
+      <HeroSection />
+      <LabSection />
+      <ToolsSection />
+      <PortfolioSection />
+      <PrivateSection />
     </Box>
   );
 };
