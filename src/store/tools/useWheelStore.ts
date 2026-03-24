@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import type { WheelChoice, WheelConfig } from '@/types/tools/wheel.ts';
 import { v4 as uuidv4 } from 'uuid';
-import { owlTheme } from '@/theme/theme.ts';
+import { getOwlTheme } from '@/theme/theme.ts';
 import i18n from '@/i18n/config.ts';
 
 interface WheelState extends WheelConfig {
@@ -15,25 +15,27 @@ interface WheelState extends WheelConfig {
   updateChoice: (id: string, updates: Partial<WheelChoice>) => void;
 }
 
+const initialTheme = getOwlTheme('light');
+
 export const useWheelStore = create<WheelState>((set) => ({
   title: i18n.t('tools.wheel.default_title'),
   choices: [
     {
       id: '1',
       text: i18n.t('tools.wheel.default_choice_1'),
-      color: owlTheme.palette.primary.main,
+      color: initialTheme.palette.primary.main,
       isActive: true,
     },
     {
       id: '2',
       text: i18n.t('tools.wheel.default_choice_2'),
-      color: owlTheme.palette.secondary.main,
+      color: initialTheme.palette.secondary.main,
       isActive: true,
     },
     {
       id: '3',
       text: i18n.t('tools.wheel.default_choice_3'),
-      color: owlTheme.palette.success.main,
+      color: initialTheme.palette.success.main,
       isActive: true,
     },
   ],

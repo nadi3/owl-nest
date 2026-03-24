@@ -4,7 +4,6 @@ import { NestCard } from '@/components/common/NestCard.tsx';
 import { Lock, ShieldCheck, BarChart3 } from 'lucide-react';
 import { getPrivateServices } from '@/services/private/privateService.ts';
 import { useTranslation } from 'react-i18next';
-import { owlTheme } from '@/theme/theme.ts';
 
 const iconMap = {
   lock: Lock,
@@ -42,7 +41,6 @@ const PrivateIndex = () => {
 
       <Paper sx={{ p: 3, backgroundColor: 'primary.main', color: 'white', borderRadius: 2 }}>
         <Stack direction="row" spacing={3} alignItems="center">
-          <ShieldCheck size={32} color={owlTheme.palette.secondary.main} />
           <Box>
             <Typography variant="h6" color={'secondary'}>
               {t('private.protected.title')}
