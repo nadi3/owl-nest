@@ -1,9 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Footer from '@/components/common/Footer.tsx';
-import Sidebar from '@/components/common/Sidebar.tsx';
 import i18n from 'i18next';
 import { useKonamiCode } from '@/hooks/useKonamiCode.ts';
+import NavSpeedDial from '@/components/common/NavSpeedDial.tsx';
 
 const MainLayout = () => {
   useKonamiCode(() => {
@@ -24,7 +24,7 @@ const MainLayout = () => {
         },
       }}
     >
-      <Sidebar />
+      <NavSpeedDial />
       <Box
         component="main"
         sx={{
@@ -36,16 +36,9 @@ const MainLayout = () => {
           backgroundColor: 'background.default',
         }}
       >
-        <Box
-          sx={{
-            p: { xs: 2, md: 4 },
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Container maxWidth="lg">
           <Outlet />
-        </Box>
+        </Container>
         <Footer />
       </Box>
     </Box>

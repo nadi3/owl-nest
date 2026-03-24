@@ -4,6 +4,14 @@
     "title": "Bienvenue",
     "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
   },
+  "nav": {
+    "menu": "Menu",
+    "home": "Accueil",
+    "lab": "Lab",
+    "tools": "Outils",
+    "portfolio": "Portfolio",
+    "private": "Privé"
+  },
   "common": {
     "reset": "Réinitialiser",
     "download": "Télécharger"
