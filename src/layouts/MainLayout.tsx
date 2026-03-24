@@ -4,8 +4,7 @@ import Footer from '@/components/common/Footer.tsx';
 import i18n from 'i18next';
 import { useKonamiCode } from '@/hooks/useKonamiCode.ts';
 import NavSpeedDial from '@/components/common/NavSpeedDial.tsx';
-import LangSwitcher from '@/components/common/LangSwitcher.tsx';
-import { ThemeToggle } from '@/components/common/ThemeToggle.tsx'; //
+import SettingsSpeedDial from '@/components/common/SettingsSpeedDial.tsx'; //
 
 const MainLayout = () => {
   useKonamiCode(() => {
@@ -36,8 +35,7 @@ const MainLayout = () => {
           zIndex: 1100,
         }}
       >
-        <LangSwitcher isOpen={true} />
-        <ThemeToggle />
+        <SettingsSpeedDial />
       </Box>
       <NavSpeedDial />
       <Box

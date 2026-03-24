@@ -11,7 +11,9 @@
   "common": {
     "reset": "Réinitialiser",
     "download": "Télécharger",
-    "discover": "Découvrir"
+    "discover": "Découvrir",
+    "light_mode": "Mode clair",
+    "dark_mode": "Mode sombre"
   },
   "home": {
     "hero": {

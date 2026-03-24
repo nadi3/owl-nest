@@ -11,7 +11,9 @@
   "common": {
     "reset": "Reset",
     "download": "Download",
-    "discover": "Discover"
+    "discover": "Discover",
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode"
   },
   "home": {
     "hero": {
