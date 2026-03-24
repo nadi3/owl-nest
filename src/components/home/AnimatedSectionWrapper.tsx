@@ -39,26 +39,25 @@ const AnimatedSectionWrapper: React.FC<AnimatedSectionWrapperProps> = ({
 
   return (
     <Box
-      component={motion.section} // Cast Box as motion.section
+      component={motion.section}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.2 } as UseInViewOptions}
       variants={containerVariants}
       sx={{
         minHeight: fullHeight ? '100vh' : 'auto',
+        py: { xs: 4, md: 6 },
         width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        py: 12, // Increased padding
-        // CSS Scroll Snapping
         scrollSnapAlign: 'start',
         scrollSnapStop: 'always',
         ...sx,
       }}
     >
-      <Container maxWidth="lg" sx={{ width: '100%' }}>
+      <Container maxWidth="lg" sx={{ width: '100%', height: '100%' }}>
         {children}
       </Container>
     </Box>

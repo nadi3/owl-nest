@@ -23,7 +23,7 @@ const LabSection: React.FC = () => {
         alignItems="center"
         direction={{ xs: 'column-reverse', md: 'row' }}
       >
-        <Grid size={12}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <MotionImage>
             <Box
               component="img"
@@ -41,7 +41,7 @@ const LabSection: React.FC = () => {
           </MotionImage>
         </Grid>
 
-        <Grid size={12}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={4}>
             <MotionTitle>
               <Typography

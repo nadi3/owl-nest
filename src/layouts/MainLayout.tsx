@@ -4,11 +4,13 @@ import Footer from '@/components/common/Footer.tsx';
 import i18n from 'i18next';
 import { useKonamiCode } from '@/hooks/useKonamiCode.ts';
 import NavSpeedDial from '@/components/common/NavSpeedDial.tsx';
+import LangSwitcher from '@/components/common/LangSwitcher.tsx'; //
 
 const MainLayout = () => {
   useKonamiCode(() => {
     i18n.changeLanguage('gl');
   });
+
   const isGlitched = i18n.language === 'gl';
 
   return (
@@ -25,6 +27,16 @@ const MainLayout = () => {
         },
       }}
     >
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 24,
+          right: 24,
+          zIndex: 1100,
+        }}
+      >
+        <LangSwitcher isOpen={true} />
+      </Box>
       <NavSpeedDial />
       <Box
         component="main"
@@ -33,10 +45,8 @@ const MainLayout = () => {
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          // --- CHANGEMENTS ICI ---
           overflowY: 'auto',
-          scrollSnapType: 'y mandatory', // On active le snap ici pour tout le monde
-          // -----------------------
+          scrollSnapType: 'y mandatory',
           backgroundColor: 'background.default',
         }}
       >

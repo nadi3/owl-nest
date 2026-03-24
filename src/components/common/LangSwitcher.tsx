@@ -24,9 +24,9 @@ const LangSwitcher = ({ isOpen }: LangSwitcherProps) => {
             minWidth: 40,
             p: 0.5,
             fontWeight: currentLang === lng ? 800 : 400,
-            color: currentLang === lng ? 'secondary.main' : 'primary.contrastText',
+            color: currentLang === lng ? 'primary.main' : 'primary.light',
             fontSize: '1rem',
-            '&:hover': { color: 'secondary.light', backgroundColor: 'transparent' },
+            '&:hover': { color: 'primary.main', backgroundColor: 'transparent' },
           }}
         >
           {lng.toUpperCase()}

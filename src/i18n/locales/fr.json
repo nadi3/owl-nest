@@ -1,9 +1,5 @@
 {
   "title": "Owl Nest",
-  "home": {
-    "title": "Bienvenue",
-    "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
-  },
   "nav": {
     "menu": "Menu",
     "home": "Accueil",
@@ -14,7 +10,35 @@
   },
   "common": {
     "reset": "Réinitialiser",
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "discover": "Découvrir"
+  },
+  "home": {
+    "hero": {
+      "title_part1": "Owl Nest",
+      "title_accent": "Créations, outils et expériences.",
+      "subtitle": "Un espace dédié aux projets personnels, aux outils en libre accès et aux tests numériques insolites."
+    },
+    "lab": {
+      "title": "Le Lab",
+      "subtitle": "Un terrain de jeu numérique où le code s'affranchit de toute utilité. Cette section rassemble des tests insolites, des interactions absurdes et des curiosités visuelles nées de simples explorations techniques. C’est un espace dédié au plaisir de créer et de tester des idées, même les plus farfelues.",
+      "cta": "Voir les expériences"
+    },
+    "tools": {
+      "title": "Outils publics",
+      "subtitle": "Une sélection de ressources pratiques mises à disposition gratuitement. L'idée est de proposer des alternatives fonctionnelles aux solutions payantes classiques, comme un visualiseur de musique 3D ou un anonymiseur de photos. Bien que la qualité puisse varier, l'objectif reste de fournir des outils utiles et accessibles à tous.",
+      "cta": "Voir les outils"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "subtitle": "Une vitrine regroupant les différents projets réalisés et le détail de leur conception. Cette section permet d'explorer les coulisses du développement, d'observer l'évolution technique du site actuel et de découvrir d'autres créations personnelles.",
+      "cta": "Voir les Projets"
+    },
+    "private": {
+      "title": "Espace privé",
+      "subtitle": "Une zone réservée exclusivement à un usage personnel. Elle héberge des outils et des services spécifiques développés pour des besoins précis, sans vocation à être partagés avec le grand public.",
+      "cta": "Se connecter"
+    }
   },
   "useless": {
     "title": "Le Lab",

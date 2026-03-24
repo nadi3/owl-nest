@@ -2,13 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Typography, Stack, Grid, useTheme, Box } from '@mui/material';
 import AnimatedSectionWrapper from './AnimatedSectionWrapper';
-import { NestButton } from '@/components/common/NestButton.tsx';
-import {
-  MotionTitle,
-  MotionBody,
-  MotionButton,
-  MotionImage,
-} from '@/components/home/HomeAnimationsItems.tsx';
+import { MotionTitle, MotionBody, MotionImage } from '@/components/home/HomeAnimationsItems.tsx';
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
@@ -16,7 +10,9 @@ const HeroSection: React.FC = () => {
   const imageSrc = '/storyset/Work-in-progress-amico.svg';
 
   return (
-    <AnimatedSectionWrapper sx={{ bgcolor: 'background.default' }}>
+    <AnimatedSectionWrapper
+      sx={{ bgcolor: 'background.default', minHeight: '100vh', display: 'flex' }}
+    >
       <Grid container spacing={8} alignItems="center">
         <Grid size={12}>
           <Stack spacing={4}>
@@ -33,15 +29,6 @@ const HeroSection: React.FC = () => {
                 {t('home.hero.subtitle')}
               </Typography>
             </MotionBody>
-            <MotionButton>
-              <NestButton
-                nestVariant="contained"
-                nestColor="primary"
-                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-              >
-                {t('common.discover')}
-              </NestButton>
-            </MotionButton>
           </Stack>
         </Grid>
         <Grid size={12}>

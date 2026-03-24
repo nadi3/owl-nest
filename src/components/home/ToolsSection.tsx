@@ -21,9 +21,9 @@ const ToolsSection: React.FC = () => {
         container
         spacing={8}
         alignItems="center"
-        direction={{ xs: 'column-reverse', md: 'row' }}
+        direction={{ xs: 'column', md: 'row-reverse' }}
       >
-        <Grid size={12}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <MotionImage>
             <Box
               component="img"
@@ -40,7 +40,7 @@ const ToolsSection: React.FC = () => {
             />
           </MotionImage>
         </Grid>
-        <Grid size={12}>
+        <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={3}>
             <MotionTitle>
               <Typography
