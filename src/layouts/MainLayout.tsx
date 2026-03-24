@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Footer from '@/components/common/Footer.tsx';
 import i18n from 'i18next';
@@ -10,6 +10,7 @@ const MainLayout = () => {
     i18n.changeLanguage('gl');
   });
   const isGlitched = i18n.language === 'gl';
+
   return (
     <Box
       sx={{
@@ -32,14 +33,17 @@ const MainLayout = () => {
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
+          // --- CHANGEMENTS ICI ---
           overflowY: 'auto',
+          scrollSnapType: 'y mandatory', // On active le snap ici pour tout le monde
+          // -----------------------
           backgroundColor: 'background.default',
         }}
       >
-        <Container maxWidth="lg">
-          <Outlet />
-        </Container>
-        <Footer />
+        <Outlet />
+        <Box sx={{ scrollSnapAlign: 'end' }}>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );

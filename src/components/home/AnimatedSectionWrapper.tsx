@@ -42,7 +42,7 @@ const AnimatedSectionWrapper: React.FC<AnimatedSectionWrapperProps> = ({
       component={motion.section} // Cast Box as motion.section
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 } as UseInViewOptions} // Trigger earlier (20% visible)
+      viewport={{ once: false, amount: 0.2 } as UseInViewOptions}
       variants={containerVariants}
       sx={{
         minHeight: fullHeight ? '100vh' : 'auto',

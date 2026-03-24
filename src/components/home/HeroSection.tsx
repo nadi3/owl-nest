@@ -22,7 +22,7 @@ const HeroSection: React.FC = () => {
           <Stack spacing={4}>
             <MotionTitle>
               <Typography variant="h1" sx={{ fontWeight: 800 }}>
-                {t('home.hero.title_part1')}
+                {t('home.hero.title_part1')}{' '}
                 <span style={{ color: theme.palette.secondary.main }}>
                   {t('home.hero.title_accent')}
                 </span>
@@ -35,9 +35,8 @@ const HeroSection: React.FC = () => {
             </MotionBody>
             <MotionButton>
               <NestButton
-                variant="contained"
-                color="secondary"
-                size="large"
+                nestVariant="contained"
+                nestColor="primary"
                 onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
               >
                 {t('common.discover')}

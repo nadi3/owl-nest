@@ -44,21 +44,23 @@ const PrivateSection: React.FC = () => {
         <Grid size={12}>
           <Stack spacing={4}>
             <MotionTitle>
-              <Typography variant="h2" color="text.primary">
+              <Typography
+                variant="h2"
+                sx={{
+                  borderLeft: `8px solid ${theme.palette.secondary.main}`,
+                  pl: 3,
+                }}
+              >
                 {t('home.private.title')}
               </Typography>
             </MotionTitle>
             <MotionBody>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-                sx={{ fontSize: '1.2rem', fontStyle: 'italic' }}
-              >
+              <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
                 {t('home.private.subtitle')}
               </Typography>
             </MotionBody>
             <MotionButton>
-              <NestButton variant="contained" color="primary" sx={{ px: 6 }}>
+              <NestButton nestVariant="contained" nestColor="primary" to={'/private'}>
                 {t('home.private.cta')}
               </NestButton>
             </MotionButton>

@@ -16,7 +16,7 @@ const LabSection: React.FC = () => {
   const imageSrc = '/storyset/Laboratory-amico.svg';
 
   return (
-    <AnimatedSectionWrapper sx={{ bgcolor: 'background.paper' }}>
+    <AnimatedSectionWrapper sx={{ bgcolor: theme.palette.secondary.light }}>
       <Grid
         container
         spacing={8}
@@ -35,7 +35,7 @@ const LabSection: React.FC = () => {
                 maxWidth: '450px',
                 display: 'block',
                 mx: 'auto',
-                filter: `drop-shadow(0px 10px 20px ${theme.palette.secondary.light})`,
+                filter: `drop-shadow(0px 10px 20px ${theme.palette.grey.A400})`,
               }}
             />
           </MotionImage>
@@ -49,19 +49,18 @@ const LabSection: React.FC = () => {
                 sx={{
                   borderLeft: `8px solid ${theme.palette.secondary.main}`,
                   pl: 3,
-                  fontWeight: 'bold',
                 }}
               >
                 {t('home.lab.title')}
               </Typography>
             </MotionTitle>
             <MotionBody>
-              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.2rem' }}>
+              <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
                 {t('home.lab.subtitle')}
               </Typography>
             </MotionBody>
             <MotionButton>
-              <NestButton variant="contained" color="secondary">
+              <NestButton nestVariant="contained" nestColor="primary" to="/useless">
                 {t('home.lab.cta')}
               </NestButton>
             </MotionButton>

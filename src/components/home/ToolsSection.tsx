@@ -16,9 +16,7 @@ const ToolsSection: React.FC = () => {
   const imageSrc = '/storyset/Digital-tools-amico.svg';
 
   return (
-    <AnimatedSectionWrapper
-      sx={{ bgcolor: theme.palette.secondary.light, color: theme.palette.secondary.dark }}
-    >
+    <AnimatedSectionWrapper sx={{ bgcolor: theme.palette.background.default }}>
       <Grid
         container
         spacing={8}
@@ -45,17 +43,23 @@ const ToolsSection: React.FC = () => {
         <Grid size={12}>
           <Stack spacing={3}>
             <MotionTitle>
-              <Typography variant="h2" color="inherit">
+              <Typography
+                variant="h2"
+                sx={{
+                  borderLeft: `8px solid ${theme.palette.secondary.main}`,
+                  pl: 3,
+                }}
+              >
                 {t('home.tools.title')}
               </Typography>
             </MotionTitle>
             <MotionBody>
-              <Typography variant="body1" color="inherit" sx={{ fontSize: '1.2rem', opacity: 0.8 }}>
+              <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
                 {t('home.tools.subtitle')}
               </Typography>
             </MotionBody>
             <MotionButton>
-              <NestButton variant="outlined" color="inherit">
+              <NestButton nestVariant="contained" nestColor="primary" to={'/tools'}>
                 {t('home.tools.cta')}
               </NestButton>
             </MotionButton>

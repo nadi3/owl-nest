@@ -21,28 +21,23 @@ const PortfolioSection: React.FC = () => {
         <Grid size={12}>
           <Stack spacing={4}>
             <MotionTitle>
-              <Typography variant="h2" color="secondary.dark" sx={{ fontWeight: 900 }}>
+              <Typography
+                variant="h2"
+                sx={{
+                  borderLeft: `8px solid ${theme.palette.secondary.main}`,
+                  pl: 3,
+                }}
+              >
                 {t('home.portfolio.title')}
               </Typography>
             </MotionTitle>
             <MotionBody>
-              <Typography
-                variant="body1"
-                sx={{ color: theme.palette.secondary.dark, fontSize: '1.2rem', opacity: 0.9 }}
-              >
+              <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
                 {t('home.portfolio.subtitle')}
               </Typography>
             </MotionBody>
             <MotionButton>
-              <NestButton
-                variant="outlined"
-                sx={{
-                  color: theme.palette.secondary.dark,
-                  borderColor: theme.palette.secondary.dark,
-                  borderWidth: 2,
-                  '&:hover': { borderWidth: 2, bgcolor: 'rgba(0,0,0,0.05)' },
-                }}
-              >
+              <NestButton nestVariant="contained" nestColor="primary" to={'/portfolio'}>
                 {t('home.portfolio.cta')}
               </NestButton>
             </MotionButton>
@@ -61,7 +56,7 @@ const PortfolioSection: React.FC = () => {
                 maxWidth: '450px',
                 display: 'block',
                 mx: 'auto',
-                filter: `drop-shadow(0px 10px 20px ${theme.palette.secondary.light})`,
+                filter: `drop-shadow(0px 10px 20px ${theme.palette.grey.A400})`,
               }}
             />
           </MotionImage>
