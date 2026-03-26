@@ -6,6 +6,7 @@ import { FleeingElement } from '@/components/useless/FleeingElement';
 import { InfiniteWaitWidget } from '@/components/useless/InfiniteWaitWidget';
 import { TimeProgressWidget } from '@/components/useless/TimeProgressWidget.tsx';
 import { PageHeader } from '@/components/common/PageHeader.tsx';
+import { motion, type Variants } from 'framer-motion';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -42,6 +43,26 @@ const CustomTabPanel = (props: TabPanelProps) => {
   );
 };
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' }, // Maintenant TS sait que c'est valide !
+  },
+};
+
 const a11yProps = (index: number) => {
   return {
     id: `lab-tab-${index}`,
@@ -60,6 +81,10 @@ const UselessPage = () => {
 
   return (
     <Box
+      component={motion.div} // Devient un composant motion
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants} // Orchestre les enfants
       sx={{
         display: 'flex',
         height: '100vh',
@@ -69,6 +94,8 @@ const UselessPage = () => {
     >
       {/* Left sidebar : Hex clock */}
       <Box
+        component={motion.div}
+        variants={itemVariants}
         sx={{
           width: '80px',
           flexShrink: 0,
@@ -92,9 +119,13 @@ const UselessPage = () => {
           overflow: 'hidden',
         }}
       >
-        <PageHeader title={t('useless.title')} zone={'01'} />
+        <Box component={motion.div} variants={itemVariants}>
+          <PageHeader title={t('useless.title')} zone={'01'} />
+        </Box>
 
         <Paper
+          component={motion.div}
+          variants={itemVariants}
           elevation={0}
           sx={{
             flexGrow: 1,
