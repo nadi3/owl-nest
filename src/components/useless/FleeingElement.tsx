@@ -15,6 +15,14 @@ export const FleeingElement = () => {
   const y = useSpring(0, { stiffness: 100, damping: 20 });
 
   useEffect(() => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      x.set(rect.width / 2);
+      y.set(rect.height / 2);
+    }
+  }, [x, y]);
+
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
 
