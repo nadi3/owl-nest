@@ -10,7 +10,7 @@ import {
   type Theme,
   type GridDirection,
 } from '@mui/material';
-import AnimatedSectionWrapper from './AnimatedSectionWrapper';
+import AnimatedSectionWrapper from '../home/AnimatedSectionWrapper.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 import {
   MotionTitle,

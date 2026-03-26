@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
-import HeroSection from '@/components/home/HeroSection.tsx';
-import ContentSection from '@/components/home/ContentSection.tsx';
+import HeroSection from '@/components/common/HeroSection.tsx';
+import ContentSection from '@/components/common/ContentSection.tsx';
 
 /**
  * Owl Nest Home Page.
@@ -48,7 +48,12 @@ const Home: React.FC = () => {
 
   return (
     <Box>
-      <HeroSection />
+      <HeroSection
+        imageSrc={'/storyset/Work-in-progress-amico.svg'}
+        titleKey={'home.hero.title_part1'}
+        accentKey={'home.hero.title_accent'}
+        subtitleKey={'home.hero.subtitle'}
+      />
       {sections.map((section, index) => (
         <ContentSection
           key={index}

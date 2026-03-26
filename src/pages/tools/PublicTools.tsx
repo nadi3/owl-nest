@@ -1,6 +1,6 @@
 import { Box, useTheme } from '@mui/material';
-import HeroSection from '@/components/tools/HeroSection.tsx';
-import ContentSection from '@/components/home/ContentSection.tsx';
+import HeroSection from '@/components/common/HeroSection.tsx';
+import ContentSection from '@/components/common/ContentSection.tsx';
 
 const PublicTools = () => {
   const theme = useTheme();
@@ -34,7 +34,12 @@ const PublicTools = () => {
 
   return (
     <Box>
-      <HeroSection />
+      <HeroSection
+        imageSrc={'/storyset/Digital-tools-amico.svg'}
+        titleKey={'tools.hero.title_part1'}
+        accentKey={'tools.hero.title_accent'}
+        subtitleKey={'tools.hero.subtitle'}
+      />
       {sections.map((section, index) => (
         <ContentSection
           key={index}

@@ -1,13 +1,24 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Typography, Stack, Grid, useTheme, Box } from '@mui/material';
+import AnimatedSectionWrapper from '../home/AnimatedSectionWrapper.tsx';
 import { MotionTitle, MotionBody, MotionImage } from '@/components/home/HomeAnimationsItems.tsx';
-import AnimatedSectionWrapper from '@/components/home/AnimatedSectionWrapper.tsx';
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  imageSrc: string;
+  titleKey: string;
+  accentKey: string;
+  subtitleKey: string;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({
+  imageSrc,
+  titleKey,
+  accentKey,
+  subtitleKey,
+}) => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const imageSrc = '/storyset/Digital-tools-amico.svg';
 
   return (
     <AnimatedSectionWrapper
@@ -18,15 +29,13 @@ const HeroSection: React.FC = () => {
           <Stack spacing={4}>
             <MotionTitle>
               <Typography variant="h1" sx={{ fontWeight: 800 }}>
-                {t('tools.hero.title_part1')}{' '}
-                <span style={{ color: theme.palette.secondary.main }}>
-                  {t('tools.hero.title_accent')}
-                </span>
+                {t(titleKey)}{' '}
+                <span style={{ color: theme.palette.secondary.main }}>{t(accentKey)}</span>
               </Typography>
             </MotionTitle>
             <MotionBody>
               <Typography variant="h5" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                {t('tools.hero.subtitle')}
+                {t(subtitleKey)}
               </Typography>
             </MotionBody>
           </Stack>
