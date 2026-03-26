@@ -223,20 +223,17 @@
     }
   },
   "tools": {
-    "title": "Outils Publics",
+    "title": "Outils publics",
     "desc": "Quelques outils pratiques accessibles à tout le monde.",
-    "disabled": "Bientôt disponible",
-    "enabled": "Ouvrir",
-    "items": {
-      "destiny-wheel": {
-        "title": "Roue de la destinée",
-        "subtitle": "Laissez le hasard décider pour vous",
-        "description": "Entre une liste de choix, lance la roue et obtiens un résultat aléatoire."
-      }
+    "hero": {
+       "title_part1": "Outils",
+       "title_accent": "publics",
+       "subtitle": "Des ressources pratiques mises à disposition gratuitement."
     },
     "wheel": {
       "title": "Roue de la destinée",
-      "subtitle": "Laissez le hasard décider pour vous",
+      "subtitle": "Un outil interactif conçu pour faciliter les prises de décision de manière aléatoire. Entièrement personnalisable, cette roue propose une approche à la fois ludique et esthétique pour départager plusieurs options en un clin d’œil.",
+      "cta": "Lancer la roue",
       "config": "Configuration",
       "wheel_name": "Nom de la roue",
       "spin": "Lancer !",
@@ -250,7 +247,8 @@
     },
     "audioVisualizer": {
       "title": "Visualiseur Audio 3D",
-      "subtitle": "Visualiseur Audio 3D",
+      "subtitle": "Une expérience immersive qui transforme les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont les formes et les couleurs sont entièrement modulables selon les préférences.",
+      "cta": "Créer une visualisation",
       "description": "Chargez un MP3 et regardez la musique prendre vie en 3D.",
       "controls": {
         "title": "Contrôles",
@@ -277,7 +275,8 @@
     },
     "anonymizer": {
       "title": "Anonymiseur de Photo",
-      "subtitle": "Floutez les visages sur vos photos",
+      "subtitle": "Une solution de confidentialité basée sur l'intelligence artificielle pour détecter et flouter les visages sur n'importe quelle image. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : aucune donnée n'est envoyée vers un serveur.",
+      "cta": "Anonymiser une image",
       "description": "Téléchargez une photo, et cet outil détectera les visages pour les flouter automatiquement, protégeant ainsi la vie privée de vos amis et de votre famille.",
       "upload": "Charger une photo",
       "preview": "Prévisualisation",
