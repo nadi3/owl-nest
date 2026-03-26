@@ -1,72 +1,123 @@
 import React, { useState } from 'react';
-import { Box, Tabs, Tab, Paper, useTheme } from '@mui/material';
+import { Box, Tabs, Tab, Paper, useTheme, IconButton, Typography, Card } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 import { SufferingButton } from '@/components/useless/SufferingButton';
 import { FleeingElement } from '@/components/useless/FleeingElement';
 import { InfiniteWaitWidget } from '@/components/useless/InfiniteWaitWidget';
 import { TimeProgressWidget } from '@/components/useless/TimeProgressWidget.tsx';
 import { PageHeader } from '@/components/common/PageHeader.tsx';
+import { NestButton } from '@/components/common/NestButton.tsx';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      delayChildren: 0.1,
-    },
+    transition: { delayChildren: 0.1 },
   },
 };
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 const swipeVariants: Variants = {
   enter: (direction: number) => ({
-    x: direction > 0 ? 50 : -50,
+    x: direction > 0 ? 100 : -100,
     opacity: 0,
   }),
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.3, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
   exit: (direction: number) => ({
-    x: direction > 0 ? -50 : 50,
+    x: direction > 0 ? -100 : 100,
     opacity: 0,
     transition: { duration: 0.3, ease: 'easeIn' },
   }),
 };
 
-const a11yProps = (index: number) => {
-  return {
-    id: `lab-tab-${index}`,
-    'aria-controls': `lab-tabpanel-${index}`,
-  };
+const flipVariants: Variants = {
+  front: {
+    rotateY: 0,
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+  },
+  back: {
+    rotateY: 180,
+    transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
+  },
+};
+
+const a11yProps = (index: number) => ({
+  id: `lab-tab-${index}`,
+  'aria-controls': `lab-tabpanel-${index}`,
+});
+
+interface UselessInfoBackProps {
+  titleKey: string;
+  descKey: string;
+  onBack: () => void;
+}
+
+const UselessInfoBack: React.FC<UselessInfoBackProps> = ({ titleKey, descKey, onBack }) => {
+  const { t } = useTranslation();
+
+  return (
+    <Card
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 3,
+        p: 4,
+        textAlign: 'center',
+      }}
+    >
+      <InfoOutlinedIcon color="primary" sx={{ fontSize: 60, opacity: 0.5 }} />
+      <Box>
+        <Typography variant="h5" color="primary" gutterBottom>
+          {t(titleKey)}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600 }}>
+          {t(descKey)}
+        </Typography>
+      </Box>
+      <NestButton nestVariant="ghost" startIcon={<ReplayIcon />} onClick={onBack} sx={{ mt: 2 }}>
+        {t('common.back')}
+      </NestButton>
+    </Card>
+  );
 };
 
 const UselessPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
+
   const [activeTab, setActiveTab] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setIsFlipped(false);
     setDirection(newValue > activeTab ? 1 : -1);
     setActiveTab(newValue);
   };
 
-  const tabComponents = [
-    <SufferingButton key="suffering" />,
-    <FleeingElement key="fleeing" />,
-    <InfiniteWaitWidget key="infinite" />,
+  const toggleFlip = () => {
+    setIsFlipped((prev) => !prev);
+  };
+
+  const tabConfig = [
+    { component: <SufferingButton key="suffering" />, key: 'suffering' },
+    { component: <FleeingElement key="fleeing" />, key: 'fleeing-mouse' },
+    { component: <InfiniteWaitWidget key="infinite" />, key: 'wait-button' },
   ];
 
   return (
@@ -82,7 +133,7 @@ const UselessPage = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Left sidebar : Hex clock */}
+      {/* Left sidebar: Hex clock */}
       <Box
         component={motion.div}
         variants={itemVariants}
@@ -134,6 +185,10 @@ const UselessPage = () => {
               borderColor: 'divider',
               bgcolor: 'background.default',
               flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              pr: 1,
             }}
           >
             <Tabs
@@ -143,22 +198,24 @@ const UselessPage = () => {
               scrollButtons="auto"
               sx={{ px: 2 }}
             >
-              <Tab
-                iconPosition="start"
-                label={t('useless.items.suffering.title')}
-                {...a11yProps(0)}
-              />
-              <Tab
-                iconPosition="start"
-                label={t('useless.items.fleeing-mouse.title')}
-                {...a11yProps(1)}
-              />
-              <Tab
-                iconPosition="start"
-                label={t('useless.items.wait-button.title')}
-                {...a11yProps(2)}
-              />
+              <Tab label={t('useless.items.suffering.title')} {...a11yProps(0)} />
+              <Tab label={t('useless.items.fleeing-mouse.title')} {...a11yProps(1)} />
+              <Tab label={t('useless.items.wait-button.title')} {...a11yProps(2)} />
             </Tabs>
+
+            <IconButton
+              onClick={toggleFlip}
+              color={isFlipped ? 'primary' : 'default'}
+              title={t('useless.items.' + tabConfig[activeTab].key + '.title')}
+              sx={{
+                opacity: 0.7,
+                transition: 'all 0.2s',
+                '&:hover': { opacity: 1, bgcolor: 'action.hover' },
+                transform: isFlipped ? 'rotate(180deg)' : 'rotate(0deg)',
+              }}
+            >
+              {isFlipped ? <ReplayIcon /> : <InfoOutlinedIcon />}
+            </IconButton>
           </Box>
 
           {/* Widget zone */}
@@ -169,9 +226,9 @@ const UselessPage = () => {
               width: '100%',
               bgcolor: 'background.default',
               overflow: 'hidden',
+              perspective: '1500px',
             }}
           >
-            {/* Waits for the end of the exit animation to start the next one */}
             <AnimatePresence mode="wait" custom={direction}>
               <Box
                 component={motion.div}
@@ -190,11 +247,66 @@ const UselessPage = () => {
                   left: 0,
                   width: '100%',
                   height: '100%',
+                  p: 3,
                   display: 'flex',
                   flexDirection: 'column',
+                  transformStyle: 'preserve-3d',
                 }}
               >
-                {tabComponents[activeTab]}
+                {/* Flipping content */}
+                <Box
+                  component={motion.div}
+                  animate={isFlipped ? 'back' : 'front'}
+                  variants={flipVariants}
+                  sx={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  {/* Front face */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: 0,
+                      left: 0,
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      transform: 'rotateY(0deg)',
+                      zIndex: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      bgcolor: 'background.default',
+                    }}
+                  >
+                    {tabConfig[activeTab].component}
+                  </Box>
+
+                  {/* Back face */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      top: 0,
+                      left: 0,
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      zIndex: 1,
+                      bgcolor: 'background.default',
+                    }}
+                  >
+                    <UselessInfoBack
+                      titleKey={`useless.items.${tabConfig[activeTab].key}.title`}
+                      descKey={`useless.items.${tabConfig[activeTab].key}.description`}
+                      onBack={toggleFlip}
+                    />
+                  </Box>
+                </Box>
               </Box>
             </AnimatePresence>
           </Box>
