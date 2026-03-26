@@ -1,10 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/home/HeroSection.tsx';
-import LabSection from '@/components/home/LabSection.tsx';
-import ToolsSection from '@/components/home/ToolsSection.tsx';
-import PortfolioSection from '@/components/home/PortfolioSection.tsx';
-import PrivateSection from '@/components/home/PrivateSection.tsx';
+import ContentSection from '@/components/home/ContentSection.tsx';
 
 /**
  * Owl Nest Home Page.
@@ -12,13 +9,58 @@ import PrivateSection from '@/components/home/PrivateSection.tsx';
  * and ORCHESTRATED ANIMATIONS (Staggered Children).
  */
 const Home: React.FC = () => {
+  const theme = useTheme();
+
+  const sections = [
+    {
+      imageSrc: '/storyset/Laboratory-amico.svg',
+      titleKey: 'home.lab.title',
+      subtitleKey: 'home.lab.subtitle',
+      ctaKey: 'home.lab.cta',
+      ctaTo: '/useless',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Digital-tools-amico.svg',
+      titleKey: 'home.tools.title',
+      subtitleKey: 'home.tools.subtitle',
+      ctaKey: 'home.tools.cta',
+      ctaTo: '/tools',
+      reverse: true,
+    },
+    {
+      imageSrc: '/storyset/Portfolio-amico.svg',
+      titleKey: 'home.portfolio.title',
+      subtitleKey: 'home.portfolio.subtitle',
+      ctaKey: 'home.portfolio.cta',
+      ctaTo: '/portfolio',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Security-On-amico.svg',
+      titleKey: 'home.private.title',
+      subtitleKey: 'home.private.subtitle',
+      ctaKey: 'home.private.cta',
+      ctaTo: '/private',
+      reverse: true,
+    },
+  ];
+
   return (
     <Box>
       <HeroSection />
-      <LabSection />
-      <ToolsSection />
-      <PortfolioSection />
-      <PrivateSection />
+      {sections.map((section, index) => (
+        <ContentSection
+          key={index}
+          imageSrc={section.imageSrc}
+          titleKey={section.titleKey}
+          subtitleKey={section.subtitleKey}
+          ctaKey={section.ctaKey}
+          ctaTo={section.ctaTo}
+          reverse={section.reverse}
+          bgColor={section.bgColor}
+        />
+      ))}
     </Box>
   );
 };
