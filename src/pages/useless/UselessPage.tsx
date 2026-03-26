@@ -1,54 +1,19 @@
 import React, { useState } from 'react';
 import { Box, Tabs, Tab, Paper, useTheme } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
+
 import { SufferingButton } from '@/components/useless/SufferingButton';
 import { FleeingElement } from '@/components/useless/FleeingElement';
 import { InfiniteWaitWidget } from '@/components/useless/InfiniteWaitWidget';
 import { TimeProgressWidget } from '@/components/useless/TimeProgressWidget.tsx';
 import { PageHeader } from '@/components/common/PageHeader.tsx';
-import { motion, type Variants } from 'framer-motion';
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-const CustomTabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`lab-tabpanel-${index}`}
-      aria-labelledby={`lab-tab-${index}`}
-      sx={{
-        flexGrow: 1,
-        display: value === index ? 'flex' : 'none',
-        flexDirection: 'column',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ flexGrow: 1, position: 'relative', width: '100%', height: '100%' }}>
-          {children}
-        </Box>
-      )}
-    </Box>
-  );
-};
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
       delayChildren: 0.1,
     },
   },
@@ -59,8 +24,25 @@ const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' }, // Maintenant TS sait que c'est valide !
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
+};
+
+const swipeVariants: Variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 50 : -50,
+    opacity: 0,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -50 : 50,
+    opacity: 0,
+    transition: { duration: 0.3, ease: 'easeIn' },
+  }),
 };
 
 const a11yProps = (index: number) => {
@@ -74,17 +56,25 @@ const UselessPage = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [activeTab, setActiveTab] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setDirection(newValue > activeTab ? 1 : -1);
     setActiveTab(newValue);
   };
 
+  const tabComponents = [
+    <SufferingButton key="suffering" />,
+    <FleeingElement key="fleeing" />,
+    <InfiniteWaitWidget key="infinite" />,
+  ];
+
   return (
     <Box
-      component={motion.div} // Devient un composant motion
+      component={motion.div}
       initial="hidden"
       animate="visible"
-      variants={containerVariants} // Orchestre les enfants
+      variants={containerVariants}
       sx={{
         display: 'flex',
         height: '100vh',
@@ -178,22 +168,35 @@ const UselessPage = () => {
               position: 'relative',
               width: '100%',
               bgcolor: 'background.default',
+              overflow: 'hidden',
             }}
           >
-            {/* Suffering Button */}
-            <CustomTabPanel value={activeTab} index={0}>
-              <SufferingButton />
-            </CustomTabPanel>
-
-            {/* Mouse Chase */}
-            <CustomTabPanel value={activeTab} index={1}>
-              <FleeingElement />
-            </CustomTabPanel>
-
-            {/* Infinite Wait */}
-            <CustomTabPanel value={activeTab} index={2}>
-              <InfiniteWaitWidget />
-            </CustomTabPanel>
+            {/* Waits for the end of the exit animation to start the next one */}
+            <AnimatePresence mode="wait" custom={direction}>
+              <Box
+                component={motion.div}
+                key={activeTab}
+                custom={direction}
+                variants={swipeVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                role="tabpanel"
+                id={`lab-tabpanel-${activeTab}`}
+                aria-labelledby={`lab-tab-${activeTab}`}
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {tabComponents[activeTab]}
+              </Box>
+            </AnimatePresence>
           </Box>
         </Paper>
       </Box>
