@@ -4,14 +4,11 @@ import { motion, useSpring } from 'framer-motion';
 import { MouseAvatar } from '@/components/useless/MouseAvatar.tsx';
 import { useTranslation } from 'react-i18next';
 
-interface FleeingElementProps {
-  onCatch: () => void;
-}
-
-export const FleeingElement = ({ onCatch }: FleeingElementProps) => {
+export const FleeingElement = () => {
   const { t } = useTranslation();
   const [isRunning, setIsRunning] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [score, setScore] = useState(0);
 
   // Fluid animation using framer-motion
   const x = useSpring(0, { stiffness: 100, damping: 20 });
@@ -64,7 +61,37 @@ export const FleeingElement = ({ onCatch }: FleeingElementProps) => {
   }, [x, y]);
 
   return (
-    <Box ref={containerRef} sx={{ width: '100%', height: '100%', position: 'relative' }}>
+    <Box
+      ref={containerRef}
+      sx={{ width: '100%', height: '100%', position: 'relative', cursor: 'crosshair' }}
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 20,
+          right: 20,
+          textAlign: 'right',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      >
+        <Typography
+          variant="caption"
+          sx={{ display: 'block', fontWeight: 800, color: 'text.disabled' }}
+        >
+          {t('useless.fleeing-mouse.score')}
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: 'monospace',
+            fontWeight: 900,
+            color: 'secondary.main',
+          }}
+        >
+          {score.toString().padStart(2, '0')}
+        </Typography>
+      </Box>
       <motion.div
         onClick={(e) => {
           e.stopPropagation();
@@ -78,7 +105,7 @@ export const FleeingElement = ({ onCatch }: FleeingElementProps) => {
             x.set(teleportX);
             y.set(teleportY);
           }
-          onCatch();
+          setScore((prev) => prev + 1);
         }}
         style={{
           x,

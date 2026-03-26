@@ -3,18 +3,14 @@ import MainLayout from '@/layouts/MainLayout';
 import Home from '@/pages/Home';
 import PublicTools from '@/pages/tools/PublicTools.tsx';
 import Portfolio from '@/pages/portfolio/Portfolio.tsx';
-import UselessIndex from '@/pages/useless/UselessIndex.tsx';
 import PrivateIndex from '@/pages/private/PrivateIndex.tsx';
 import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
-import UselessLayout from '@/layouts/UselessLayout.tsx';
-import FleeingButtonPage from '@/pages/useless/FleeingButtonPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
-import SufferingPage from '@/pages/useless/SufferingPage.tsx';
-import InfiniteWaitPage from './pages/useless/InfiniteWaitPage';
 import { AnonymizerLayout } from '@/layouts/AnonymizerLayout.tsx';
 import { AnonymizerPage } from '@/pages/tools/AnonymizerPage.tsx';
+import UselessPage from '@/pages/useless/UselessPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -31,13 +27,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'useless',
-        element: <UselessLayout />,
-        children: [
-          { index: true, element: <UselessIndex /> },
-          { path: 'fleeing', element: <FleeingButtonPage /> },
-          { path: 'suffering', element: <SufferingPage /> },
-          { path: 'wait', element: <InfiniteWaitPage /> },
-        ],
+        element: <UselessPage />,
       },
       {
         path: '/tools',
