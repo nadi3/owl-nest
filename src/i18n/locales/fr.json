@@ -230,14 +230,16 @@
       "title_accent": "publics",
       "subtitle": "Des ressources pratiques mises à disposition gratuitement."
     },
+    "common": {
+      "toggle_config": "Afficher/Masquer la configuration",
+      "toggle_info": "Afficher/Masquer les informations"
+    },
     "wheel": {
       "title": "Roue de la destinée",
       "subtitle": "Un outil interactif conçu pour faciliter les prises de décision de manière aléatoire. Entièrement personnalisable, cette roue propose une approche à la fois ludique et esthétique pour départager plusieurs options en un clin d’œil.",
       "cta": "Lancer la roue",
       "info_title": "Comment ça marche ?",
       "info_text": "Ajoutez, modifiez ou supprimez des options via le panneau de configuration. Cliquez sur le bouton central pour faire tourner la roue. L'option gagnante sera choisie aléatoirement parmi les choix actifs.",
-      "toggle_config": "Afficher/Masquer la configuration",
-      "toggle_info": "Afficher/Masquer les informations",
       "config": "Configuration",
       "wheel_name": "Nom de la roue",
       "spin": "Lancer !",
