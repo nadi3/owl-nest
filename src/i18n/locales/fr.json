@@ -299,14 +299,25 @@
     }
   },
   "portfolio": {
-    "title": "Projets & Portfolio",
-    "desc": "Ce que j'ai construit, de l'infrastructure serveur au code embarqué.",
-    "items": {
-      "owl-nest-infra": {
-        "title": "Owl Nest Infra",
-        "subtitle": "Docker / Raspberry Pi",
-        "description": "Toute l'architecture derrière ce site !"
-      }
+    "hero": {
+      "title_part1": "Portfolio",
+      "title_accent": "Technique",
+      "subtitle": "Ici, je décortique mes projets pour en montrer les rouages. Bien plus qu'une simple liste de réalisations, ce portfolio explore les choix d'architecture, les méthodes de conception et les défis techniques que j'ai dû relever pour donner vie à mes idées."
+    },
+    "sysadmin": {
+      "title": "Infrastructure & Self-hosting",
+      "subtitle": "Cette section est dédiée à l'infrastructure qui héberge et propulse mes outils. Je détaille ici ma manière d'aborder l'auto-hébergement, la gestion des services et les solutions mises en place pour garantir une plateforme stable, sécurisée et totalement autonome.",
+      "cta": "Bientôt disponible"
+    },
+    "dev": {
+      "title": "Développement Software",
+      "subtitle": "C'est ici que je regroupe l'ensemble de mes créations logicielles. Ce site en est le premier exemple. De la réflexion sur la stack technique à la résolution de bugs complexes, découvrez la genèse de chaque application.",
+      "cta": "Bientôt disponible"
+    },
+    "iot": {
+      "title": "IoT & Embedded",
+      "subtitle": "Cet espace recense mes projets liés à l'électronique et aux objets connectés. Qu'il s'agisse d'automatisation ou d'expérimentations matérielles, vous y trouverez mes schémas de montage, mes choix de protocoles et mes retours d'expérience sur l'intégration hardware.",
+      "cta": "Bientôt disponible"
     }
   },
   "private": {
