@@ -3,19 +3,24 @@ import {
   Box,
   Button,
   CircularProgress,
-  Grid,
   Typography,
   Switch,
   Avatar,
+  Stack,
+  Divider,
   Card,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { Upload, Download, RefreshCw, Image as ImageIcon } from 'lucide-react';
+
 import { useAnonymizerStore } from '@/store/tools/useAnonymizerStore.ts';
 import { detectFaces } from '@/services/tools/faceDetectionService.ts';
+import { ToolLayout } from '@/layouts/ToolLayout.tsx';
 import {
   AnonymizerCanvas,
   type AnonymizerCanvasRef,
 } from '@/components/tools/AnonymizerCanvas.tsx';
+import { NestButton } from '@/components/common/NestButton.tsx';
 
 export const AnonymizerPage = () => {
   const { t } = useTranslation();
@@ -64,73 +69,126 @@ export const AnonymizerPage = () => {
     }
   };
 
-  if (!imageSrc) {
-    return (
-      <Box sx={{ p: 4, textAlign: 'center' }}>
-        <Button variant="contained" component="label" disabled={isProcessing}>
-          {isProcessing ? <CircularProgress size={24} /> : t('tools.anonymizer.upload')}
-          <input
-            type="file"
-            hidden
-            accept="image/jpeg, image/png, image/webp"
-            onChange={handleImageUpload}
-          />
-        </Button>
+  const configContent = (
+    <Stack spacing={3} sx={{ height: { md: 'calc(100vh - 130px)' } }}>
+      <Box>
+        <Typography variant="subtitle2" gutterBottom color="text.secondary">
+          {t('tools.anonymizer.config.actions')}
+        </Typography>
+        <Stack direction="row" spacing={1}>
+          <Button
+            variant="contained"
+            component="label"
+            fullWidth
+            disabled={isProcessing}
+            startIcon={isProcessing ? <CircularProgress size={16} /> : <Upload size={18} />}
+          >
+            {t('tools.anonymizer.upload')}
+            <input
+              type="file"
+              hidden
+              accept="image/jpeg, image/png, image/webp"
+              onChange={handleImageUpload}
+            />
+          </Button>
+          {imageSrc && (
+            <NestButton nestColor="error" onClick={reset} sx={{ minWidth: 'auto', px: 2 }}>
+              <RefreshCw size={18} />
+            </NestButton>
+          )}
+        </Stack>
       </Box>
-    );
-  }
 
-  return (
-    <Grid container spacing={3} sx={{ p: 3 }}>
-      <Grid size={8}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h5" gutterBottom sx={{ mb: 0 }}>
-            {t('tools.anonymizer.preview')}
-          </Typography>
-          <Button variant="contained" color="primary" onClick={handleDownload}>
-            {t('common.download')}
-          </Button>
-        </Box>
-        <AnonymizerCanvas ref={canvasRef} />
-      </Grid>
-      <Grid size={4}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-          <Typography variant="h6">
-            {t('tools.anonymizer.facesDetected', { count: faces.length })}
-          </Typography>
-          <Button color="error" onClick={reset}>
-            {t('common.reset')}
-          </Button>
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {faces.map((face) => (
-            <Card
-              key={face.id}
+      {imageSrc && (
+        <>
+          <Divider />
+          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+            <Box
+              sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}
+            >
+              <Typography variant="subtitle2" color="text.secondary">
+                {t('tools.anonymizer.facesDetected', { count: faces.length })}
+              </Typography>
+              <NestButton size="small" onClick={handleDownload} startIcon={<Download size={16} />}>
+                {t('common.download')}
+              </NestButton>
+            </Box>
+
+            <Box
               sx={{
-                p: 2,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                bgcolor: 'background.paper',
+                flexGrow: 1,
+                overflowY: 'auto',
+                pr: 1, // Padding pour ne pas coller à la scrollbar
+                '&::-webkit-scrollbar': { width: '5px' },
+                '&::-webkit-scrollbar-thumb': { bgcolor: 'divider', borderRadius: '10px' },
               }}
             >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Avatar
-                  src={face.thumbnailDataUrl}
-                  variant="rounded"
-                  sx={{ width: 56, height: 56 }}
-                />
-                <Typography variant="body2">{t('tools.anonymizer.blurFace')}</Typography>
-              </Box>
-              <Switch
-                checked={face.isBlurred}
-                onChange={() => toggleFaceBlur(face.id)}
-                color="primary"
-              />
-            </Card>
-          ))}
-        </Box>
-      </Grid>
-    </Grid>
+              <Stack spacing={1.5}>
+                {faces.map((face) => (
+                  <Card
+                    key={face.id}
+                    sx={{
+                      p: 1.5,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Stack direction="row" alignItems="center" spacing={2}>
+                      <Avatar
+                        src={face.thumbnailDataUrl}
+                        variant="rounded"
+                        sx={{ width: 48, height: 48, border: '1px solid', borderColor: 'divider' }}
+                      />
+                      <Typography variant="body2">{t('tools.anonymizer.blurFace')}</Typography>
+                    </Stack>
+                    <Switch
+                      size="small"
+                      checked={face.isBlurred}
+                      onChange={() => toggleFaceBlur(face.id)}
+                      color="primary"
+                    />
+                  </Card>
+                ))}
+              </Stack>
+            </Box>
+          </Box>
+        </>
+      )}
+    </Stack>
+  );
+
+  return (
+    <ToolLayout
+      infoTitle={t('tools.anonymizer.info_title')}
+      infoText={t('tools.anonymizer.info_text')}
+      configContent={configContent}
+      configPosition="side"
+    >
+      <Box
+        sx={{
+          height: { xs: '50vh', md: 'calc(100vh - 130px)' },
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'background.paper',
+          borderRadius: 2,
+          border: '1px dashed',
+          borderColor: 'divider',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+        {imageSrc ? (
+          <AnonymizerCanvas ref={canvasRef} />
+        ) : (
+          <Stack alignItems="center" spacing={2} sx={{ color: 'text.disabled' }}>
+            <ImageIcon size={64} strokeWidth={1} />
+            <Typography variant="h6">{t('tools.anonymizer.placeholder')}</Typography>
+            <Typography variant="body2">{t('tools.anonymizer.placeholder_sub')}</Typography>
+          </Stack>
+        )}
+      </Box>
+    </ToolLayout>
   );
 };

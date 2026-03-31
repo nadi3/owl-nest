@@ -1,31 +1,58 @@
-import { Box, Typography, Stack } from '@mui/material';
-import { PageHeader } from '@/components/common/PageHeader.tsx';
-import { NestCard } from '@/components/common/NestCard.tsx';
-import { getPortfolio } from '@/services/portfolio/portfolioService.ts';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
+import { Box, useTheme } from '@mui/material';
+import HeroSection from '@/components/common/HeroSection.tsx';
+import ContentSection from '@/components/common/ContentSection.tsx';
 
-const Portfolio = () => {
-  const { t } = useTranslation();
-  const projects = getPortfolio();
+const Portfolio: React.FC = () => {
+  const theme = useTheme();
+
+  const sections = [
+    {
+      imageSrc: '/storyset/Server-status-amico.svg',
+      titleKey: 'portfolio.sysadmin.title',
+      subtitleKey: 'portfolio.sysadmin.subtitle',
+      ctaKey: 'portfolio.sysadmin.cta',
+      ctaTo: '/portfolio',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Cross-platform software-amico.svg',
+      titleKey: 'portfolio.dev.title',
+      subtitleKey: 'portfolio.dev.subtitle',
+      ctaKey: 'portfolio.dev.cta',
+      ctaTo: '/portfolio',
+      reverse: true,
+    },
+    {
+      imageSrc: '/storyset/Robot-arm-amico.svg',
+      titleKey: 'portfolio.iot.title',
+      subtitleKey: 'portfolio.iot.subtitle',
+      ctaKey: 'portfolio.iot.cta',
+      ctaTo: '/portfolio',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+  ];
 
   return (
     <Box>
-      <PageHeader zone="03" title={t('portfolio.title')} description={t('portfolio.desc')} />
-
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
-        {projects.map((project) => (
-          <Box
-            key={project.id}
-            sx={{ gridColumn: project.fullWidth ? { xs: 1, md: '1 / -1' } : 'auto' }}
-          >
-            <NestCard title={t(project.titleKey)} subtitle={t(project.subtitleKey)}>
-              <Stack spacing={2}>
-                <Typography variant="body2">{t(project.descriptionKey)}</Typography>
-              </Stack>
-            </NestCard>
-          </Box>
-        ))}
-      </Box>
+      <HeroSection
+        imageSrc={'/storyset/Portfolio-amico.svg'}
+        titleKey={'portfolio.hero.title_part1'}
+        accentKey={'portfolio.hero.title_accent'}
+        subtitleKey={'portfolio.hero.subtitle'}
+      />
+      {sections.map((section, index) => (
+        <ContentSection
+          key={index}
+          imageSrc={section.imageSrc}
+          titleKey={section.titleKey}
+          subtitleKey={section.subtitleKey}
+          ctaKey={section.ctaKey}
+          ctaTo={section.ctaTo}
+          reverse={section.reverse}
+          bgColor={section.bgColor}
+        />
+      ))}
     </Box>
   );
 };
