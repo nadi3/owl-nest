@@ -1,40 +1,57 @@
-import { Box, Typography } from '@mui/material';
-import { PageHeader } from '@/components/common/PageHeader.tsx';
-import { NestCard } from '@/components/common/NestCard.tsx';
-import { NestButton } from '@/components/common/NestButton.tsx';
-import { getPublicTools } from '@/services/tools/toolsService.ts';
-import { useTranslation } from 'react-i18next';
-import { ChevronRightIcon, Clock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Box, useTheme } from '@mui/material';
+import HeroSection from '@/components/common/HeroSection.tsx';
+import ContentSection from '@/components/common/ContentSection.tsx';
 
 const PublicTools = () => {
-  const { t } = useTranslation();
-  const tools = getPublicTools();
-  const navigate = useNavigate();
+  const theme = useTheme();
+
+  const sections = [
+    {
+      imageSrc: '/storyset/Decision-fatigue-amico.svg',
+      titleKey: 'tools.wheel.title',
+      subtitleKey: 'tools.wheel.subtitle',
+      ctaKey: 'tools.wheel.cta',
+      ctaTo: '/tools/wheel',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Headphone-amico.svg',
+      titleKey: 'tools.audioVisualizer.title',
+      subtitleKey: 'tools.audioVisualizer.subtitle',
+      ctaKey: 'tools.audioVisualizer.cta',
+      ctaTo: '/tools/visualizer',
+      reverse: true,
+    },
+    {
+      imageSrc: '/storyset/Image-viewer-amico.svg',
+      titleKey: 'tools.anonymizer.title',
+      subtitleKey: 'tools.anonymizer.subtitle',
+      ctaKey: 'tools.anonymizer.cta',
+      ctaTo: '/tools/anonymizer',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+  ];
 
   return (
     <Box>
-      <PageHeader zone="02" title={t('tools.title')} description={t('tools.desc')} />
-
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
-        {tools.map((tool) => (
-          <Box key={tool.id}>
-            <NestCard title={t(tool.titleKey)} subtitle={t(tool.subtitleKey)}>
-              <Typography variant="body2" sx={{ mb: 3 }}>
-                {t(tool.descriptionKey)}
-              </Typography>
-              <NestButton
-                nestVariant={tool.disabled ? 'ghost' : 'contained'}
-                startIcon={tool.disabled ? <Clock size={18} /> : <ChevronRightIcon size={18} />}
-                disabled={tool.disabled}
-                onClick={() => !tool.disabled && navigate(tool.path)}
-              >
-                {tool.disabled ? t('tools.disabled') : t('tools.enabled')}
-              </NestButton>
-            </NestCard>
-          </Box>
-        ))}
-      </Box>
+      <HeroSection
+        imageSrc={'/storyset/Digital-tools-amico.svg'}
+        titleKey={'tools.hero.title_part1'}
+        accentKey={'tools.hero.title_accent'}
+        subtitleKey={'tools.hero.subtitle'}
+      />
+      {sections.map((section, index) => (
+        <ContentSection
+          key={index}
+          imageSrc={section.imageSrc}
+          titleKey={section.titleKey}
+          subtitleKey={section.subtitleKey}
+          ctaKey={section.ctaKey}
+          ctaTo={section.ctaTo}
+          reverse={section.reverse}
+          bgColor={section.bgColor}
+        />
+      ))}
     </Box>
   );
 };
