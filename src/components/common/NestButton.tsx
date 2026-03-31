@@ -1,11 +1,14 @@
+import React from 'react';
 import { Button, type ButtonProps, styled, alpha } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 type NestButtonProps = Omit<ButtonProps, 'color'> & {
   nestVariant?: 'contained' | 'ghost';
   nestColor?: 'primary' | 'secondary' | 'success' | 'error';
+  to?: string;
 };
 
-export const NestButton = styled(Button, {
+const StyledNestButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'nestVariant' && prop !== 'nestColor',
 })<NestButtonProps>(({ theme, nestColor = 'primary', nestVariant = 'contained' }) => {
   const paletteColor = theme.palette[nestColor] || theme.palette.primary;
@@ -43,3 +46,7 @@ export const NestButton = styled(Button, {
     }),
   };
 });
+
+export const NestButton: React.FC<NestButtonProps> = ({ to, ...props }) => {
+  return <StyledNestButton {...(to ? { component: Link, to } : {})} {...props} />;
+};
