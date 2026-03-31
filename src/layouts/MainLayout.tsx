@@ -1,15 +1,18 @@
 import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import Footer from '@/components/common/Footer.tsx';
-import Sidebar from '@/components/common/Sidebar.tsx';
 import i18n from 'i18next';
 import { useKonamiCode } from '@/hooks/useKonamiCode.ts';
+import NavSpeedDial from '@/components/common/NavSpeedDial.tsx';
+import SettingsSpeedDial from '@/components/common/SettingsSpeedDial.tsx'; //
 
 const MainLayout = () => {
   useKonamiCode(() => {
     i18n.changeLanguage('gl');
   });
+
   const isGlitched = i18n.language === 'gl';
+
   return (
     <Box
       sx={{
@@ -24,7 +27,17 @@ const MainLayout = () => {
         },
       }}
     >
-      <Sidebar />
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 24,
+          right: 24,
+          zIndex: 1100,
+        }}
+      >
+        <SettingsSpeedDial />
+      </Box>
+      <NavSpeedDial />
       <Box
         component="main"
         sx={{
@@ -33,20 +46,19 @@ const MainLayout = () => {
           flexDirection: 'column',
           height: '100%',
           overflowY: 'auto',
+          scrollSnapType: 'y mandatory',
           backgroundColor: 'background.default',
         }}
       >
-        <Box
-          sx={{
-            p: { xs: 2, md: 4 },
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Box sx={{ scrollSnapAlign: 'start' }} />
+
+        <Box sx={{ flexGrow: 1 }}>
           <Outlet />
         </Box>
-        <Footer />
+
+        <Box sx={{ scrollSnapAlign: 'end' }}>
+          <Footer />
+        </Box>
       </Box>
     </Box>
   );

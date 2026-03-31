@@ -1,47 +1,71 @@
-import { Typography, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { NestCard } from '@/components/common/NestCard';
-import { useTheme } from '@mui/material/styles';
-import { PageHeader } from '@/components/common/PageHeader.tsx';
+import React from 'react';
+import { Box, useTheme } from '@mui/material';
+import HeroSection from '@/components/common/HeroSection.tsx';
+import ContentSection from '@/components/common/ContentSection.tsx';
 
-const Home = () => {
+/**
+ * Owl Nest Home Page.
+ * Implements an IMMERSIVE SCROLL EXPERIENCE (CSS Scroll Snapping)
+ * and ORCHESTRATED ANIMATIONS (Staggered Children).
+ */
+const Home: React.FC = () => {
   const theme = useTheme();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const sections = [
-    { title: 'useless.title', desc: 'useless.desc', path: '/useless' },
-    { title: 'tools.title', desc: 'tools.desc', path: '/tools' },
-    { title: 'portfolio.title', desc: 'portfolio.desc', path: '/portfolio' },
-    { title: 'private.title', desc: 'private.desc', path: '/private' },
+    {
+      imageSrc: '/storyset/Laboratory-amico.svg',
+      titleKey: 'home.lab.title',
+      subtitleKey: 'home.lab.subtitle',
+      ctaKey: 'home.lab.cta',
+      ctaTo: '/useless',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Digital-tools-amico.svg',
+      titleKey: 'home.tools.title',
+      subtitleKey: 'home.tools.subtitle',
+      ctaKey: 'home.tools.cta',
+      ctaTo: '/tools',
+      reverse: true,
+    },
+    {
+      imageSrc: '/storyset/Portfolio-amico.svg',
+      titleKey: 'home.portfolio.title',
+      subtitleKey: 'home.portfolio.subtitle',
+      ctaKey: 'home.portfolio.cta',
+      ctaTo: '/portfolio',
+      bgColor: { bgcolor: theme.palette.secondary.light },
+    },
+    {
+      imageSrc: '/storyset/Security-On-amico.svg',
+      titleKey: 'home.private.title',
+      subtitleKey: 'home.private.subtitle',
+      ctaKey: 'home.private.cta',
+      ctaTo: '/private',
+      reverse: true,
+    },
   ];
 
   return (
     <Box>
-      <PageHeader title={t('title')} zone={'HOME'} description={t('home.subtitle')} />
-
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
-          gap: 4,
-        }}
-      >
-        {sections.map((section) => (
-          <Box
-            key={section.title}
-            onClick={() => navigate(section.path)}
-            sx={{ cursor: 'pointer' }}
-          >
-            <NestCard title={t(section.title)} accentColor={theme.palette.secondary.main}>
-              <Typography variant="body2" color="text.secondary">
-                {t(section.desc)}
-              </Typography>
-            </NestCard>
-          </Box>
-        ))}
-      </Box>
+      <HeroSection
+        imageSrc={'/storyset/Work-in-progress-amico.svg'}
+        titleKey={'home.hero.title_part1'}
+        accentKey={'home.hero.title_accent'}
+        subtitleKey={'home.hero.subtitle'}
+      />
+      {sections.map((section, index) => (
+        <ContentSection
+          key={index}
+          imageSrc={section.imageSrc}
+          titleKey={section.titleKey}
+          subtitleKey={section.subtitleKey}
+          ctaKey={section.ctaKey}
+          ctaTo={section.ctaTo}
+          reverse={section.reverse}
+          bgColor={section.bgColor}
+        />
+      ))}
     </Box>
   );
 };

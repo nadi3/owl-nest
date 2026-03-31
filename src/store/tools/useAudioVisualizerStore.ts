@@ -1,7 +1,9 @@
 import { create } from 'zustand';
 import type { AudioVisualizerState } from '@/types/tools/audioVisualizer.ts';
-import { owlTheme } from '@/theme/theme.ts';
+import { getOwlTheme } from '@/theme/theme.ts';
 import { audioVisualizerService } from '@/services/tools/audioVisualizerService.ts';
+
+const initialTheme = getOwlTheme('light');
 
 /**
  * @description Zustand store to manage the state of the 3D Audio Visualizer.
@@ -12,10 +14,10 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
   audioFile: null,
   isPlaying: false, // On remet à false par défaut
   settings: {
-    backgroundColor: owlTheme.palette.background.default,
-    bassColor: owlTheme.palette.primary.main,
-    midColor: owlTheme.palette.error.main,
-    trebleColor: owlTheme.palette.secondary.main,
+    backgroundColor: initialTheme.palette.background.default,
+    bassColor: initialTheme.palette.primary.main,
+    midColor: initialTheme.palette.error.main,
+    trebleColor: initialTheme.palette.secondary.main,
     shape: 'line',
     opacity: 0.85,
     showImage: true,

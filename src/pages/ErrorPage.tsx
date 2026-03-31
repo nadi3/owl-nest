@@ -4,7 +4,6 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { AlertTriangle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { NestButton } from '@/components/common/NestButton.tsx';
-import { owlTheme } from '@/theme/theme.ts';
 
 interface ErrorPageProps {
   code?: string;
@@ -16,11 +15,7 @@ const ErrorPage = ({ code = '404' }: ErrorPageProps) => {
 
   return (
     <Box sx={{ textAlign: 'center', py: 10 }}>
-      <AlertTriangle
-        size={64}
-        color={owlTheme.palette.secondary.main}
-        style={{ marginBottom: '24px' }}
-      />
+      <AlertTriangle size={64} color={'secondary.main'} style={{ marginBottom: '24px' }} />
       <PageHeader
         zone={`ERR_${code}`}
         title={t(`errors.${code}.title`)}

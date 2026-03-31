@@ -1,12 +1,47 @@
 {
   "title": "Owl Nest",
-  "home": {
-    "title": "Bienvenue",
-    "subtitle": "Mon espace technique : un mélange d'auto-hébergement, de projets techniques et de quelques expériences."
+  "nav": {
+    "menu": "Menu",
+    "home": "Accueil",
+    "lab": "Lab",
+    "tools": "Outils",
+    "portfolio": "Portfolio",
+    "private": "Privé"
   },
   "common": {
     "reset": "Réinitialiser",
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "discover": "Découvrir",
+    "light_mode": "Mode clair",
+    "dark_mode": "Mode sombre",
+    "back": "Retour"
+  },
+  "home": {
+    "hero": {
+      "title_part1": "Owl Nest",
+      "title_accent": "Créations, outils et expériences.",
+      "subtitle": "Un espace dédié aux projets personnels, aux outils en libre accès et aux tests numériques insolites."
+    },
+    "lab": {
+      "title": "Le Lab",
+      "subtitle": "Un terrain de jeu numérique où le code s'affranchit de toute utilité. Cette section rassemble des tests insolites, des interactions absurdes et des curiosités visuelles nées de simples explorations techniques. C’est un espace dédié au plaisir de créer et de tester des idées, même les plus farfelues.",
+      "cta": "Voir les expériences"
+    },
+    "tools": {
+      "title": "Outils publics",
+      "subtitle": "Une sélection de ressources pratiques mises à disposition gratuitement. L'idée est de proposer des alternatives fonctionnelles aux solutions payantes classiques, comme un visualiseur de musique 3D ou un anonymiseur de photos. Bien que la qualité puisse varier, l'objectif reste de fournir des outils utiles et accessibles à tous.",
+      "cta": "Voir les outils"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "subtitle": "Une vitrine regroupant les différents projets réalisés et le détail de leur conception. Cette section permet d'explorer les coulisses du développement, d'observer l'évolution technique du site actuel et de découvrir d'autres créations personnelles.",
+      "cta": "Voir les Projets"
+    },
+    "private": {
+      "title": "Espace privé",
+      "subtitle": "Une zone réservée exclusivement à un usage personnel. Elle héberge des outils et des services spécifiques développés pour des besoins précis, sans vocation à être partagés avec le grand public.",
+      "cta": "Se connecter"
+    }
   },
   "useless": {
     "title": "Le Lab",
@@ -188,20 +223,23 @@
     }
   },
   "tools": {
-    "title": "Outils Publics",
+    "title": "Outils publics",
     "desc": "Quelques outils pratiques accessibles à tout le monde.",
-    "disabled": "Bientôt disponible",
-    "enabled": "Ouvrir",
-    "items": {
-      "destiny-wheel": {
-        "title": "Roue de la destinée",
-        "subtitle": "Laissez le hasard décider pour vous",
-        "description": "Entre une liste de choix, lance la roue et obtiens un résultat aléatoire."
-      }
+    "hero": {
+      "title_part1": "Outils",
+      "title_accent": "publics",
+      "subtitle": "Des ressources pratiques mises à disposition gratuitement."
+    },
+    "common": {
+      "toggle_config": "Afficher/Masquer la configuration",
+      "toggle_info": "Afficher/Masquer les informations"
     },
     "wheel": {
       "title": "Roue de la destinée",
-      "subtitle": "Laissez le hasard décider pour vous",
+      "subtitle": "Un outil interactif conçu pour faciliter les prises de décision de manière aléatoire. Entièrement personnalisable, cette roue propose une approche à la fois ludique et esthétique pour départager plusieurs options en un clin d’œil.",
+      "cta": "Lancer la roue",
+      "info_title": "Comment ça marche ?",
+      "info_text": "Ajoutez, modifiez ou supprimez des options via le panneau de configuration. Cliquez sur le bouton central pour faire tourner la roue. L'option gagnante sera choisie aléatoirement parmi les choix actifs.",
       "config": "Configuration",
       "wheel_name": "Nom de la roue",
       "spin": "Lancer !",
@@ -215,8 +253,10 @@
     },
     "audioVisualizer": {
       "title": "Visualiseur Audio 3D",
-      "subtitle": "Visualiseur Audio 3D",
-      "description": "Chargez un MP3 et regardez la musique prendre vie en 3D.",
+      "subtitle": "Une expérience immersive qui transforme les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont les formes et les couleurs sont entièrement modulables selon les préférences.",
+      "cta": "Créer une visualisation",
+      "info_title": "Comment ça marche ?",
+      "info_text": "Importez un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes animées dont la taille évolue en temps réel. Personnalisez l'apparence via le panneau de contrôle pour une expérience visuelle unique.",
       "controls": {
         "title": "Contrôles",
         "upload": "Charger MP3",
@@ -241,8 +281,16 @@
       }
     },
     "anonymizer": {
+      "info_title": "Comment ça marche ?",
+      "info_text": "Téléchargez une photo pour commencer. Notre algorithme détecte automatiquement les visages localement dans votre navigateur. Vous pouvez ensuite choisir individuellement quels visages flouter avant de télécharger l'image finale.",
+      "placeholder": "Aucune image sélectionnée",
+      "placeholder_sub": "Chargez une photo depuis le panneau de configuration pour commencer l'anonymisation.",
+      "config": {
+        "actions": "Actions & Image"
+      },
       "title": "Anonymiseur de Photo",
-      "subtitle": "Floutez les visages sur vos photos",
+      "subtitle": "Une solution de confidentialité basée sur l'intelligence artificielle pour détecter et flouter les visages sur n'importe quelle image. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : aucune donnée n'est envoyée vers un serveur.",
+      "cta": "Anonymiser une image",
       "description": "Téléchargez une photo, et cet outil détectera les visages pour les flouter automatiquement, protégeant ainsi la vie privée de vos amis et de votre famille.",
       "upload": "Charger une photo",
       "preview": "Prévisualisation",
@@ -251,40 +299,38 @@
     }
   },
   "portfolio": {
-    "title": "Projets & Portfolio",
-    "desc": "Ce que j'ai construit, de l'infrastructure serveur au code embarqué.",
-    "items": {
-      "owl-nest-infra": {
-        "title": "Owl Nest Infra",
-        "subtitle": "Docker / Raspberry Pi",
-        "description": "Toute l'architecture derrière ce site !"
-      }
+    "hero": {
+      "title_part1": "Portfolio",
+      "title_accent": "Technique",
+      "subtitle": "Ici, je décortique mes projets pour en montrer les rouages. Bien plus qu'une simple liste de réalisations, ce portfolio explore les choix d'architecture, les méthodes de conception et les défis techniques que j'ai dû relever pour donner vie à mes idées."
+    },
+    "sysadmin": {
+      "title": "Infrastructure & Self-hosting",
+      "subtitle": "Cette section est dédiée à l'infrastructure qui héberge et propulse mes outils. Je détaille ici ma manière d'aborder l'auto-hébergement, la gestion des services et les solutions mises en place pour garantir une plateforme stable, sécurisée et totalement autonome.",
+      "cta": "Bientôt disponible"
+    },
+    "dev": {
+      "title": "Développement Software",
+      "subtitle": "C'est ici que je regroupe l'ensemble de mes créations logicielles. Ce site en est le premier exemple. De la réflexion sur la stack technique à la résolution de bugs complexes, découvrez la genèse de chaque application.",
+      "cta": "Bientôt disponible"
+    },
+    "iot": {
+      "title": "IoT & Embedded",
+      "subtitle": "Cet espace recense mes projets liés à l'électronique et aux objets connectés. Qu'il s'agisse d'automatisation ou d'expérimentations matérielles, vous y trouverez mes schémas de montage, mes choix de protocoles et mes retours d'expérience sur l'intégration hardware.",
+      "cta": "Bientôt disponible"
     }
   },
   "private": {
-    "title": "Espace Privé",
-    "desc": "L'envers du décor. Gestion interne du serveur et fichiers personnels.",
-    "protected": {
-      "title": "Accès Sécurisé",
-      "desc": "Cette zone est protégée par Authentik et Cloudflare Zero Trust."
-    },
-    "items": {
-      "nextcloud": {
-        "title": "Nextcloud",
-        "subtitle": "Stockage Cloud",
-        "description": "Mon alternative privée à Google Drive, installée directement sur mon SSD."
-      },
-      "sonarqube": {
-        "title": "SonarQube",
-        "subtitle": "Qualité du code",
-        "description": "L'outil qui surveille mon code pour traquer les bugs et la dette technique."
-      }
+    "wip": {
+      "title": "Zone en travaux",
+      "subtitle": "Accès restreint. Le chantier est en cours."
     }
   },
   "credits": {
     "title": "Crédits Open Source",
     "desc": "Ce site a été construit avec des outils que j'apprécie et qui font avancer le web.",
     "site": "Voir le code source",
+    "see": "Voir les crédits",
     "descriptions": {
       "react": "Le framework pour l'interface.",
       "mui": "Pour les composants et le design system.",
