@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/common/PageHeader';
 import { NestCard } from '@/components/common/NestCard';
 import { getCredits } from '@/services/creditsService';
 import { useTranslation } from 'react-i18next';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 const Credits = () => {
   const { t } = useTranslation();
@@ -17,6 +18,8 @@ const Credits = () => {
         flexDirection: 'column',
       }}
     >
+      <PageSEO titleKey={'seo.credits.title'} descriptionKey={'seo.credits.description'} />
+
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 }, flexGrow: 1 }}>
         <PageHeader zone="INFRA" title={t('credits.title')} description={t('credits.desc')} />
 

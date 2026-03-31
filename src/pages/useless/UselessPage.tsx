@@ -11,6 +11,7 @@ import { InfiniteWaitWidget } from '@/components/useless/InfiniteWaitWidget';
 import { TimeProgressWidget } from '@/components/useless/TimeProgressWidget.tsx';
 import { PageHeader } from '@/components/common/PageHeader.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -80,6 +81,8 @@ const UselessInfoBack: React.FC<UselessInfoBackProps> = ({ titleKey, descKey, on
         textAlign: 'center',
       }}
     >
+      <PageSEO titleKey={'seo.useless.title'} descriptionKey={'seo.useless.description'} />
+
       <InfoOutlinedIcon color="primary" sx={{ fontSize: 60, opacity: 0.5 }} />
       <Box>
         <Typography variant="h5" color="primary" gutterBottom>

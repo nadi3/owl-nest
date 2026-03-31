@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 const Portfolio: React.FC = () => {
   const theme = useTheme();
@@ -35,6 +36,7 @@ const Portfolio: React.FC = () => {
 
   return (
     <Box>
+      <PageSEO titleKey={'seo.portfolio.title'} descriptionKey={'seo.portfolio.description'} />
       <HeroSection
         imageSrc={'/storyset/Portfolio-amico.svg'}
         titleKey={'portfolio.hero.title_part1'}

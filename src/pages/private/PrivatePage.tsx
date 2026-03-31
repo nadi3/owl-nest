@@ -1,6 +1,7 @@
 import { Box, Typography, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 export const PrivatePage = () => {
   const { t } = useTranslation();
@@ -12,6 +13,7 @@ export const PrivatePage = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >
+      <PageSEO titleKey={'seo.private.title'} descriptionKey={'seo.private.description'} />
       <Stack spacing={4} alignItems="center" sx={{ textAlign: 'center' }}>
         <Box
           component="img"

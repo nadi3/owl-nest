@@ -21,6 +21,7 @@ import {
   type AnonymizerCanvasRef,
 } from '@/components/tools/AnonymizerCanvas.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 export const AnonymizerPage = () => {
   const { t } = useTranslation();
@@ -71,6 +72,10 @@ export const AnonymizerPage = () => {
 
   const configContent = (
     <Stack spacing={3} sx={{ height: { md: 'calc(100vh - 130px)' } }}>
+      <PageSEO
+        titleKey={'seo.tools_anonymizer.title'}
+        descriptionKey={'seo.tools_anonimyzer.description'}
+      />
       <Box>
         <Typography variant="subtitle2" gutterBottom color="text.secondary">
           {t('tools.anonymizer.config.actions')}

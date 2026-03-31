@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 /**
  * Owl Nest Home Page.
@@ -48,6 +49,8 @@ const Home: React.FC = () => {
 
   return (
     <Box>
+      <PageSEO titleKey={'seo.home.title'} descriptionKey={'seo.home.description'} />
+
       <HeroSection
         imageSrc={'/storyset/Work-in-progress-amico.svg'}
         titleKey={'home.hero.title_part1'}
