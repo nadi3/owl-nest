@@ -1,9 +1,26 @@
+/**
+ * @file faceDetectionService.ts
+ * @description A service for detecting faces in images using TensorFlow.js and the MediaPipeFaceDetector model.
+ * It employs a tiling strategy to improve detection of both large and small faces.
+ */
+
 import * as tf from '@tensorflow/tfjs';
 import * as faceDetection from '@tensorflow-models/face-detection';
 import type { BoundingBox, DetectedFace } from '@/types/tools/anonymizer.ts';
 
+/**
+ * A singleton instance of the MediaPipeFaceDetector.
+ * It is loaded lazily on the first call to `detectFaces`.
+ * @type {faceDetection.FaceDetector | null}
+ */
 let detector: faceDetection.FaceDetector | null = null;
 
+/**
+ * Loads and initializes the MediaPipeFaceDetector model from TensorFlow.js.
+ * This function is idempotent; it ensures the model is loaded only once.
+ * @returns {Promise<faceDetection.FaceDetector>} A promise that resolves with the initialized detector instance.
+ * @private
+ */
 const loadModel = async () => {
   await tf.ready();
 
@@ -20,6 +37,15 @@ const loadModel = async () => {
   return detector;
 };
 
+/**
+ * Calculates the Intersection over Union (IoU) of two bounding boxes.
+ * IoU is a metric used to measure the extent of overlap between two boxes.
+ * It's used here to identify and remove duplicate face detections.
+ * @param {BoundingBox} box1 - The first bounding box.
+ * @param {BoundingBox} box2 - The second bounding box.
+ * @returns {number} The IoU value, ranging from 0 (no overlap) to 1 (perfect overlap).
+ * @private
+ */
 const calculateIoU = (box1: BoundingBox, box2: BoundingBox): number => {
   const xA = Math.max(box1.x, box2.x);
   const yA = Math.max(box1.y, box2.y);
@@ -33,6 +59,22 @@ const calculateIoU = (box1: BoundingBox, box2: BoundingBox): number => {
   return intersectionArea / (box1Area + box2Area - intersectionArea);
 };
 
+/**
+ * Analyzes a given canvas segment to detect faces and extract their data.
+ *
+ * This function takes a canvas (which can be a scaled-down version of the full image or a tile),
+ * runs the face detector on it, and then maps the detected face coordinates back to the
+ * original image's coordinate system. It also generates a thumbnail for each detected face.
+ *
+ * @param {HTMLCanvasElement} canvas - The canvas element containing the image data to analyze.
+ * @param {HTMLImageElement} originalImage - The original, full-sized image element.
+ * @param {number} offsetX - The horizontal offset of the canvas segment relative to the original image.
+ * @param {number} offsetY - The vertical offset of the canvas segment relative to the original image.
+ * @param {number} scaleX - The horizontal scaling factor between the canvas and the original image.
+ * @param {number} scaleY - The vertical scaling factor between the canvas and the original image.
+ * @returns {Promise<DetectedFace[]>} A promise that resolves with an array of detected faces.
+ * @private
+ */
 const analyzeCanvas = async (
   canvas: HTMLCanvasElement,
   originalImage: HTMLImageElement,
@@ -74,7 +116,7 @@ const analyzeCanvas = async (
     thumbCtx.drawImage(originalImage, x, y, w, h, 0, 0, w, h);
 
     faces.push({
-      id: `face-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `face-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
       box: { x, y, width: w, height: h },
       isBlurred: true,
       thumbnailDataUrl: thumbCanvas.toDataURL('image/jpeg', 0.8),
@@ -84,6 +126,21 @@ const analyzeCanvas = async (
   return faces;
 };
 
+/**
+ * Detects all faces in a given image using a multi-pass strategy.
+ *
+ * This is the main exported function of the service. It orchestrates the face detection process
+ * by first performing a global pass on a scaled-down version of the image to find larger faces.
+ * Then, it divides the image into overlapping tiles and analyzes each tile to find smaller,
+ * more detailed faces.
+ *
+ * Finally, it merges the results from all passes and uses an IoU (Intersection over Union)
+ * threshold to remove duplicate detections, returning a clean list of unique faces.
+ *
+ * @param {HTMLImageElement} imageElement - The image element to analyze.
+ * @returns {Promise<DetectedFace[]>} A promise that resolves with an array of unique detected faces.
+ * @throws {Error} If the image element is invalid (e.g., has zero width or height).
+ */
 export const detectFaces = async (imageElement: HTMLImageElement): Promise<DetectedFace[]> => {
   await loadModel();
 

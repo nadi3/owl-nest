@@ -9,8 +9,19 @@ import WorkIcon from '@mui/icons-material/Work';
 import { MenuIcon } from 'lucide-react';
 
 /**
- * Floating Speed Dial for minimalist navigation.
- * Replaces the traditional Sidebar.
+ * A floating speed dial component for minimalist navigation.
+ * It replaces a traditional sidebar and provides quick access to the main sections of the application.
+ *
+ * The component displays a main floating action button (FAB) that, when clicked, reveals a set of navigation actions.
+ * Each action is represented by an icon and a tooltip, and navigates to a specific route upon being clicked.
+ *
+ * The navigation actions are:
+ * - **Home**: Navigates to the homepage.
+ * - **Lab**: Navigates to the "useless" or experimental section.
+ * - **Tools**: Navigates to the tools page.
+ * - **Portfolio**: Navigates to the portfolio page.
+ *
+ * The component is positioned at the bottom-right of the screen.
  */
 const NavSpeedDial: React.FC = () => {
   const { t } = useTranslation();

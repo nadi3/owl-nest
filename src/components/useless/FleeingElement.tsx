@@ -4,6 +4,26 @@ import { motion, useSpring } from 'framer-motion';
 import { MouseAvatar } from '@/components/useless/MouseAvatar.tsx';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * @file FleeingElement.tsx
+ * @description A "useless" but fun component featuring an element that runs away from the mouse cursor.
+ */
+
+/**
+ * A component that renders an element that actively flees the user's mouse cursor.
+ *
+ * This component creates an interactive "game" where a `MouseAvatar` element tries
+ * to escape the cursor. When the cursor gets too close, the element moves away.
+ * Clicking the element "catches" it, increments a score, and teleports it to a new
+ * random location within its container.
+ *
+ * The movement is handled using `framer-motion`'s `useSpring` for a smooth,
+ * physics-based animation. The logic for fleeing is contained within a `useEffect`
+ * hook that listens to global `mousemove` events.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered fleeing element game area.
+ */
 export const FleeingElement = () => {
   const { t } = useTranslation();
   const [isRunning, setIsRunning] = useState(false);
@@ -14,6 +34,10 @@ export const FleeingElement = () => {
   const x = useSpring(0, { stiffness: 100, damping: 20 });
   const y = useSpring(0, { stiffness: 100, damping: 20 });
 
+  /**
+   * `useEffect` hook to initialize the element's position.
+   * It centers the element within its container once the component has mounted.
+   */
   useEffect(() => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
@@ -22,6 +46,16 @@ export const FleeingElement = () => {
     }
   }, [x, y]);
 
+  /**
+   * `useEffect` hook to manage the core fleeing logic.
+   * It adds a `mousemove` event listener to the window to track the cursor's position.
+   *
+   * When the mouse moves, it calculates the distance to the element. If the distance
+   * is within a certain radius, it applies a force to "push" the element away from
+   * the cursor, ensuring it stays within the container boundaries.
+   *
+   * The cleanup function removes the event listener when the component unmounts.
+   */
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;

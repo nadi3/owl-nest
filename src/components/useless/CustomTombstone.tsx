@@ -1,6 +1,25 @@
 import { Box } from '@mui/material';
+import React from 'react';
 
-export const HandDrawnTombstone = () => {
+/**
+ * @file CustomTombstone.tsx
+ * @description A "useless" component that renders a hand-drawn style SVG of a tombstone.
+ */
+
+/**
+ * A purely decorative component that renders a static SVG image of a tombstone.
+ *
+ * The SVG is designed to have a "hand-drawn" aesthetic, with slight imperfections,
+ * rotations, and sketchy lines. It includes the tombstone itself, the text "RIP",
+ * and some decorative elements like vines and flowers.
+ *
+ * This component is self-contained and does not take any props. It's intended for
+ * use in humorous or "useless" contexts within the application.
+ *
+ * @component
+ * @returns {React.ReactElement} A Box containing the hand-drawn tombstone SVG.
+ */
+export const HandDrawnTombstone = (): React.ReactElement => {
   return (
     <Box sx={{ width: 120, height: 140, position: 'relative' }}>
       <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -6,11 +6,38 @@ import { NestButton } from '@/components/common/NestButton.tsx';
 import { useWheelStore } from '@/store/tools/useWheelStore.ts';
 import { useTranslation } from 'react-i18next';
 
-const ChoiceManager: React.FC = () => {
+/**
+ * @file ChoiceManager.tsx
+ * @description A component for managing the list of choices for the Wheel of Destiny tool.
+ */
+
+/**
+ * A component that allows users to add, remove, update, and toggle choices
+ * for the Wheel of Destiny.
+ *
+ * This component provides an interface for:
+ * - Adding a new choice via a text input and an "Add" button.
+ * - Viewing the list of existing choices.
+ * - Toggling a choice's active state using a checkbox.
+ * - Editing the text of a choice directly in a text field.
+ * - Changing the color associated with a choice using a color picker.
+ * - Deleting a choice.
+ *
+ * It interacts with a global state managed by `useWheelStore`.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered choice management panel.
+ */
+const ChoiceManager: React.FC = (): React.ReactElement => {
   const { t } = useTranslation();
   const { choices, addChoice, removeChoice, toggleChoice, updateChoice } = useWheelStore();
   const [inputValue, setInputValue] = useState('');
 
+  /**
+   * Handles adding a new choice to the list.
+   * It takes the current value from the input field, trims it, and if not empty,
+   * adds it to the store via `addChoice` and clears the input field.
+   */
   const handleAdd = () => {
     if (inputValue.trim()) {
       addChoice(inputValue.trim());

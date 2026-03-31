@@ -1,11 +1,20 @@
 import React from 'react';
 import { Box, Container, Grid, Typography, Link, Divider, Stack } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Mail, ExternalLink } from 'lucide-react';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 /**
- * Enhanced Footer for Owl Nest.
- * Organized in three columns: Identity, Navigation, and Tech Stack.
+ * A functional component that renders the footer for the Owl Nest application.
+ *
+ * The footer is organized into three main columns:
+ * 1. **Identity**: Displays the application title, a brief description, and social media links (GitHub, LinkedIn, Mail).
+ * 2. **Navigation**: Provides quick links to the main sections of the site (Home, Lab, Tools, Portfolio).
+ * 3. **Tech Stack & Credits**: Briefly mentions the technologies used and links to the credits page for more details.
+ *
+ * It also includes a bottom bar with the copyright notice and a link to the project's GitHub repository.
+ * The component uses `react-i18next` for internationalization.
  */
 const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -34,10 +43,10 @@ const Footer: React.FC = () => {
             </Typography>
             <Stack direction="row" spacing={2}>
               <Link href="https://github.com/nadi3" color="inherit" target="_blank">
-                <Github size={20} />
+                <GitHubIcon sx={{ fontSize: 20 }} />
               </Link>
               <Link href="#" color="inherit">
-                <Linkedin size={20} />
+                <LinkedInIcon sx={{ fontSize: 20 }} />
               </Link>
               <Link href="#" color="inherit">
                 <Mail size={20} />

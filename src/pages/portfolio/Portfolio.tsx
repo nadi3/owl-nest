@@ -1,12 +1,35 @@
+/**
+ * @file Portfolio.tsx
+ * @description The main portfolio page, showcasing different areas of expertise
+ * through a series of content sections.
+ */
+
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
-const Portfolio: React.FC = () => {
+/**
+ * The portfolio page component.
+ *
+ * This page serves as a high-level overview of the different projects and areas of expertise.
+ *
+ * The content for each section is defined in the `sections` array, making it
+ * easy to add, remove, or reorder areas of focus.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered portfolio page.
+ */
+const Portfolio: React.FC = (): React.ReactElement => {
   const theme = useTheme();
 
+  /**
+   * An array of configuration objects for each `ContentSection` on the page.
+   * Each object defines the props for a section, including its image, text content,
+   * call-to-action, and layout variations.
+   * @constant
+   */
   const sections = [
     {
       imageSrc: '/storyset/Server-status-amico.svg',

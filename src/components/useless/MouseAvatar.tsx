@@ -1,6 +1,40 @@
 import { motion } from 'framer-motion';
 
-export const MouseAvatar = ({ isRunning }: { isRunning: boolean }) => {
+/**
+ * @file MouseAvatar.tsx
+ * @description A "useless" but animated SVG component representing a small mouse or rodent.
+ */
+
+/**
+ * Props for the MouseAvatar component.
+ * @interface MouseAvatarProps
+ */
+interface MouseAvatarProps {
+  /**
+   * A boolean flag that determines whether the mouse should be in its "running" state.
+   * When `true`, the component will display running legs and a wiggling tail animation.
+   * @type {boolean}
+   */
+  isRunning: boolean;
+}
+
+/**
+ * An animated SVG component that renders a stylized mouse avatar.
+ *
+ * This component uses `framer-motion` to create several animations that change
+ * based on the `isRunning` prop. The animations include:
+ * - A slight body rotation when running.
+ * - A wiggling tail animation when running.
+ * - The appearance of animated "running legs" when running.
+ *
+ * It's a purely decorative component designed to be used in other "useless"
+ * features, like the `FleeingElement`.
+ *
+ * @component
+ * @param {MouseAvatarProps} props - The props for the component.
+ * @returns {React.ReactElement} The rendered animated SVG component.
+ */
+export const MouseAvatar = ({ isRunning }: MouseAvatarProps) => {
   return (
     <motion.svg
       width="60"

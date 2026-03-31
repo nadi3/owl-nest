@@ -1,17 +1,57 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
+/**
+ * @file SufferingMan.tsx
+ * @description A "useless" component that renders an SVG face which becomes
+ * increasingly distressed based on a "level" prop.
+ */
+
+/**
+ * Props for the SufferingMan component.
+ * @interface SufferingManProps
+ */
 interface SufferingManProps {
-  level: number; // 0 à 9
+  /**
+   * The level of "suffering" to display, from 0 (neutral) to 9 (maximum distress).
+   * This value controls the facial expression.
+   * @type {number}
+   */
+  level: number;
+  /**
+   * The background color of the face.
+   * @type {string}
+   */
   color: string;
+  /**
+   * The size (width and height) of the component in pixels.
+   * @type {number}
+   */
   size: number;
 }
 
 /**
- * Renders a small character with 10 visual variants of fear/suffering.
- * Uses SVG to animate facial expressions based on the level.
+ * Renders a simple, stylized SVG face that displays increasing levels of distress.
+ *
+ * This component visualizes a "suffering" level from 0 to 9 by dynamically
+ * changing SVG attributes. As the `level` prop increases:
+ * - The eyes widen.
+ * - The pupils shrink.
+ * - The eyebrows angle downwards in an expression of anger or fear.
+ * - The mouth transitions from a neutral line to a wide-open scream.
+ *
+ * It's a purely presentational component used to give character to other "useless"
+ * features, like the `SufferingButton`.
+ *
+ * @component
+ * @param {SufferingManProps} props - The props for the component.
+ * @returns {React.ReactElement} The rendered SVG face component.
  */
-export const SufferingMan: React.FC<SufferingManProps> = ({ level, color, size }) => {
+export const SufferingMan: React.FC<SufferingManProps> = ({
+  level,
+  color,
+  size,
+}: SufferingManProps): React.ReactElement => {
   const eyeSize = 2 + level * 0.5;
   const mouthY = 15 + level * 0.5;
   const browRotation = level * 5;

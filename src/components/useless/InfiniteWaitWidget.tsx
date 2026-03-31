@@ -1,11 +1,36 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, Stack, LinearProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { NestButton } from '@/components/common/NestButton';
 import { getWaitMessage } from '@/services/useless/waitMessageService';
 import { getGlobalRecord, saveNewRecord } from '@/services/useless/infiniteWaitService.ts';
 
-export const InfiniteWaitWidget: React.FC = () => {
+/**
+ * @file InfiniteWaitWidget.tsx
+ * @description A "useless" component that challenges users to hold a button for as long as possible.
+ */
+
+/**
+ * A component that implements a "hold the button" game.
+ *
+ * This widget challenges users to press and hold a button for as long as they can.
+ * It tracks the elapsed time, displays encouraging (or discouraging) messages,
+ * and saves the user's time as a new global record if they beat the previous one.
+ *
+ * The component features:
+ * - A large, circular button to press and hold.
+ * - A timer that displays the current hold time.
+ * - A progress bar that fills up asymptotically, representing "infinite" progress.
+ * - A message area that shows different phrases based on the hold duration.
+ * - A display for the current global record.
+ *
+ * State is managed locally using `useState` and `useRef`, and the global record
+ * is handled via services that interact with `localStorage`.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered infinite wait widget.
+ */
+export const InfiniteWaitWidget: React.FC = (): React.ReactElement => {
   const [currentMessage, setCurrentMessage] = useState('');
 
   const { t } = useTranslation();
@@ -16,6 +41,20 @@ export const InfiniteWaitWidget: React.FC = () => {
 
   const isNewRecord = time > record.seconds && record.seconds > 0;
 
+  /**
+   * `useEffect` hook to manage the timer and record-saving logic.
+   *
+   * When the `isPressing` state becomes true, it starts an interval timer that:
+   * - Increments the `time` state every 100ms.
+   * - Fetches and displays a new message based on the elapsed time.
+   *
+   * When `isPressing` becomes false (on mouse up/leave), it:
+   * - Clears the interval.
+   * - Saves the current time as a new record if it's higher than the existing one.
+   * - Resets the timer and message.
+   *
+   * The cleanup function ensures the timer is cleared if the component unmounts.
+   */
   useEffect(() => {
     if (isPressing) {
       timerRef.current = globalThis.setInterval(() => {
@@ -40,7 +79,14 @@ export const InfiniteWaitWidget: React.FC = () => {
     };
   }, [isPressing, t]);
 
-  const progress = isPressing ? (1 - Math.exp(-time / 60)) * 100 : 0;
+  /**
+   * Calculates the progress for the `LinearProgress` bar.
+   * The progress is calculated using an asymptotic function `(1 - e^(-t/60)) * 100`,
+   * which means it will approach 100% but never quite reach it, reinforcing the
+   * "infinite" nature of the wait.
+   * @type {number}
+   */
+  const progress: number = isPressing ? (1 - Math.exp(-time / 60)) * 100 : 0;
 
   return (
     <Stack spacing={4} alignItems="center" sx={{ py: 4 }}>

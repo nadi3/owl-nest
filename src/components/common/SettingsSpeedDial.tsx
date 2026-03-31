@@ -8,13 +8,30 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import { useThemeStore } from '@/store/useThemeStore.ts';
 
 /**
- * Floating Speed Dial for global settings (Language, Theme mode).
- * Positioned top-right to balance the UI with NavSpeedDial.
+ * @file This file contains the SettingsSpeedDial component, which provides users
+ * with quick access to global application settings like language and theme.
+ */
+
+/**
+ * A floating speed dial component for managing global application settings.
+ *
+ * This component is positioned at the top-right of the screen and offers actions for:
+ * - Toggling the application language between English and French.
+ * - Switching the UI theme between light and dark modes.
+ *
+ * It uses `zustand` via `useThemeStore` for theme state management and `react-i18next` for internationalization.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered `SettingsSpeedDial` component.
  */
 const SettingsSpeedDial: React.FC = () => {
   const { i18n, t } = useTranslation();
   const theme = useTheme();
 
+  /**
+   * Toggles the application's language between French ('fr') and English ('en').
+   * It reads the current language from `i18n` and sets the alternative one.
+   */
   const toggleLanguage = () => {
     const newLang = i18n.language === 'fr' ? 'en' : 'fr';
     i18n.changeLanguage(newLang);
@@ -22,6 +39,12 @@ const SettingsSpeedDial: React.FC = () => {
 
   const { toggleTheme } = useThemeStore();
 
+  /**
+   * Defines the actions available in the speed dial menu.
+   * Each action is an object with an icon, a descriptive name (for the tooltip),
+   * and an `onClick` handler.
+   * @type {Array<{icon: React.ReactElement, name: string, onClick: () => void}>}
+   */
   const actions = [
     {
       icon: <LanguageIcon />,
@@ -64,7 +87,11 @@ const SettingsSpeedDial: React.FC = () => {
         <SpeedDialAction
           key={action.name}
           icon={action.icon}
-          tooltipTitle={action.name}
+          slotProps={{
+            tooltip: {
+              title: action.name,
+            },
+          }}
           onClick={action.onClick}
         />
       ))}
