@@ -1,5 +1,7 @@
 import React from 'react';
-import { Snackbar, Alert, Typography } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import { useImpatienceStore } from '@/store/useless/useImpatienceStore.ts';
 

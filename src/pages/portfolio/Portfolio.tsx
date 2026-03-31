@@ -5,7 +5,8 @@
  */
 
 import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
@@ -32,7 +33,7 @@ const Portfolio: React.FC = (): React.ReactElement => {
    */
   const sections = [
     {
-      imageSrc: '/storyset/Server-status-amico.svg',
+      imageSrc: '/storyset/Server-status-amico.webp',
       titleKey: 'portfolio.sysadmin.title',
       subtitleKey: 'portfolio.sysadmin.subtitle',
       ctaKey: 'portfolio.sysadmin.cta',
@@ -40,7 +41,7 @@ const Portfolio: React.FC = (): React.ReactElement => {
       bgColor: { bgcolor: theme.palette.secondary.light },
     },
     {
-      imageSrc: '/storyset/Cross-platform software-amico.svg',
+      imageSrc: '/storyset/Cross-platform software-amico.webp',
       titleKey: 'portfolio.dev.title',
       subtitleKey: 'portfolio.dev.subtitle',
       ctaKey: 'portfolio.dev.cta',
@@ -48,7 +49,7 @@ const Portfolio: React.FC = (): React.ReactElement => {
       reverse: true,
     },
     {
-      imageSrc: '/storyset/Robot-arm-amico.svg',
+      imageSrc: '/storyset/Robot-arm-amico.webp',
       titleKey: 'portfolio.iot.title',
       subtitleKey: 'portfolio.iot.subtitle',
       ctaKey: 'portfolio.iot.cta',
@@ -61,7 +62,7 @@ const Portfolio: React.FC = (): React.ReactElement => {
     <Box>
       <PageSEO titleKey={'seo.portfolio.title'} descriptionKey={'seo.portfolio.description'} />
       <HeroSection
-        imageSrc={'/storyset/Portfolio-amico.svg'}
+        imageSrc={'/storyset/Portfolio-amico.webp'}
         titleKey={'portfolio.hero.title_part1'}
         accentKey={'portfolio.hero.title_accent'}
         subtitleKey={'portfolio.hero.subtitle'}

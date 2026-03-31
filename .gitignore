@@ -9,6 +9,9 @@ node_modules/
 # Build output
 dist/
 
+# Lighthouse reports
+.lighthouseci/
+
 # Environment variables
 .env
 .env.local

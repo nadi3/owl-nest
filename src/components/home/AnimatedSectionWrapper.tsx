@@ -1,6 +1,8 @@
 import React, { type ReactNode } from 'react';
 import { motion, type UseInViewOptions, type Variants } from 'framer-motion';
-import { Box, Container, type SxProps, type Theme } from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import type { SxProps, Theme } from '@mui/material/styles';
 
 /**
  * @file This file defines the AnimatedSectionWrapper component, a reusable wrapper

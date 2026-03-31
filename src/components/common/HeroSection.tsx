@@ -1,6 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Typography, Stack, Grid, useTheme, Box } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import AnimatedSectionWrapper from '../home/AnimatedSectionWrapper.tsx';
 import { MotionTitle, MotionBody, MotionImage } from '@/components/home/HomeAnimationsItems.tsx';
 
@@ -64,7 +68,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <Box
               component="img"
               src={imageSrc}
+              width={450}
+              height={450}
               alt="Hero illustration"
+              fetchPriority="high"
               sx={{
                 width: '100%',
                 height: 'auto',

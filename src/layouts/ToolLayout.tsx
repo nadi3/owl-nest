@@ -5,7 +5,12 @@
  */
 
 import React, { useState } from 'react';
-import { Box, Stack, Typography, IconButton, Tooltip, Paper } from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Paper from '@mui/material/Paper';
 import { Settings, Info } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';

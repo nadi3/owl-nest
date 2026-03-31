@@ -4,7 +4,8 @@
  * the available tools with descriptive sections.
  */
 
-import { Box, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
@@ -35,7 +36,7 @@ const PublicTools = (): React.ReactElement => {
    */
   const sections = [
     {
-      imageSrc: '/storyset/Decision-fatigue-amico.svg',
+      imageSrc: '/storyset/Decision-fatigue-amico.webp',
       titleKey: 'tools.wheel.title',
       subtitleKey: 'tools.wheel.subtitle',
       ctaKey: 'tools.wheel.cta',
@@ -43,7 +44,7 @@ const PublicTools = (): React.ReactElement => {
       bgColor: { bgcolor: theme.palette.secondary.light },
     },
     {
-      imageSrc: '/storyset/Headphone-amico.svg',
+      imageSrc: '/storyset/Headphone-amico.webp',
       titleKey: 'tools.audioVisualizer.title',
       subtitleKey: 'tools.audioVisualizer.subtitle',
       ctaKey: 'tools.audioVisualizer.cta',
@@ -51,7 +52,7 @@ const PublicTools = (): React.ReactElement => {
       reverse: true,
     },
     {
-      imageSrc: '/storyset/Image-viewer-amico.svg',
+      imageSrc: '/storyset/Image-viewer-amico.webp',
       titleKey: 'tools.anonymizer.title',
       subtitleKey: 'tools.anonymizer.subtitle',
       ctaKey: 'tools.anonymizer.cta',
@@ -65,7 +66,7 @@ const PublicTools = (): React.ReactElement => {
       <PageSEO titleKey={'seo.tools.title'} descriptionKey={'seo.tools.description'} />
 
       <HeroSection
-        imageSrc={'/storyset/Digital-tools-amico.svg'}
+        imageSrc={'/storyset/Digital-tools-amico.webp'}
         titleKey={'tools.hero.title_part1'}
         accentKey={'tools.hero.title_accent'}
         subtitleKey={'tools.hero.subtitle'}

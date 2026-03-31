@@ -1,5 +1,7 @@
 import React from 'react';
-import { SpeedDial, SpeedDialAction, useTheme } from '@mui/material';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LanguageIcon from '@mui/icons-material/Language';
