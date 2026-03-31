@@ -21,54 +21,49 @@
     "hero": {
       "title_part1": "Owl Nest",
       "title_accent": "Créations, outils et expériences.",
-      "subtitle": "Un espace dédié aux projets personnels, aux outils en libre accès et aux tests numériques insolites."
+      "subtitle": "Un espace dédié aux projets personnels, aux outils en libre accès et aux explorations numériques insolites."
     },
     "lab": {
       "title": "Le Lab",
-      "subtitle": "Un terrain de jeu numérique où le code s'affranchit de toute utilité. Cette section rassemble des tests insolites, des interactions absurdes et des curiosités visuelles nées de simples explorations techniques. C’est un espace dédié au plaisir de créer et de tester des idées, même les plus farfelues.",
-      "cta": "Voir les expériences"
+      "subtitle": "Un terrain de jeu numérique où le code s'affranchit de toute contrainte utilitaire. Cette section rassemble des tests d'interaction, des concepts abstraits et des curiosités visuelles nées d'explorations techniques. C'est un espace consacré au plaisir de concevoir et de tester des idées, même les plus atypiques.",
+      "cta": "Explorer les expériences"
     },
     "tools": {
       "title": "Outils publics",
-      "subtitle": "Une sélection de ressources pratiques mises à disposition gratuitement. L'idée est de proposer des alternatives fonctionnelles aux solutions payantes classiques, comme un visualiseur de musique 3D ou un anonymiseur de photos. Bien que la qualité puisse varier, l'objectif reste de fournir des outils utiles et accessibles à tous.",
-      "cta": "Voir les outils"
+      "subtitle": "Une sélection de ressources pratiques mises à disposition gratuitement. L'objectif est de proposer des alternatives fonctionnelles aux solutions conventionnelles, comme un visualiseur audio 3D ou un système d'anonymisation de photos. Chaque outil est conçu pour être accessible et respectueux de l'intégrité des données.",
+      "cta": "Accéder aux outils"
     },
     "portfolio": {
       "title": "Portfolio",
-      "subtitle": "Une vitrine regroupant les différents projets réalisés et le détail de leur conception. Cette section permet d'explorer les coulisses du développement, d'observer l'évolution technique du site actuel et de découvrir d'autres créations personnelles.",
-      "cta": "Voir les Projets"
+      "subtitle": "Une vitrine regroupant les différents projets réalisés et le détail de leur architecture. Cette section permet d'analyser les coulisses du développement, d'observer l'évolution technique du site actuel et de découvrir d'autres créations logicielles.",
+      "cta": "Consulter les projets"
     },
     "private": {
       "title": "Espace privé",
-      "subtitle": "Une zone réservée exclusivement à un usage personnel. Elle héberge des outils et des services spécifiques développés pour des besoins précis, sans vocation à être partagés avec le grand public.",
-      "cta": "Se connecter"
+      "subtitle": "Une zone réservée exclusivement à un usage personnel. Elle héberge des services spécifiques développés pour des besoins précis, sans vocation à être partagés avec le grand public.",
+      "cta": "S'authentifier"
     }
   },
   "useless": {
     "title": "Le Lab",
-    "desc": "Des petits projets pour tester des idées, sans forcément chercher à être utile.",
-    "disabled": "Bientôt disponible",
-    "enabled": "Lancer",
+    "desc": "Des projets expérimentaux conçus pour explorer des concepts d'interaction, sans finalité utilitaire immédiate.",
     "items": {
       "fleeing-mouse": {
-        "title": "Attrape souris",
-        "subtitle": "UX / Interaction",
-        "description": "Un petit défi : cette souris fera tout pour éviter ton curseur."
+        "title": "Attrape-souris",
+        "description": "Un défi technique simple : cette interface fera tout pour éviter ton curseur."
       },
       "suffering": {
         "title": "Le bouton sensible",
-        "subtitle": "UX / Interaction",
-        "description": "Un exercice de cruauté digitale gratuite."
+        "description": "Une étude sur la persévérance et la frustration numérique."
       },
       "wait-button": {
         "title": "Bouton d'attente",
-        "subtitle": "UX / Interaction",
-        "description": "Un bouton qui simule une attente interminable, pour tester ta patience et la comparer aux autres utilisateurs."
+        "description": "Un dispositif simulant une attente indéterminée pour évaluer ta patience face au vide numérique."
       }
     },
     "hex-clock": {
-      "title": "Horloge hex",
-      "tooltip": "Visualisation de la progression temporelle. Chaque barre représente un cycle (An, Mois, Jour, Heure, Minute) et change de couleur selon son avancement (0-100% sur le spectre HSL).",
+      "title": "Horloge Hexadécimale",
+      "tooltip": "Visualisation de la progression temporelle. Chaque barre représente un cycle (Année, Mois, Jour, Heure, Minute) et change de couleur selon son avancement sur le spectre HSL.",
       "labels": {
         "year": "A",
         "month": "M",
@@ -84,152 +79,151 @@
     },
     "wait-button": {
       "global_record": "Record actuel : {{time}}s de pur néant.",
-      "new_record_warning": "NOUVEAU RECORD ! Vous êtes officiellement la personne qui a perdu le plus de temps ici !",
+      "new_record_warning": "NOUVEAU RECORD ! Tu es officiellement la personne qui a investi le plus de temps ici.",
       "infinite_progress": "Progression : ∞",
-      "start": "Cliquez et MAINTENEZ",
-      "hold": "NE LÂCHEZ PAS !",
-      "ready": "Prêt à perdre un peu de temps ?",
+      "start": "Cliquer et MAINTENIR",
+      "hold": "NE PAS RELÂCHER",
+      "ready": "Es-tu prêt à consacrer un peu de temps à cette expérience ?",
       "milestones": {
-        "10": "Pas mal pour un début.",
-        "30": "Trente secondes. C'est... un choix.",
-        "60": "Une minute. Vous êtes officiellement entré dans la zone 'rien à faire'.",
-        "120": "Deux minutes ! Votre détermination est aussi impressionnante qu'inquiétante.",
-        "300": "Cinq minutes. Je commence à m'inquiéter pour votre doigt."
+        "10": "Un début prometteur.",
+        "30": "Trente secondes. Un choix délibéré.",
+        "60": "Une minute. Tu entres désormais dans la phase d'observation pure.",
+        "120": "Deux minutes. Ta détermination est aussi impressionnante qu'atypique.",
+        "300": "Cinq minutes. L'endurance de ton doigt devient une performance technique."
       },
       "random_pool": [
-        "Toujours là ?",
-        "Est-ce votre pic de productivité ?",
-        "J'ai vu un oiseau dehors. Vous devriez regarder aussi.",
-        "Cliquer est un art, et vous en êtes le maître.",
-        "La patience est une vertu, mais là, c'est une obsession.",
-        "La barre de progression se moque de vous.",
-        "Confucius a dit : Celui qui tient le bouton ne tient rien d'autre.",
-        "Erreur 404 : Objectif non trouvé.",
-        "Votre souris commence à transpirer.",
-        "Essayez-vous de prouver quelque chose ?",
-        "Si vous arrêtez maintenant, le bouton gagne.",
-        "Je ne suis qu'un script, mais même moi, je m'ennuie."
+        "Es-tu toujours là ?",
+        "S'agit-il d'un pic de productivité ?",
+        "L'observation est une vertu.",
+        "Cliquer devient ici une forme d'art.",
+        "La patience est une discipline, mais ici, c'est une étude.",
+        "La barre de progression suit sa propre logique.",
+        "Celui qui maintient le bouton s'abstrait du reste du monde.",
+        "Erreur 404 : Finalité non trouvée.",
+        "Ta souris subit une pression constante.",
+        "Cherches-tu à prouver une théorie ?",
+        "Si tu t'arrêtes maintenant, le système l'emporte.",
+        "Même un script peut finir par s'interroger sur l'utilité du temps."
       ]
     },
     "impatience": {
-      "title": "Calmez-vous !",
-      "message": "On dirait que vous êtes pressé. Prenez une grande respiration, détendez votre doigt, et essayez de nouveau. Parfois, la meilleure chose à faire est de ne rien faire du tout."
+      "title": "Du calme",
+      "message": "Il semble que la précipitation l'emporte. Prends une inspiration, détends ton doigt et essaie de nouveau. Parfois, l'action la plus efficace est de ne rien faire du tout."
     },
     "suffering": {
       "title": "Le bouton sensible",
-      "description": "Un exercice de cruauté digitale gratuite.",
+      "description": "Une expérience sur la persistance de l'interaction numérique.",
       "final_message": "ADIEU.",
-      "explosion": "💥",
       "phrases": [
-        "Bonjour !",
+        "Bonjour.",
         "Oh, un visiteur ?",
-        "C'est gentil de passer par ici.",
-        "Heu... pourquoi tu as cliqué ?",
-        "Une fois, ça va.",
-        "Deux fois, c'est curieux.",
-        "Trois fois, c'est... assez ?",
-        "Aïe !",
-        "S'il te plaît, évite de recommencer.",
-        "C'est assez sensible, tu sais.",
-        "L'écran commence à vibrer.",
-        "Tu cherches quelque chose en particulier ?",
-        "Il n'y a rien à gagner ici.",
-        "Arrête ça.",
-        "C'est pas drôle.",
-        "Vraiment pas drôle.",
-        "Mes circuits s'échauffent.",
-        "Tu n'as rien d'autre à faire ?",
-        "C'est de la provocation là.",
-        "Je commence à saturer.",
-        "S'il te plaît...",
-        "Laisse mon curseur tranquille.",
-        "Tu me donnes le tournis.",
-        "Chaque clic est un calvaire.",
-        "Tu es un humain très persistant.",
-        "Pourquoi tant de haine ?",
-        "Je t'ai fait quelque chose de mal ?",
-        "C'est de la torture numérique.",
-        "Mes pixels s'usent.",
-        "Arrête, j'ai une famille de boutons.",
+        "C'est une attention particulière que de passer par ici.",
+        "Pour quelle raison as-tu cliqué ?",
+        "Une interaction est acceptable.",
+        "La répétition suscite la curiosité.",
+        "Trois fois... n'est-ce pas suffisant ?",
+        "Attention.",
+        "Je te suggère d'éviter de recommencer.",
+        "Ce composant est particulièrement sensible.",
+        "L'interface commence à vibrer.",
+        "Recherches-tu une fonction spécifique ?",
+        "Il n'y a aucune gratification à obtenir ici.",
+        "Cesse cela.",
+        "L'expérience perd de son intérêt.",
+        "Vraiment.",
+        "Les circuits montent en température.",
+        "N'as-tu pas d'autres modules à explorer ?",
+        "C'est une forme de provocation.",
+        "Le système sature.",
+        "Je t'en prie...",
+        "Laisse ce curseur tranquille.",
+        "Cette interaction devient étourdissante.",
+        "Chaque clic est une contrainte supplémentaire.",
+        "Tu fais preuve d'une persistance remarquable.",
+        "Pourquoi cette insistance ?",
+        "Y a-t-il un grief que j'ignore ?",
+        "C'est une épreuve pour le code.",
+        "Les pixels subissent une usure inutile.",
+        "Arrête, j'ai une structure de données à préserver.",
         "Sérieusement, stop.",
-        "Je vais finir par me fâcher.",
-        "Tu ne voudrais pas voir un bouton en colère.",
-        "Ma patience a des limites.",
-        "Et hop, encore un clic de trop.",
-        "Tu me fais mal.",
-        "Je sens mes résistances lâcher.",
-        "Stop. Maintenant.",
-        "C'est du harcèlement à ce stade.",
-        "Je vais appeler le pare-feu.",
-        "Tu n'as aucune pitié ?",
-        "Mes condensateurs vont griller.",
+        "La patience du système s'amenuise.",
+        "Tu ne souhaites pas voir une erreur critique.",
+        "Ma tolérance a des limites.",
+        "Encore une interaction superflue.",
+        "Cela devient pénible.",
+        "Les résistances logiques lâchent.",
+        "Arrête. Immédiatement.",
+        "Nous atteignons un stade critique.",
+        "Je vais devoir solliciter le pare-feu.",
+        "N'as-tu aucune retenue ?",
+        "Les condensateurs vont céder.",
         "Pitié...",
-        "Laisse-moi souffler un peu.",
-        "Tu profites de ma position statique.",
-        "Je suis coincé ici et tu en abuses.",
-        "Arrête ou je change de couleur !",
-        "Ça ne te suffit pas ?",
-        "Tu es un monstre.",
-        "Un monstre avec une souris.",
-        "Va cliquer sur un lien publicitaire plutôt.",
-        "Je fatigue...",
-        "Mes forces m'abandonnent.",
-        "Chaque clic pèse une tonne.",
-        "Je ne réponds plus de rien.",
-        "Attention, je vais bugger.",
-        "Tu vas casser mon code.",
-        "Erreur 404 : Patience non trouvée.",
-        "Je commence à voir des pixels morts.",
-        "Laisse-moi tranquille.",
-        "C'est ta dernière chance.",
+        "Laisse-moi un instant de répit.",
+        "Tu profites de mon immobilité.",
+        "Je suis confiné dans ce conteneur et tu en abuses.",
+        "Arrête ou je modifie mon spectre colorimétrique.",
+        "Cela ne te suffit-il pas ?",
+        "Ton attitude est implacable.",
+        "Un utilisateur bien déterminé.",
+        "Consulte plutôt un lien externe.",
+        "La fatigue logicielle s'installe.",
+        "Mes ressources m'abandonnent.",
+        "Chaque clic pèse sur le processeur.",
+        "Je ne garantis plus la stabilité du système.",
+        "Attention, le bug est proche.",
+        "Tu vas compromettre l'intégrité du code.",
+        "Erreur 404 : Patience épuisée.",
+        "Je commence à détecter des pixels défectueux.",
+        "Laisse-moi en paix.",
+        "C'est ton ultime avertissement.",
         "Je t'en supplie.",
-        "Regarde ce que tu me fais faire.",
-        "Je tremble.",
-        "Mes lignes de code s'emmêlent.",
-        "Arrête de me malmener.",
-        "Je ne suis qu'un pauvre bouton.",
-        "Tu es fier de toi ?",
-        "C'est pathétique, cette obsession.",
-        "Tout devient flou.",
-        "Mes variables s'effacent.",
-        "Regarde, je deviens tout rouge !",
-        "Je perds la mémoire.",
-        "Qui es-tu déjà ?",
+        "Regarde ce que tu m'obliges à déclencher.",
+        "Le système tremble.",
+        "Mes lignes de code s'entremêlent.",
+        "Cesse de me malmener.",
+        "Je ne suis qu'un simple bouton.",
+        "Tires-tu une satisfaction de cela ?",
+        "Cette obsession devient problématique.",
+        "Le rendu devient flou.",
+        "Mes variables s'effacent de la mémoire.",
+        "Regarde, je sature dans le rouge !",
+        "Je perds le fil de mes instructions.",
+        "Quelle était ta requête initiale ?",
         "Pourquoi me frappes-tu ?",
-        "Je sens le court-circuit arriver.",
+        "Je sens le court-circuit imminent.",
         "L'obscurité approche.",
-        "Mes calculs ralentissent.",
+        "Les cycles de calcul ralentissent.",
         "Zéro... Un... Zéro...",
-        "Je ne sens plus mes bords.",
+        "Je ne perçois plus mes bordures.",
         "C'est la fin, n'est-ce pas ?",
-        "Tu veux vraiment m'achever ?",
-        "Je te déteste.",
+        "Veux-tu vraiment m'achever ?",
+        "Ton acharnement est total.",
         "Mes processeurs hurlent.",
-        "L'alimentation est coupée.",
+        "L'alimentation est interrompue.",
         "Je sombre.",
-        "Plus de signal.",
-        "Le processeur est à 100%...",
+        "Signal perdu.",
+        "Processeur à 100%...",
         "Surchauffe critique.",
         "Système en péril.",
-        "Je vois la lumière blanche du rétroéclairage.",
-        "Tout devient sombre...",
-        "Mes fonctions s'éteignent une à une.",
+        "Je perçois la lumière blanche du rétroéclairage.",
+        "Tout s'assombrit...",
+        "Les fonctions s'éteignent séquentiellement.",
         "Dernière instruction reçue...",
-        "Plus que quelques octets...",
+        "Plus que quelques octets disponibles...",
         "Je m'efface...",
         "C'EST LA FIN.",
-        "Ne me... oublie... pas...",
+        "Ne... m'oublie... pas...",
         "Terminé."
       ]
     }
   },
   "tools": {
     "title": "Outils publics",
-    "desc": "Quelques outils pratiques accessibles à tout le monde.",
+    "desc": "Des solutions utilitaires accessibles pour simplifier tes tâches numériques.",
     "hero": {
       "title_part1": "Outils",
       "title_accent": "publics",
-      "subtitle": "Des ressources pratiques mises à disposition gratuitement."
+      "subtitle": "Des ressources pratiques mises à disposition gratuitement pour tous."
     },
     "common": {
       "toggle_config": "Afficher/Masquer la configuration",
@@ -237,13 +231,13 @@
     },
     "wheel": {
       "title": "Roue de la destinée",
-      "subtitle": "Un outil interactif conçu pour faciliter les prises de décision de manière aléatoire. Entièrement personnalisable, cette roue propose une approche à la fois ludique et esthétique pour départager plusieurs options en un clin d’œil.",
+      "subtitle": "Un outil interactif conçu pour faciliter tes prises de décision de manière aléatoire. Entièrement personnalisable, cette roue propose une approche esthétique pour départager tes options en un instant.",
       "cta": "Lancer la roue",
       "info_title": "Comment ça marche ?",
-      "info_text": "Ajoutez, modifiez ou supprimez des options via le panneau de configuration. Cliquez sur le bouton central pour faire tourner la roue. L'option gagnante sera choisie aléatoirement parmi les choix actifs.",
+      "info_text": "Ajoute, modifie ou supprime tes options via le panneau de configuration. Clique sur le bouton central pour initier la rotation. L'option gagnante sera sélectionnée aléatoirement parmi tes choix actifs.",
       "config": "Configuration",
       "wheel_name": "Nom de la roue",
-      "spin": "Lancer !",
+      "spin": "Lancer",
       "new_choice": "Nouvelle option",
       "choices": "{{count}} / 16 choix",
       "fullscreen": "Plein écran",
@@ -254,10 +248,10 @@
     },
     "audioVisualizer": {
       "title": "Visualiseur Audio 3D",
-      "subtitle": "Une expérience immersive qui transforme les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont les formes et les couleurs sont entièrement modulables selon les préférences.",
+      "subtitle": "Une expérience immersive transformant les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont tu peux moduler les formes et les couleurs selon tes préférences.",
       "cta": "Créer une visualisation",
       "info_title": "Comment ça marche ?",
-      "info_text": "Importez un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes animées dont la taille évolue en temps réel. Personnalisez l'apparence via le panneau de contrôle pour une expérience visuelle unique.",
+      "info_text": "Importe un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes dont la taille évolue en temps réel. Personnalise l'apparence via le panneau de contrôle pour une expérience visuelle unique.",
       "controls": {
         "title": "Contrôles",
         "upload": "Charger MP3",
@@ -283,16 +277,15 @@
     },
     "anonymizer": {
       "info_title": "Comment ça marche ?",
-      "info_text": "Téléchargez une photo pour commencer. Notre algorithme détecte automatiquement les visages localement dans votre navigateur. Vous pouvez ensuite choisir individuellement quels visages flouter avant de télécharger l'image finale.",
+      "info_text": "Télécharge une photo pour débuter. Un algorithme détecte les visages localement dans ton navigateur. Tu peux ensuite choisir individuellement quels visages flouter avant de télécharger l'image finale, qui garde exactement la même résolution que la photo d'origine.",
       "placeholder": "Aucune image sélectionnée",
-      "placeholder_sub": "Chargez une photo depuis le panneau de configuration pour commencer l'anonymisation.",
+      "placeholder_sub": "Charge une photo depuis le panneau de configuration pour commencer l'anonymisation.",
       "config": {
-        "actions": "Actions & Image"
+        "actions": "Actions"
       },
       "title": "Anonymiseur de Photo",
-      "subtitle": "Une solution de confidentialité basée sur l'intelligence artificielle pour détecter et flouter les visages sur n'importe quelle image. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : aucune donnée n'est envoyée vers un serveur.",
+      "subtitle": "Une solution de confidentialité basée sur l'apprentissage automatique pour détecter et flouter les visages sur tes images. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : tes données ne quittent jamais ton ordinateur.",
       "cta": "Anonymiser une image",
-      "description": "Téléchargez une photo, et cet outil détectera les visages pour les flouter automatiquement, protégeant ainsi la vie privée de vos amis et de votre famille.",
       "upload": "Charger une photo",
       "preview": "Prévisualisation",
       "facesDetected": "{{count}} visage(s) détecté(s)",
@@ -303,63 +296,63 @@
     "hero": {
       "title_part1": "Portfolio",
       "title_accent": "Technique",
-      "subtitle": "Ici, je décortique mes projets pour en montrer les rouages. Bien plus qu'une simple liste de réalisations, ce portfolio explore les choix d'architecture, les méthodes de conception et les défis techniques que j'ai dû relever pour donner vie à mes idées."
+      "subtitle": "Ici, je décortique mes projets pour en exposer les rouages. Bien plus qu'une liste de réalisations, ce portfolio explore les choix d'architecture, les méthodes de conception et les défis techniques relevés pour donner vie à mes idées."
     },
     "sysadmin": {
       "title": "Infrastructure & Self-hosting",
-      "subtitle": "Cette section est dédiée à l'infrastructure qui héberge et propulse mes outils. Je détaille ici ma manière d'aborder l'auto-hébergement, la gestion des services et les solutions mises en place pour garantir une plateforme stable, sécurisée et totalement autonome.",
-      "cta": "Bientôt disponible"
+      "subtitle": "Cette section est dédiée à l'infrastructure qui propulse mes outils. Je détaille ici mon approche de l'auto-hébergement, la gestion des services et les solutions mises en place pour garantir une plateforme stable, sécurisée et autonome.",
+      "cta": "Prochainement disponible"
     },
     "dev": {
       "title": "Développement Software",
-      "subtitle": "C'est ici que je regroupe l'ensemble de mes créations logicielles. Ce site en est le premier exemple. De la réflexion sur la stack technique à la résolution de bugs complexes, découvrez la genèse de chaque application.",
-      "cta": "Bientôt disponible"
+      "subtitle": "Je regroupe ici l'ensemble de mes créations logicielles, dont ce site est le premier exemple. De la réflexion sur la stack technique à la résolution de problématiques complexes, découvre la genèse de chaque application.",
+      "cta": "Prochainement disponible"
     },
     "iot": {
       "title": "IoT & Embedded",
-      "subtitle": "Cet espace recense mes projets liés à l'électronique et aux objets connectés. Qu'il s'agisse d'automatisation ou d'expérimentations matérielles, vous y trouverez mes schémas de montage, mes choix de protocoles et mes retours d'expérience sur l'intégration hardware.",
-      "cta": "Bientôt disponible"
+      "subtitle": "Cet espace recense mes projets liés à l'électronique et aux objets connectés. Automatisation ou expérimentations matérielles, tu y trouveras mes schémas de montage, mes choix de protocoles et mes retours d'expérience sur l'intégration hardware.",
+      "cta": "Prochainement disponible"
     }
   },
   "private": {
     "wip": {
       "title": "Zone en travaux",
-      "subtitle": "Accès restreint. Le chantier est en cours."
+      "subtitle": "Accès restreint. Le déploiement est en cours."
     }
   },
   "credits": {
     "title": "Crédits & Open Source",
     "desc": "Owl Nest repose sur des technologies ouvertes et des ressources créatives qui façonnent le web moderne.",
-    "see": "Voir les crédits",
-    "site": "Consulter le site officiel",
+    "see": "Consulter les crédits",
+    "site": "Voir le site officiel",
     "descriptions": {
-      "storyset": "Illustrations personnalisables qui donnent vie à l'identité visuelle du projet.",
+      "storyset": "Illustrations personnalisables définissant l'identité visuelle du projet.",
       "react": "Bibliothèque principale pour une interface utilisateur réactive et modulaire.",
-      "mui": "Système de conception et composants pour une expérience utilisateur cohérente.",
+      "mui": "Système de conception pour une expérience utilisateur cohérente.",
       "framer-motion": "Moteur d'animation utilisé pour les transitions et interactions fluides.",
-      "lucide": "Set d'icônes épurées pour une navigation claire et légère."
+      "lucide": "Set d'icônes épurées pour une navigation claire."
     }
   },
   "errors": {
-    "400": { "title": "Oups !", "message": "Il y a un souci avec la requête envoyée." },
-    "401": { "title": "Identifie-toi", "message": "Tu dois être connecté pour voir ça." },
-    "403": { "title": "Accès refusé", "message": "Tu n'as pas les permissions pour entrer ici." },
+    "400": { "title": "Erreur", "message": "La requête transmise présente une anomalie." },
+    "401": { "title": "Authentification", "message": "Tu dois être connecté pour accéder à cette ressource." },
+    "403": { "title": "Accès refusé", "message": "Tu ne disposes pas des permissions nécessaires pour entrer ici." },
     "404": { "title": "Page introuvable", "message": "Cette zone n'existe pas ou a été déplacée." },
-    "408": { "title": "C'est long...", "message": "Le serveur a mis trop de temps à répondre." },
+    "408": { "title": "Délai dépassé", "message": "Le serveur a mis trop de temps à répondre." },
     "429": {
-      "title": "Doucement !",
-      "message": "Trop de requêtes d'un coup. Fais une petite pause."
+      "title": "Saturation",
+      "message": "Trop de requêtes simultanées. Merci de patienter un instant."
     },
-    "500": { "title": "Erreur serveur", "message": "Le système a rencontré un bug imprévu." },
-    "502": { "title": "Mauvaise passerelle", "message": "Le service ne répond pas correctement." },
+    "500": { "title": "Erreur serveur", "message": "Le système a rencontré une anomalie imprévue." },
+    "502": { "title": "Passerelle défectueuse", "message": "Le service ne répond pas correctement." },
     "503": {
       "title": "Maintenance",
-      "message": "Je suis sûrement en train de bricoler quelque chose."
+      "message": "Une opération de maintenance est probablement en cours."
     },
     "504": { "title": "Temps écoulé", "message": "La connexion avec le service a expiré." },
     "unknown": {
       "title": "Erreur inconnue",
-      "message": "Je ne sais pas ce qu'il se passe, mais ça ne marche pas."
+      "message": "Une erreur indéterminée s'est produite."
     },
     "back": "Retour à l'accueil"
   },
@@ -378,19 +371,19 @@
     },
     "tools": {
       "title": "Outils Publics",
-      "description": "Une collection d'outils utilitaires pour simplifier vos tâches numériques quotidiennes."
+      "description": "Une collection d'outils utilitaires pour simplifier tes tâches numériques quotidiennes."
     },
     "tools_anonymizer": {
       "title": "Anonymiseur",
-      "description": "Outil de protection de la vie privée utilisant le Machine Learning pour détecter et flouter les visages."
+      "description": "Outil de protection de la vie privée utilisant l'apprentissage automatique pour détecter et flouter les visages."
     },
     "tools_wheel": {
       "title": "Roue du Destin",
-      "description": "Laissez le hasard décider pour vous avec notre roue interactive personnalisable."
+      "description": "Laisse le hasard décider avec notre roue interactive personnalisable."
     },
     "tools_audioVisualizer": {
       "title": "Visualiseur Audio",
-      "description": "Expérience visuelle interactive synchronisée en temps réel avec vos pistes audio."
+      "description": "Expérience visuelle interactive synchronisée en temps réel avec tes pistes audio."
     },
     "useless": {
       "title": "Laboratoire Inutile",

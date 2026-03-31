@@ -13,55 +13,57 @@
     "download": "Download",
     "discover": "Discover",
     "light_mode": "Light Mode",
-    "dark_mode": "Dark Mode"
+    "dark_mode": "Dark Mode",
+    "back": "Back",
+    "git": "View on GitHub"
   },
   "home": {
     "hero": {
       "title_part1": "Owl Nest",
       "title_accent": "Creations, tools, and experiments.",
-      "subtitle": "A space dedicated to personal projects, open-access tools, and unusual digital tests."
+      "subtitle": "A space dedicated to personal projects, open-access tools, and unusual digital explorations."
     },
     "lab": {
       "title": "The Lab",
-      "subtitle": "A digital playground where code breaks free from any utility. This section brings together unusual tests, absurd interactions, and visual curiosities born from simple technical explorations. It's a space dedicated to the pleasure of creating and testing ideas, even the most far-fetched ones.",
-      "cta": "See the experiments"
+      "subtitle": "A digital playground where code breaks free from any utility constraint. This section brings together interaction tests, abstract concepts, and visual curiosities born from technical explorations. It's a space dedicated to the pleasure of designing and testing ideas, even the most unconventional ones.",
+      "cta": "Explore the experiments"
     },
     "tools": {
       "title": "Public Tools",
-      "subtitle": "A selection of practical resources available for free. The idea is to offer functional alternatives to classic paid solutions, like a 3D music visualizer or a photo anonymizer. Although the quality may vary, the goal remains to provide useful and accessible tools for everyone.",
-      "cta": "See the tools"
+      "subtitle": "A selection of practical resources available for free. The goal is to offer functional alternatives to conventional solutions, like a 3D audio visualizer or a photo anonymization system. Each tool is designed to be accessible and respectful of data integrity.",
+      "cta": "Access the tools"
     },
     "portfolio": {
       "title": "Portfolio",
-      "subtitle": "A showcase featuring the different projects carried out and the details of their design. This section allows you to explore behind the scenes of development, observe the technical evolution of the current site, and discover other personal creations.",
-      "cta": "See the Projects"
+      "subtitle": "A showcase featuring the different projects carried out and the details of their architecture. This section allows you to analyze the behind-the-scenes of development, observe the technical evolution of the current site, and discover other software creations.",
+      "cta": "Consult the projects"
     },
     "private": {
       "title": "Private Area",
-      "subtitle": "An area reserved exclusively for personal use. It hosts specific tools and services developed for precise needs, with no intention of being shared with the general public.",
-      "cta": "Log in"
+      "subtitle": "An area reserved exclusively for personal use. It hosts specific services developed for precise needs, with no intention of being shared with the general public.",
+      "cta": "Authenticate"
     }
   },
   "useless": {
     "title": "The Lab",
-    "desc": "Small projects to test ideas, not necessarily aiming to be useful.",
-    "disabled": "Coming soon",
-    "enabled": "Launch",
+    "desc": "Experimental projects designed to explore interaction concepts, with no immediate practical purpose.",
     "items": {
       "fleeing-mouse": {
         "title": "Catch the mouse",
-        "subtitle": "UX / Interaction",
-        "description": "A little challenge: this mouse will do anything to avoid your cursor."
+        "description": "A simple technical challenge: this interface will do anything to avoid your cursor."
+      },
+      "suffering": {
+        "title": "The sensitive button",
+        "description": "A study on perseverance and digital frustration."
       },
       "wait-button": {
         "title": "Waiting Button",
-        "subtitle": "UX / Interaction",
-        "description": "A button that simulates an endless wait, to test your patience and compare it with other users."
+        "description": "A device simulating an indefinite wait to assess your patience in the face of the digital void."
       }
     },
     "hex-clock": {
       "title": "Hex Clock",
-      "tooltip": "Visualization of time progression. Each bar represents a cycle (Year, Month, Day, Hour, Minute) and changes color according to its progress (0-100% on the HSL spectrum).",
+      "tooltip": "Visualization of time progression. Each bar represents a cycle (Year, Month, Day, Hour, Minute) and changes color according to its progress on the HSL spectrum.",
       "labels": {
         "year": "Y",
         "month": "M",
@@ -77,136 +79,135 @@
     },
     "wait-button": {
       "global_record": "Current record: {{time}}s of pure void.",
-      "new_record_warning": "NEW RECORD! You are officially the person who lost the most time here!",
+      "new_record_warning": "NEW RECORD! You are officially the person who has invested the most time here.",
       "infinite_progress": "Progress: ∞",
       "start": "Click and HOLD",
       "hold": "DON'T LET GO!",
-      "ready": "Ready to waste some time?",
+      "ready": "Are you ready to devote some time to this experiment?",
       "milestones": {
-        "10": "Not bad for a start.",
-        "30": "Thirty seconds. That's... a choice.",
-        "60": "One minute. You've officially entered the 'nothing to do' zone.",
-        "120": "Two minutes! Your determination is as impressive as it is concerning.",
-        "300": "Five minutes. I'm starting to worry about your finger."
+        "10": "A promising start.",
+        "30": "Thirty seconds. A deliberate choice.",
+        "60": "One minute. You are now entering the phase of pure observation.",
+        "120": "Two minutes. Your determination is as impressive as it is unconventional.",
+        "300": "Five minutes. The endurance of your finger is becoming a technical performance."
       },
       "random_pool": [
         "Still there?",
-        "Is this your peak productivity?",
-        "I saw a bird outside. You should look too.",
-        "Clicking is an art, and you're a master.",
-        "Patience is a virtue, but this is an obsession.",
-        "The progress bar is laughing at you.",
-        "Confucius say: He who holds button, holds nothing else.",
+        "Is this a peak of productivity?",
+        "Observation is a virtue.",
+        "Clicking here becomes a form of art.",
+        "Patience is a discipline, but here, it's a study.",
+        "The progress bar follows its own logic.",
+        "He who holds the button abstracts himself from the rest of the world.",
         "Error 404: Purpose not found.",
-        "Your mouse is starting to sweat.",
-        "Are you trying to prove something?",
-        "If you stop now, the button wins.",
-        "I'm actually just a script, but even I'm bored."
+        "Your mouse is under constant pressure.",
+        "Are you trying to prove a theory?",
+        "If you stop now, the system wins.",
+        "Even a script can end up wondering about the use of time."
       ]
     },
     "impatience": {
-      "title": "Calm down!",
-      "message": "It looks like you're in a hurry. Take a deep breath, relax your finger, and try again. Sometimes, the best thing to do is nothing at all."
+      "title": "Calm down",
+      "message": "It seems that haste is taking over. Take a breath, relax your finger, and try again. Sometimes, the most effective action is to do nothing at all."
     },
     "suffering": {
       "title": "The sensitive button",
-      "description": "An exercise in gratuitous digital cruelty.",
+      "description": "An experiment on the persistence of digital interaction.",
       "final_message": "FAREWELL.",
-      "explosion": "💥",
       "phrases": [
-        "Hello!",
+        "Hello.",
         "Oh, a visitor?",
-        "Nice of you to stop by.",
-        "Um... why did you click?",
-        "Once is fine.",
-        "Twice is curious.",
-        "Three times is... enough?",
-        "Ouch!",
-        "Please, don't do that again.",
-        "It's quite sensitive, you know.",
-        "The screen is starting to vibrate.",
-        "Are you looking for something specific?",
-        "There's nothing to win here.",
+        "It's a special attention to stop by here.",
+        "For what reason did you click?",
+        "One interaction is acceptable.",
+        "Repetition arouses curiosity.",
+        "Three times... isn't that enough?",
+        "Be careful.",
+        "I suggest you avoid doing that again.",
+        "This component is particularly sensitive.",
+        "The interface is starting to vibrate.",
+        "Are you looking for a specific function?",
+        "There is no gratification to be gained here.",
         "Stop it.",
-        "It's not funny.",
-        "Really not funny.",
-        "My circuits are heating up.",
-        "Don't you have anything better to do?",
-        "This is just provocation.",
-        "I'm starting to get overwhelmed.",
+        "The experience is losing its interest.",
+        "Really.",
+        "The circuits are heating up.",
+        "Don't you have other modules to explore?",
+        "This is a form of provocation.",
+        "The system is saturating.",
         "Please...",
-        "Leave my cursor alone.",
-        "You're making me dizzy.",
-        "Every click is an ordeal.",
-        "You are a very persistent human.",
-        "Why so much hatred?",
-        "Did I do something wrong to you?",
-        "This is digital torture.",
-        "My pixels are wearing out.",
-        "Stop, I have a family of buttons.",
+        "Leave this cursor alone.",
+        "This interaction is becoming dizzying.",
+        "Each click is an additional constraint.",
+        "You show remarkable persistence.",
+        "Why this insistence?",
+        "Is there a grievance I'm unaware of?",
+        "This is a test for the code.",
+        "The pixels are suffering unnecessary wear.",
+        "Stop, I have a data structure to preserve.",
         "Seriously, stop.",
-        "I'm going to get angry.",
-        "You wouldn't want to see an angry button.",
-        "My patience has limits.",
-        "And there goes another click.",
-        "You're hurting me.",
-        "I can feel my resistors failing.",
-        "Stop. Now.",
-        "This is harassment at this point.",
-        "I'm calling the firewall.",
-        "Have you no mercy?",
-        "My capacitors are going to blow.",
+        "The system's patience is wearing thin.",
+        "You don't want to see a critical error.",
+        "My tolerance has limits.",
+        "Another superfluous interaction.",
+        "This is becoming painful.",
+        "The logical resistors are failing.",
+        "Stop. Immediately.",
+        "We are reaching a critical stage.",
+        "I'm going to have to call the firewall.",
+        "Have you no restraint?",
+        "The capacitors are going to give way.",
         "Mercy...",
-        "Let me breathe a little.",
-        "You're taking advantage of my static position.",
-        "I'm stuck here and you're abusing it.",
-        "Stop or I'll change color!",
+        "Give me a moment of respite.",
+        "You're taking advantage of my immobility.",
+        "I'm confined in this container and you're abusing it.",
+        "Stop or I'll change my color spectrum.",
         "Isn't that enough for you?",
-        "You're a monster.",
-        "A monster with a mouse.",
-        "Go click on an ad instead.",
-        "I'm getting tired...",
-        "My strength is failing me.",
-        "Each click weighs a ton.",
-        "I'm not responsible for my actions anymore.",
-        "Warning, I'm about to bug out.",
-        "You're going to break my code.",
-        "Error 404: Patience not found.",
-        "I'm starting to see dead pixels.",
-        "Leave me alone.",
-        "This is your last chance.",
+        "Your attitude is relentless.",
+        "A very determined user.",
+        "Go click on an external link instead.",
+        "Software fatigue is setting in.",
+        "My resources are abandoning me.",
+        "Each click weighs on the processor.",
+        "I no longer guarantee the stability of the system.",
+        "Warning, the bug is near.",
+        "You are going to compromise the integrity of the code.",
+        "Error 404: Patience exhausted.",
+        "I'm starting to detect defective pixels.",
+        "Leave me in peace.",
+        "This is your final warning.",
         "I'm begging you.",
-        "Look what you're making me do.",
-        "I'm trembling.",
+        "Look what you're making me trigger.",
+        "The system is trembling.",
         "My lines of code are getting tangled.",
         "Stop mistreating me.",
-        "I'm just a poor button.",
-        "Are you proud of yourself?",
-        "This obsession is pathetic.",
-        "Everything is becoming a blur.",
-        "My variables are being erased.",
-        "Look, I'm turning all red!",
-        "I'm losing my memory.",
-        "Who are you again?",
+        "I'm just a simple button.",
+        "Do you get any satisfaction from this?",
+        "This obsession is becoming problematic.",
+        "The rendering is becoming blurry.",
+        "My variables are being erased from memory.",
+        "Look, I'm saturating in red!",
+        "I'm losing track of my instructions.",
+        "What was your initial request?",
         "Why are you hitting me?",
-        "I feel a short circuit coming on.",
+        "I feel the short circuit coming.",
         "The darkness is approaching.",
-        "My calculations are slowing down.",
+        "The calculation cycles are slowing down.",
         "Zero... One... Zero...",
-        "I can't feel my edges anymore.",
+        "I can no longer feel my borders.",
         "This is the end, isn't it?",
         "Do you really want to finish me off?",
-        "I hate you.",
+        "Your relentlessness is total.",
         "My processors are screaming.",
-        "The power is cut.",
-        "I'm fading.",
-        "No more signal.",
-        "The processor is at 100%...",
+        "The power is cut off.",
+        "I'm sinking.",
+        "Signal lost.",
+        "Processor at 100%...",
         "Critical overheat.",
         "System in jeopardy.",
         "I see the white light of the backlight.",
         "Everything is going dark...",
-        "My functions are shutting down one by one.",
+        "The functions are shutting down sequentially.",
         "Last instruction received...",
         "Only a few bytes left...",
         "I'm fading away...",
@@ -218,9 +219,16 @@
   },
   "tools": {
     "title": "Public Tools",
-    "desc": "Some practical tools accessible to everyone.",
-    "disabled": "Coming soon",
-    "enabled": "Open",
+    "desc": "Utility solutions accessible to simplify your digital tasks.",
+    "hero": {
+      "title_part1": "Public",
+      "title_accent": "Tools",
+      "subtitle": "Practical resources available for free for everyone."
+    },
+    "common": {
+      "toggle_config": "Show/Hide configuration",
+      "toggle_info": "Show/Hide information"
+    },
     "items": {
       "destiny-wheel": {
         "title": "Wheel of Destiny",
@@ -230,10 +238,13 @@
     },
     "wheel": {
       "title": "Wheel of Destiny",
-      "subtitle": "Let chance decide for you",
+      "subtitle": "An interactive tool designed to help you make decisions randomly. Fully customizable, this wheel offers an aesthetic approach to settling your options in an instant.",
+      "cta": "Launch the wheel",
+      "info_title": "How does it work?",
+      "info_text": "Add, edit, or delete your options via the configuration panel. Click the center button to start the spin. The winning option will be randomly selected from your active choices.",
       "config": "Configuration",
       "wheel_name": "Wheel Name",
-      "spin": "Spin the wheel!",
+      "spin": "Spin",
       "new_choice": "New option",
       "choices": "{{count}} / 16 choices",
       "fullscreen": "Fullscreen",
@@ -244,7 +255,10 @@
     },
     "audioVisualizer": {
       "title": "3D Audio Visualizer",
-      "subtitle": "3D Audio Visualizer",
+      "subtitle": "An immersive experience transforming audio frequencies into dynamic animations. After importing an MP3 file, the tool generates synchronized visuals whose shapes and colors you can modulate according to your preferences.",
+      "cta": "Create a visualization",
+      "info_title": "How does it work?",
+      "info_text": "Import an MP3 file to analyze its frequencies. The bass, mids, and treble are represented by shapes whose size evolves in real time. Customize the appearance via the control panel for a unique visual experience.",
       "description": "Upload an MP3 and watch the music come to life in 3D.",
       "controls": {
         "title": "Controls",
@@ -270,8 +284,16 @@
       }
     },
     "anonymizer": {
+      "info_title": "How does it work?",
+      "info_text": "Upload a photo to get started. An algorithm detects faces locally in your browser. You can then individually choose which faces to blur before downloading the final image, which retains the exact same resolution as the original photo.",
+      "placeholder": "No image selected",
+      "placeholder_sub": "Upload a photo from the configuration panel to start anonymizing.",
+      "config": {
+        "actions": "Actions"
+      },
       "title": "Photo Anonymizer",
-      "subtitle": "Blur faces in your photos",
+      "subtitle": "A privacy solution based on machine learning to detect and blur faces in your images. To ensure total security, the processing is done entirely locally: your data never leaves your computer.",
+      "cta": "Anonymize an image",
       "description": "Upload a photo, and this tool will automatically detect and blur faces to protect the privacy of your friends and family.",
       "upload": "Upload a photo",
       "preview": "Preview",
@@ -282,6 +304,26 @@
   "portfolio": {
     "title": "Projects & Portfolio",
     "desc": "What I've built, from server infrastructure to embedded code.",
+    "hero": {
+      "title_part1": "Technical",
+      "title_accent": "Portfolio",
+      "subtitle": "Here, I break down my projects to expose their inner workings. Much more than a list of achievements, this portfolio explores the architectural choices, design methods, and technical challenges overcome to bring my ideas to life."
+    },
+    "sysadmin": {
+      "title": "Infrastructure & Self-hosting",
+      "subtitle": "This section is dedicated to the infrastructure that powers my tools. Here I detail my approach to self-hosting, service management, and the solutions implemented to ensure a stable, secure, and autonomous platform.",
+      "cta": "Coming soon"
+    },
+    "dev": {
+      "title": "Software Development",
+      "subtitle": "Here I group all of my software creations, of which this site is the first example. From thinking about the technical stack to solving complex problems, discover the genesis of each application.",
+      "cta": "Coming soon"
+    },
+    "iot": {
+      "title": "IoT & Embedded",
+      "subtitle": "This space lists my projects related to electronics and connected objects. Automation or hardware experiments, you will find my assembly diagrams, my choices of protocols and my feedback on hardware integration.",
+      "cta": "Coming soon"
+    },
     "items": {
       "owl-nest-infra": {
         "title": "Owl Nest Infra",
@@ -293,6 +335,10 @@
   "private": {
     "title": "Private Area",
     "desc": "Behind the scenes. Internal server management and personal files.",
+    "wip": {
+      "title": "Work in progress",
+      "subtitle": "Restricted access. Deployment is in progress."
+    },
     "protected": {
       "title": "Secure Access",
       "desc": "This area is protected by Authentik and Cloudflare Zero Trust."
@@ -311,24 +357,26 @@
     }
   },
   "credits": {
-    "title": "Open Source Credits",
-    "desc": "This site was built with tools I appreciate and that move the web forward.",
-    "site": "View source code",
+    "title": "Credits & Open Source",
+    "desc": "Owl Nest is built on open technologies and creative resources that shape the modern web.",
+    "see": "See credits",
+    "site": "View official site",
     "descriptions": {
-      "react": "The framework for the interface.",
-      "mui": "For components and the design system.",
-      "framer-motion": "For smooth animations and transitions.",
-      "lucide": "For simple and lightweight icons.",
+      "storyset": "Customizable illustrations defining the project's visual identity.",
+      "react": "Main library for a responsive and modular user interface.",
+      "mui": "Design system for a consistent user experience.",
+      "framer-motion": "Animation engine used for smooth transitions and interactions.",
+      "lucide": "Clean icon set for clear navigation.",
       "traefik": "The orchestrator that manages traffic to my containers."
     }
   },
   "errors": {
     "400": {
-      "title": "Oops!",
+      "title": "Error",
       "message": "There is an issue with the request sent."
     },
     "401": {
-      "title": "Identify yourself",
+      "title": "Authentication",
       "message": "You must be logged in to see this."
     },
     "403": {
@@ -340,11 +388,11 @@
       "message": "This area does not exist or has been moved."
     },
     "408": {
-      "title": "It's taking a while...",
+      "title": "Timeout",
       "message": "The server took too long to respond."
     },
     "429": {
-      "title": "Slow down!",
+      "title": "Too many requests",
       "message": "Too many requests at once. Take a short break."
     },
     "500": {
@@ -365,8 +413,46 @@
     },
     "unknown": {
       "title": "Unknown error",
-      "message": "I don't know what's happening, but it's not working."
+      "message": "An unknown error has occurred."
     },
     "back": "Back to home"
+  },
+  "seo": {
+    "home": {
+      "title": "Home",
+      "description": "Modular laboratory for digital experiments, utility services, and technical documentation."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Exploration of my projects, technical achievements, and developer journey."
+    },
+    "private": {
+      "title": "Private Zone",
+      "description": "Restricted access to experimental modules and internal tools."
+    },
+    "tools": {
+      "title": "Public Tools",
+      "description": "A collection of utility tools to simplify your daily digital tasks."
+    },
+    "tools_anonymizer": {
+      "title": "Anonymizer",
+      "description": "Privacy protection tool using machine learning to detect and blur faces."
+    },
+    "tools_wheel": {
+      "title": "Wheel of Destiny",
+      "description": "Let chance decide with our customizable interactive wheel."
+    },
+    "tools_audioVisualizer": {
+      "title": "Audio Visualizer",
+      "description": "Interactive visual experience synchronized in real time with your audio tracks."
+    },
+    "useless": {
+      "title": "Useless Laboratory",
+      "description": "Absurd experiments, quirky interfaces, and modules with no specific purpose."
+    },
+    "credits": {
+      "title": "Credits",
+      "description": "Acknowledgments, technologies used, and graphic resources for the Owl Nest project."
+    }
   }
 }
