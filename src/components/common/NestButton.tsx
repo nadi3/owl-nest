@@ -2,12 +2,33 @@ import React from 'react';
 import { Button, type ButtonProps, styled, alpha } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+/**
+ * Props for the NestButton component.
+ * Extends MUI ButtonProps but omits the 'color' prop to replace it with a custom 'nestColor'.
+ */
 type NestButtonProps = Omit<ButtonProps, 'color'> & {
+  /**
+   * The visual style of the button.
+   * 'contained': A button with a solid background color.
+   * 'ghost': A button with a light background color and colored text.
+   * @default 'contained'
+   */
   nestVariant?: 'contained' | 'ghost';
+  /**
+   * The color palette to use for the button.
+   * @default 'primary'
+   */
   nestColor?: 'primary' | 'secondary' | 'success' | 'error';
+  /**
+   * If provided, the button will be rendered as a `react-router-dom` Link.
+   */
   to?: string;
 };
 
+/**
+ * A styled MUI Button with custom variants ('contained', 'ghost') and colors.
+ * This component applies specific styles based on the `nestVariant` and `nestColor` props.
+ */
 const StyledNestButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'nestVariant' && prop !== 'nestColor',
 })<NestButtonProps>(({ theme, nestColor = 'primary', nestVariant = 'contained' }) => {
@@ -47,6 +68,11 @@ const StyledNestButton = styled(Button, {
   };
 });
 
+/**
+ * A custom button component that wraps a styled MUI Button.
+ * It supports custom variants and colors, and can be rendered as a `react-router-dom` Link
+ * by providing a `to` prop.
+ */
 export const NestButton: React.FC<NestButtonProps> = ({ to, ...props }) => {
   return <StyledNestButton {...(to ? { component: Link, to } : {})} {...props} />;
 };

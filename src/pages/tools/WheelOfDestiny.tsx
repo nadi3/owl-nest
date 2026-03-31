@@ -1,3 +1,8 @@
+/**
+ * @file WheelOfDestiny.tsx
+ * @description The main page for the "Wheel of Destiny" tool, a configurable spinning wheel for making decisions.
+ */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, TextField, Stack, Typography } from '@mui/material';
 import { FullscreenIcon } from 'lucide-react';
@@ -13,7 +18,22 @@ import { useWheelStore } from '@/store/tools/useWheelStore.ts';
 import { ToolLayout } from '@/layouts/ToolLayout.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
-const WheelOfDestiny: React.FC = () => {
+/**
+ * The main page component for the Wheel of Destiny tool.
+ *
+ * This component orchestrates the entire "Wheel of Destiny" experience, including:
+ * - **Configuration**: Allows users to set a title for the wheel and manage a list of choices via the `ChoiceManager`.
+ * - **Spinning Logic**: Handles the spinning animation, random winner selection, and visual feedback.
+ * - **Display**: Renders the wheel using `WheelCanvas` and displays the winner with a confetti effect.
+ * - **Fullscreen Mode**: Provides an immersive, focused experience.
+ *
+ * State is managed through a combination of local state (`useState`) for UI and
+ * the `useWheelStore` (Zustand) for the core wheel data (title, choices).
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered Wheel of Destiny page.
+ */
+const WheelOfDestiny: React.FC = (): React.ReactElement => {
   const { t } = useTranslation();
   const { title, choices, isSpinning, setIsSpinning, updateTitle } = useWheelStore();
   const [rotation, setRotation] = useState(0);
@@ -25,6 +45,10 @@ const WheelOfDestiny: React.FC = () => {
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
   const [winner, setWinner] = useState<string | null>(null);
 
+  /**
+   * `useEffect` hook to update the container size state when the component mounts or enters/exits fullscreen.
+   * This is used to ensure the confetti animation fills the correct area.
+   */
   useEffect(() => {
     if (wheelContainerRef.current) {
       setContainerSize({
@@ -34,6 +58,10 @@ const WheelOfDestiny: React.FC = () => {
     }
   }, [isFullscreen]);
 
+  /**
+   * Toggles fullscreen mode for the wheel container.
+   * It uses the browser's Fullscreen API to request or exit fullscreen.
+   */
   const toggleFullScreen = () => {
     if (document.fullscreenElement) {
       document.exitFullscreen().catch((e) => console.error(e));
@@ -42,6 +70,10 @@ const WheelOfDestiny: React.FC = () => {
     }
   };
 
+  /**
+   * `useEffect` hook to listen for changes in the document's fullscreen state.
+   * This ensures the component's `isFullscreen` state is always in sync with the browser.
+   */
   useEffect(() => {
     const handleFsChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
@@ -62,6 +94,13 @@ const WheelOfDestiny: React.FC = () => {
     .map((choice) => ({ ...choice, isActive: choice.isActive }))
     .filter((choice) => choice.isActive);
 
+  /**
+   * Initiates the wheel spinning animation.
+   *
+   * This function calculates a new random rotation for the wheel, applies it,
+   * and sets a timeout to determine and display the winner after the animation completes.
+   * It also triggers the confetti effect upon winning.
+   */
   const handleSpin = () => {
     if (isSpinning || activeChoices.length < 2) return;
 
@@ -85,6 +124,12 @@ const WheelOfDestiny: React.FC = () => {
     }, 4000);
   };
 
+  /**
+   * The JSX content for the tool's configuration panel.
+   * This includes the wheel title input, the `ChoiceManager` component for editing choices,
+   * and the fullscreen toggle button. This content is passed to the `ToolLayout`.
+   * @constant
+   */
   const configPanel = (
     <NestCard title={t('tools.wheel.config')}>
       <Stack spacing={2}>

@@ -1,3 +1,9 @@
+/**
+ * @file Credits.tsx
+ * @description The page that displays all third-party attributions for libraries,
+ * assets, and frameworks used in the application.
+ */
+
 import { Typography, Link, Box, Container } from '@mui/material';
 import { ExternalLink } from 'lucide-react';
 import { PageHeader } from '@/components/common/PageHeader';
@@ -6,7 +12,20 @@ import { getCredits } from '@/services/creditsService';
 import { useTranslation } from 'react-i18next';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
-const Credits = () => {
+/**
+ * The Credits page component.
+ *
+ * This component is responsible for rendering a list of all third-party resources
+ * that require attribution. It fetches the credit data from the `getCredits` service
+ * and displays each item in a `NestCard`.
+ *
+ * The page is structured with a `PageHeader` and a responsive grid of cards,
+ * making it easy to browse the different resources used in the project.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered credits page.
+ */
+const Credits = (): React.ReactElement => {
   const { t } = useTranslation();
   const credits = getCredits();
 

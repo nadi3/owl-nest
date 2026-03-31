@@ -1,5 +1,18 @@
 /**
- * Converts a percentage value to a hex color code.
+ * @file timeUtils.ts
+ * @description A collection of utility functions for calculating and converting time-based progress.
+ * Used by the "Time Progress" widget.
+ */
+
+/**
+ * Converts a percentage value into an HSL color string.
+ *
+ * This function maps a percentage (0-100) to a hue value on the HSL color wheel (0-360).
+ * It's used to create a color gradient for the progress bars, transitioning through
+ * different colors as the percentage increases.
+ *
+ * @param {number} percent - The input percentage (0-100).
+ * @returns {string} An HSL color string (e.g., "hsl(180, 35%, 70%)").
  */
 export const percentToHex = (percent: number): string => {
   const hue = percent * 3.6;
@@ -7,7 +20,19 @@ export const percentToHex = (percent: number): string => {
 };
 
 /**
- * Compute the progress of the current time in years, months, days, hours, and minutes.
+ * Calculates the progress of the current time across different time units.
+ *
+ * This function determines the percentage completion for the current year, month,
+ * day, hour, and minute. It's called repeatedly by the `TimeProgressWidget` to
+ * provide a real-time display of time's passage.
+ *
+ * @returns {{
+ *   yearProgress: number,
+ *   monthProgress: number,
+ *   dayProgress: number,
+ *   hourProgress: number,
+ *   minProgress: number
+ * }} An object containing the progress percentages for each time unit.
  */
 export const getTimeProgress = () => {
   const now = new Date();

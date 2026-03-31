@@ -22,17 +22,49 @@ import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';
 import { NestCard } from '@/components/common/NestCard.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 
+/**
+ * Props for the AudioVisualizerControls component.
+ * @interface AudioVisualizerControlsProps
+ */
 interface AudioVisualizerControlsProps {
+  /**
+   * A callback function to toggle the fullscreen mode of the visualizer.
+   * @type {() => void}
+   */
   onToggleFullscreen: () => void;
 }
 
+/**
+ * A control panel component for the Audio Visualizer application.
+ *
+ * This component provides a user interface for:
+ * - Uploading custom audio files (MP3, WAV).
+ * - Loading a default demo audio file.
+ * - Playing and pausing the audio visualization.
+ * - Toggling fullscreen mode.
+ * - Changing the visualizer's shape ('line' or 'circle').
+ * - Adjusting the opacity of the visual elements.
+ * - Showing/hiding and uploading a custom central image (for 'circle' shape).
+ * - Picking colors for the background, bass, mids, and treble frequencies.
+ *
+ * It uses the `useAudioVisualizerStore` for state management.
+ *
+ * @component
+ * @param {AudioVisualizerControlsProps} props - The props for the component.
+ * @returns {React.ReactElement} The rendered control panel.
+ */
 const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
   onToggleFullscreen,
-}) => {
+}: AudioVisualizerControlsProps): React.ReactElement => {
   const { t } = useTranslation();
   const { isPlaying, settings, setAudioFile, setIsPlaying, updateSetting } =
     useAudioVisualizerStore();
 
+  /**
+   * Handles the user selecting a local audio file.
+   * It takes the first file from the input event and sets it in the global store.
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event.
+   */
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
     if (file) {
@@ -40,6 +72,11 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
     }
   };
 
+  /**
+   * Handles the user selecting a local image file for the center of the visualizer.
+   * It creates an object URL from the file and updates the `customImage` setting in the store.
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event.
+   */
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -48,6 +85,10 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
     }
   };
 
+  /**
+   * Fetches and loads the default demo MP3 file from the `/public` directory.
+   * This allows users to quickly test the visualizer without needing their own audio file.
+   */
   const handleLoadDemo = async () => {
     try {
       const response = await fetch('/demo.mp3');
@@ -59,17 +100,29 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
     }
   };
 
+  /**
+   * Handles changes to the visualizer shape dropdown.
+   * It updates the `shape` setting in the global store.
+   * @param {SelectChangeEvent<string>} event - The change event from the MUI Select component.
+   */
   const handleShapeChange = (event: SelectChangeEvent<string>) => {
     updateSetting('shape', event.target.value as VisualizerShape);
   };
 
+  /**
+   * A small component that renders a label and a native HTML color input.
+   * It's used for selecting the various colors of the visualizer.
+   *
+   * @param {{label: string, settingKey: keyof typeof settings}} props - The props for the component.
+   * @returns {React.ReactElement} The rendered color picker input.
+   */
   const ColorPicker = ({
     label,
     settingKey,
   }: {
     label: string;
     settingKey: keyof typeof settings;
-  }) => (
+  }): React.ReactElement => (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
       <Typography variant="caption" color="text.secondary">
         {label}
@@ -148,7 +201,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               min={0.1}
               max={1}
               step={0.05}
-              onChange={(_, newValue) => updateSetting('opacity', newValue as number)}
+              onChange={(_, newValue) => updateSetting('opacity', newValue)}
               valueLabelDisplay="auto"
               valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
             />

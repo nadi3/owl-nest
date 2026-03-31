@@ -19,16 +19,46 @@ import {
   MotionImage,
 } from '@/components/home/HomeAnimationsItems.tsx';
 
+/**
+ * Props for the ContentSection component.
+ */
 interface ContentSectionProps {
+  /**
+   * The source URL of the image to display.
+   */
   imageSrc: string;
+  /**
+   * The translation key for the section title.
+   */
   titleKey: string;
+  /**
+   * The translation key for the section subtitle.
+   */
   subtitleKey: string;
+  /**
+   * The translation key for the call-to-action button text.
+   */
   ctaKey: string;
+  /**
+   * The URL to navigate to when the call-to-action button is clicked.
+   */
   ctaTo: string;
+  /**
+   * If true, the image and text will be displayed in reverse order.
+   * @default false
+   */
   reverse?: boolean;
+  /**
+   * The background color of the section.
+   */
   bgColor?: SxProps<Theme>;
 }
 
+/**
+ * A reusable component that displays a content section with an image, title, subtitle, and a call-to-action button.
+ * The layout can be configured to reverse the order of the image and text.
+ * It uses animations for its elements.
+ */
 const ContentSection: React.FC<ContentSectionProps> = ({
   imageSrc,
   titleKey,

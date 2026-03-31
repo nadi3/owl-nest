@@ -4,13 +4,32 @@ import { Typography, Stack, Grid, useTheme, Box } from '@mui/material';
 import AnimatedSectionWrapper from '../home/AnimatedSectionWrapper.tsx';
 import { MotionTitle, MotionBody, MotionImage } from '@/components/home/HomeAnimationsItems.tsx';
 
+/**
+ * Props for the HeroSection component.
+ */
 interface HeroSectionProps {
+  /**
+   * The source URL of the image to display.
+   */
   imageSrc: string;
+  /**
+   * The translation key for the main title.
+   */
   titleKey: string;
+  /**
+   * The translation key for the accented (highlighted) part of the title.
+   */
   accentKey: string;
+  /**
+   * The translation key for the subtitle.
+   */
   subtitleKey: string;
 }
 
+/**
+ * A component that displays a hero section with a title, a subtitle, and an image.
+ * It uses animations for its elements and is designed to be a prominent feature on a page.
+ */
 const HeroSection: React.FC<HeroSectionProps> = ({
   imageSrc,
   titleKey,
@@ -45,7 +64,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <Box
               component="img"
               src={imageSrc}
-              alt="Lab Illustration"
+              alt="Hero illustration"
               sx={{
                 width: '100%',
                 height: 'auto',

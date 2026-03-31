@@ -1,3 +1,8 @@
+/**
+ * @file useAudioVisualizerStore.ts
+ * @description A Zustand store for managing the state of the 3D Audio Visualizer tool.
+ */
+
 import { create } from 'zustand';
 import type { AudioVisualizerState } from '@/types/tools/audioVisualizer.ts';
 import { getOwlTheme } from '@/theme/theme.ts';
@@ -6,9 +11,16 @@ import { audioVisualizerService } from '@/services/tools/audioVisualizerService.
 const initialTheme = getOwlTheme('light');
 
 /**
- * @description Zustand store to manage the state of the 3D Audio Visualizer.
- * Handles the loaded file, play state, and visual preferences.
- * Triggers side effects in the audioVisualizerService.
+ * A Zustand store that holds the state for the 3D Audio Visualizer tool.
+ *
+ * This store manages the currently loaded audio file, the playback status, and all
+ * visual settings for the visualizer, such as colors, shape, and opacity.
+ *
+ * It also acts as a controller, calling methods on the `audioVisualizerService`
+ * to trigger side effects like loading, playing, or pausing the audio in response
+ * to state changes.
+ *
+ * @constant
  */
 export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
   audioFile: null,

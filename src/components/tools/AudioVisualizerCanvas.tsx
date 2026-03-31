@@ -14,6 +14,14 @@ import { useTexture } from '@react-three/drei';
 
 const SEGMENTS = 64;
 
+/**
+ * Creates a custom BufferGeometry for a single ribbon segment of the visualizer.
+ * A ribbon is essentially a thin strip made of triangles, which will be manipulated
+ * to represent audio frequencies.
+ *
+ * @param {number} segments - The number of segments to divide the ribbon into.
+ * @returns {THREE.BufferGeometry} A BufferGeometry with position and index attributes.
+ */
 const createRibbonGeometry = (segments: number) => {
   const pts = segments + 1;
   const positions = new Float32Array(pts * 2 * 3);
@@ -34,6 +42,16 @@ const createRibbonGeometry = (segments: number) => {
   return geometry;
 };
 
+/**
+ * A component that displays a circular image in the center of the canvas.
+ * It handles texture loading and aspect ratio correction to ensure the image
+ * is displayed correctly without distortion.
+ *
+ * @component
+ * @param {{url: string}} props - The props for the component.
+ * @param {string} props.url - The URL of the image to display.
+ * @returns {React.ReactElement} A mesh containing the circular image.
+ */
 const CenterImage: React.FC<{ url: string }> = ({ url }) => {
   const texture = useTexture(url);
   const { viewport } = useThree();
@@ -63,6 +81,15 @@ const CenterImage: React.FC<{ url: string }> = ({ url }) => {
   );
 };
 
+/**
+ * The main scene for the audio visualizer.
+ * This component is responsible for creating the ribbon geometries and updating them
+ * in real-time based on the audio frequency data. It handles both 'line' and 'circle'
+ * visualization shapes.
+ *
+ * @component
+ * @returns {React.ReactElement} A group containing the visualizer meshes.
+ */
 const VisualizerScene: React.FC = () => {
   const { settings, isPlaying } = useAudioVisualizerStore();
   const { viewport } = useThree();
@@ -211,6 +238,15 @@ const VisualizerScene: React.FC = () => {
   );
 };
 
+/**
+ * The main canvas component for the audio visualizer.
+ * It sets up the React Three Fiber Canvas, manages the background color,
+ * and conditionally renders the `VisualizerScene` and the central `CenterImage`
+ * based on the current settings from the `useAudioVisualizerStore`.
+ *
+ * @component
+ * @returns {React.ReactElement} The full audio visualizer canvas component.
+ */
 const AudioVisualizerCanvas: React.FC = () => {
   const settings = useAudioVisualizerStore((state) => state.settings);
   const backgroundColor = settings.backgroundColor;

@@ -1,3 +1,9 @@
+/**
+ * @file Home.tsx
+ * @description The main landing page of the Owl Nest application, featuring a
+ * full-page scrolling experience with animated sections.
+ */
+
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/common/HeroSection.tsx';
@@ -5,13 +11,28 @@ import ContentSection from '@/components/common/ContentSection.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 /**
- * Owl Nest Home Page.
- * Implements an IMMERSIVE SCROLL EXPERIENCE (CSS Scroll Snapping)
- * and ORCHESTRATED ANIMATIONS (Staggered Children).
+ * The main homepage component.
+ *
+ * This page provides an immersive, full-screen scrolling experience using CSS
+ * Scroll Snapping. It is composed of a `HeroSection` followed by a series of
+ * `ContentSection` components, each highlighting a major area of the application.
+ *
+ * The content for each section is defined in the `sections` array, making it
+ * easy to add, remove, or reorder the page's content blocks. The sections
+ * feature orchestrated, staggered animations that trigger on scroll.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered homepage.
  */
-const Home: React.FC = () => {
+const Home: React.FC = (): React.ReactElement => {
   const theme = useTheme();
 
+  /**
+   * An array of configuration objects for each `ContentSection` on the homepage.
+   * Each object defines the props for a section, including its image, text content,
+   * call-to-action, and layout variations.
+   * @constant
+   */
   const sections = [
     {
       imageSrc: '/storyset/Laboratory-amico.svg',

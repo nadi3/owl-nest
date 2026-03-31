@@ -9,14 +9,38 @@ import {
 } from '@mui/material';
 import React from 'react';
 
+/**
+ * Props for the NestCard component.
+ */
 interface NestCardProps {
+  /**
+   * The main title of the card.
+   */
   title: string;
+  /**
+   * An optional subtitle displayed above the main title.
+   */
   subtitle?: string;
+  /**
+   * The content to be displayed within the card.
+   */
   children: React.ReactNode;
+  /**
+   * The color of the left border accent.
+   * @default theme.palette.secondary.main
+   */
   accentColor?: string;
+  /**
+   * Custom styles to be applied to the card.
+   */
   sx?: SxProps<Theme>;
 }
 
+/**
+ * A custom Card component with a distinctive left accent border.
+ * It is designed to display a title, an optional subtitle, and content.
+ * The card has a hover effect that slightly moves it and adds a shadow.
+ */
 export const NestCard = ({ title, subtitle, children, accentColor, sx }: NestCardProps) => {
   const theme = useTheme();
 

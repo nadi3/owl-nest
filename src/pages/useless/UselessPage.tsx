@@ -1,3 +1,9 @@
+/**
+ * @file UselessPage.tsx
+ * @description The main page for the "Useless Lab," a collection of interactive,
+ * experimental, and humorous web widgets.
+ */
+
 import React, { useState } from 'react';
 import { Box, Tabs, Tab, Paper, useTheme, IconButton, Typography, Card } from '@mui/material';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +19,10 @@ import { PageHeader } from '@/components/common/PageHeader.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
+/**
+ * Animation variants for the main page container, enabling a staggered animation for its children.
+ * @constant {Variants}
+ */
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -21,11 +31,19 @@ const containerVariants: Variants = {
   },
 };
 
+/**
+ * Animation variants for individual items within the page, creating a "fade in and slide up" effect.
+ * @constant {Variants}
+ */
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
+/**
+ * Animation variants for the tab content, creating a horizontal swipe effect when changing tabs.
+ * @constant {Variants}
+ */
 const swipeVariants: Variants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 100 : -100,
@@ -43,6 +61,10 @@ const swipeVariants: Variants = {
   }),
 };
 
+/**
+ * Animation variants for the card flipping effect, used to show the back side with information.
+ * @constant {Variants}
+ */
 const flipVariants: Variants = {
   front: {
     rotateY: 0,
@@ -54,18 +76,51 @@ const flipVariants: Variants = {
   },
 };
 
-const a11yProps = (index: number) => ({
+/**
+ * Generates accessibility props for a tab.
+ * @param {number} index - The index of the tab.
+ * @returns {object} An object containing `id` and `aria-controls` props.
+ */
+const a11yProps = (index: number): object => ({
   id: `lab-tab-${index}`,
   'aria-controls': `lab-tabpanel-${index}`,
 });
 
+/**
+ * Props for the UselessInfoBack component.
+ * @interface UselessInfoBackProps
+ */
 interface UselessInfoBackProps {
+  /**
+   * The translation key for the title of the widget.
+   * @type {string}
+   */
   titleKey: string;
+  /**
+   * The translation key for the description of the widget.
+   * @type {string}
+   */
   descKey: string;
+  /**
+   * A callback function to trigger the flip back to the front face.
+   * @type {() => void}
+   */
   onBack: () => void;
 }
 
-const UselessInfoBack: React.FC<UselessInfoBackProps> = ({ titleKey, descKey, onBack }) => {
+/**
+ * A component that renders the "back" face of a flippable card, displaying
+ * information about a "useless" widget.
+ *
+ * @component
+ * @param {UselessInfoBackProps} props - The props for the component.
+ * @returns {React.ReactElement} The rendered info card.
+ */
+const UselessInfoBack: React.FC<UselessInfoBackProps> = ({
+  titleKey,
+  descKey,
+  onBack,
+}: UselessInfoBackProps): React.ReactElement => {
   const { t } = useTranslation();
 
   return (
@@ -99,7 +154,25 @@ const UselessInfoBack: React.FC<UselessInfoBackProps> = ({ titleKey, descKey, on
   );
 };
 
-const UselessPage = () => {
+/**
+ * The main page for the "Useless Lab," a showcase of interactive and experimental widgets.
+ *
+ * This page features a tab-based interface to switch between different "useless" components.
+ * Each tab's content is displayed on a flippable card, allowing users to view either
+ * the widget itself or an informational description on the back.
+ *
+ * The layout includes:
+ * - A sidebar with a `TimeProgressWidget`.
+ * - A main content area with a `PageHeader`.
+ * - A tabbed container for the widgets.
+ * - A flip button to toggle between the widget and its description.
+ *
+ * The component uses `framer-motion` extensively for tab transitions and card flipping animations.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered Useless Lab page.
+ */
+const UselessPage = (): React.ReactElement => {
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -107,16 +180,30 @@ const UselessPage = () => {
   const [direction, setDirection] = useState(1);
   const [isFlipped, setIsFlipped] = useState(false);
 
+  /**
+   * Handles the change of the active tab.
+   * It sets the direction for the swipe animation and updates the active tab index.
+   * @param {React.SyntheticEvent} _event - The event that triggered the change (unused).
+   * @param {number} newValue - The index of the new active tab.
+   */
   const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setIsFlipped(false);
     setDirection(newValue > activeTab ? 1 : -1);
     setActiveTab(newValue);
   };
 
+  /**
+   * Toggles the flipped state of the content card.
+   */
   const toggleFlip = () => {
     setIsFlipped((prev) => !prev);
   };
 
+  /**
+   * Configuration array for the tabs. Each object defines the component to render
+   * and a key for its associated translations.
+   * @constant
+   */
   const tabConfig = [
     { component: <SufferingButton key="suffering" />, key: 'suffering' },
     { component: <FleeingElement key="fleeing" />, key: 'fleeing-mouse' },

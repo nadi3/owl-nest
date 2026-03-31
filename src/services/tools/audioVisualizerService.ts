@@ -1,3 +1,20 @@
+/**
+ * @file audioVisualizerService.ts
+ * @description A singleton service for managing the Web Audio API logic for the audio visualizer.
+ * This service handles audio loading, playback, and frequency analysis.
+ */
+
+/**
+ * A singleton class that encapsulates the logic for the Web Audio API.
+ *
+ * This service is responsible for:
+ * - Initializing the `AudioContext`, `AnalyserNode`, and other required audio nodes.
+ * - Loading and managing the audio source from a user-provided file.
+ * - Controlling audio playback (play/pause).
+ * - Providing real-time frequency data from the audio stream.
+ *
+ * It is designed to be a single, persistent instance throughout the application's lifecycle.
+ */
 class AudioVisualizerService {
   private audio: HTMLAudioElement | null = null;
   private audioContext: AudioContext | null = null;
@@ -5,12 +22,18 @@ class AudioVisualizerService {
   private source: MediaElementAudioSourceNode | null = null;
   private dataArray: Uint8Array | null = null;
 
+  /**
+   * Initializes the audio context and all necessary nodes for audio processing.
+   * This method is idempotent; it will only run once. It sets up the `AudioContext`,
+   * `AnalyserNode`, and connects them to the audio source.
+   * @private
+   */
   private init() {
     if (this.audioContext) return;
 
     this.audio = new Audio();
 
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContextClass = globalThis.AudioContext || (globalThis as any).webkitAudioContext;
     this.audioContext = new AudioContextClass();
 
     this.analyser = this.audioContext.createAnalyser();
@@ -23,6 +46,12 @@ class AudioVisualizerService {
     this.analyser.connect(this.audioContext.destination);
   }
 
+  /**
+   * Loads a new audio file for playback and analysis.
+   * It ensures the audio context is initialized, revokes any previously loaded
+   * object URLs to prevent memory leaks, and sets the new file as the audio source.
+   * @param {File} file - The audio file to load.
+   */
   public loadAudio(file: File) {
     this.init();
 
@@ -37,6 +66,10 @@ class AudioVisualizerService {
     }
   }
 
+  /**
+   * Starts or resumes audio playback.
+   * It also ensures the `AudioContext` is resumed if it was suspended by browser policy.
+   */
   public play() {
     if (this.audioContext?.state === 'suspended') {
       this.audioContext.resume();
@@ -44,10 +77,18 @@ class AudioVisualizerService {
     this.audio?.play();
   }
 
+  /**
+   * Pauses the currently playing audio.
+   */
   public pause() {
     this.audio?.pause();
   }
 
+  /**
+   * Retrieves the current frequency data from the audio analyser.
+   * @returns {Uint8Array | null} An array of byte values representing the frequency spectrum,
+   * or `null` if the analyser is not ready.
+   */
   public getFrequencyData(): Uint8Array | null {
     if (!this.analyser || !this.dataArray) return null;
 
@@ -56,4 +97,10 @@ class AudioVisualizerService {
   }
 }
 
+/**
+ * The singleton instance of the AudioVisualizerService.
+ * This instance is exported and used throughout the application to interact
+ * with the audio visualizer's core logic.
+ * @constant
+ */
 export const audioVisualizerService = new AudioVisualizerService();

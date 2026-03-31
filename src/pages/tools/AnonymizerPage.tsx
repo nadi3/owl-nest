@@ -1,3 +1,9 @@
+/**
+ * @file AnonymizerPage.tsx
+ * @description The main page for the Face Anonymizer tool, which allows users
+ * to upload an image, detect faces, and apply a blur effect to them.
+ */
+
 import { type ChangeEvent, useRef } from 'react';
 import {
   Box,
@@ -23,6 +29,22 @@ import {
 import { NestButton } from '@/components/common/NestButton.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';
 
+/**
+ * The main page component for the Face Anonymizer tool.
+ *
+ * This page orchestrates the entire user flow for the anonymizer:
+ * 1.  **Image Upload**: Users can upload an image (JPEG, PNG, WebP).
+ * 2.  **Face Detection**: The `detectFaces` service is called to find faces in the uploaded image.
+ * 3.  **Display**: The image is rendered on an `AnonymizerCanvas`, and detected faces are listed in the config panel.
+ * 4.  **Configuration**: Users can toggle the blur effect for each detected face individually.
+ * 5.  **Download**: Users can download the final anonymized image.
+ *
+ * The component uses `ToolLayout` for its structure and manages its state through
+ * the `useAnonymizerStore`.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered Anonymizer page.
+ */
 export const AnonymizerPage = () => {
   const { t } = useTranslation();
   const canvasRef = useRef<AnonymizerCanvasRef>(null);
@@ -38,6 +60,14 @@ export const AnonymizerPage = () => {
     reset,
   } = useAnonymizerStore();
 
+  /**
+   * Handles the image upload process.
+   * When a user selects a file, this function reads it as a Data URL,
+   * updates the global state, and then triggers the face detection service.
+   * The component's processing state is managed to provide user feedback.
+   *
+   * @param {ChangeEvent<HTMLInputElement>} e - The file input change event.
+   */
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -64,12 +94,22 @@ export const AnonymizerPage = () => {
     reader.readAsDataURL(file);
   };
 
+  /**
+   * Triggers the download of the current canvas content.
+   * It calls the `downloadImage` method exposed by the `AnonymizerCanvas` component's ref.
+   */
   const handleDownload = () => {
     if (canvasRef.current) {
       canvasRef.current.downloadImage(`anonymized_${Date.now()}.jpg`);
     }
   };
 
+  /**
+   * The JSX content for the tool's configuration panel.
+   * This includes the upload/reset buttons and the list of detected faces
+   * with their corresponding blur toggles. This content is passed to the `ToolLayout`.
+   * @constant
+   */
   const configContent = (
     <Stack spacing={3} sx={{ height: { md: 'calc(100vh - 130px)' } }}>
       <PageSEO

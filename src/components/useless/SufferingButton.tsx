@@ -7,6 +7,17 @@ import { SpeechBubble } from './SpeechBubble';
 import { getSufferingColor, getSufferingText } from '@/utils/useless/sufferingLogic.ts';
 import { HandDrawnTombstone } from '@/components/useless/CustomTombstone.tsx';
 
+/**
+ * @file SufferingButton.tsx
+ * @description A "useless" component featuring a button that "suffers" when clicked,
+ * eventually leading to a dramatic conclusion.
+ */
+
+/**
+ * A keyframe animation for a shaking effect.
+ * Used to make the `SufferingButton` vibrate intensely at high click counts.
+ * @constant
+ */
 const shake = keyframes`
   0% { transform: translate(0, 0); }
   25% { transform: translate(-3px, 3px); }
@@ -15,7 +26,22 @@ const shake = keyframes`
   100% { transform: translate(0, 0); }
 `;
 
-const ViolentExplosion = () => {
+/**
+ * A component that renders a multi-layered particle explosion effect.
+ *
+ * This component is purely for visual effect, creating a dramatic "explosion"
+ * using `framer-motion`. It's composed of three layers of particles:
+ * - A central flash.
+ * - A "stem" of rising particles.
+ * - A "cap" of expanding particles, simulating a mushroom cloud.
+ * - A ground-level shockwave.
+ *
+ * It is displayed when the `SufferingButton` reaches its click limit.
+ *
+ * @component
+ * @returns {React.ReactElement} A Box containing the animated explosion particles.
+ */
+const ViolentExplosion = (): React.ReactElement => {
   const stemParticles = Array.from({ length: 60 });
   const capParticles = Array.from({ length: 180 });
   const groundParticles = Array.from({ length: 80 });
@@ -133,7 +159,22 @@ const ViolentExplosion = () => {
   );
 };
 
-export const SufferingButton = () => {
+/**
+ * A component that represents a "suffering" button that reacts to user clicks.
+ *
+ * This interactive component changes its appearance and behavior as the user clicks it:
+ * - It displays a `SufferingMan` avatar that becomes more distressed with each click.
+ * - It shows a series of increasingly desperate messages in a `SpeechBubble`.
+ * - It shrinks and starts to shake as the click count rises.
+ * - It moves to a random position on the screen after each click.
+ * - After a certain number of clicks, it "explodes" and is replaced by a tombstone.
+ *
+ * The entire component is a single clickable area that drives the state changes.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered suffering button component.
+ */
+export const SufferingButton = (): React.ReactElement => {
   const { t } = useTranslation();
   const [clicks, setClicks] = useState(0);
   const [pos, setPos] = useState({ x: 50, y: 50 });
@@ -147,6 +188,12 @@ export const SufferingButton = () => {
   const isShaking = clicks > 60;
   const size = Math.max(50, 180 - clicks);
 
+  /**
+   * `useEffect` hook to handle the post-explosion state transition.
+   * After the `exploded` state becomes true, this effect waits for a short duration
+   * (allowing the explosion animation to play) and then sets the `isDead` state to true,
+   * which triggers the appearance of the tombstone.
+   */
   useEffect(() => {
     if (exploded) {
       const timer = setTimeout(() => setIsDead(true), 1800);
@@ -154,6 +201,15 @@ export const SufferingButton = () => {
     }
   }, [exploded]);
 
+  /**
+   * Handles the click event on the component's main container.
+   *
+   * This function increments the click counter, which in turn drives all the
+   * visual and state changes. It also moves the button to a new random position.
+   * If the click limit is reached, it triggers the `exploded` state.
+   *
+   * @param {React.MouseEvent} e - The mouse event.
+   */
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (exploded) return;
