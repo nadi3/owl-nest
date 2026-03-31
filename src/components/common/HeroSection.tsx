@@ -71,6 +71,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               width={450}
               height={450}
               alt="Hero illustration"
+              fetchPriority="high"
               sx={{
                 width: '100%',
                 height: 'auto',

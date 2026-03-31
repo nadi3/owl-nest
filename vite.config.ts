@@ -8,10 +8,8 @@ import viteCompression from 'vite-plugin-compression';
 export default defineConfig({
   plugins: [
     react(),
-    viteCompression({
-      algorithm: 'gzip',
-      ext: '.gz',
-    }),
+    viteCompression({ algorithm: 'gzip', ext: '.gz' }),
+    viteCompression({ algorithm: 'brotliCompress', ext: '.br' }),
     Sitemap({
       hostname: 'https://owl-nest.ch',
       dynamicRoutes: [
