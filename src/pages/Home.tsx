@@ -36,7 +36,7 @@ const Home: React.FC = (): React.ReactElement => {
    */
   const sections = [
     {
-      imageSrc: '/storyset/Laboratory-amico.svg',
+      imageSrc: '/storyset/Laboratory-amico.webp',
       titleKey: 'home.lab.title',
       subtitleKey: 'home.lab.subtitle',
       ctaKey: 'home.lab.cta',
@@ -44,7 +44,7 @@ const Home: React.FC = (): React.ReactElement => {
       bgColor: { bgcolor: theme.palette.secondary.light },
     },
     {
-      imageSrc: '/storyset/Digital-tools-amico.svg',
+      imageSrc: '/storyset/Digital-tools-amico.webp',
       titleKey: 'home.tools.title',
       subtitleKey: 'home.tools.subtitle',
       ctaKey: 'home.tools.cta',
@@ -52,7 +52,7 @@ const Home: React.FC = (): React.ReactElement => {
       reverse: true,
     },
     {
-      imageSrc: '/storyset/Portfolio-amico.svg',
+      imageSrc: '/storyset/Portfolio-amico.webp',
       titleKey: 'home.portfolio.title',
       subtitleKey: 'home.portfolio.subtitle',
       ctaKey: 'home.portfolio.cta',
@@ -60,7 +60,7 @@ const Home: React.FC = (): React.ReactElement => {
       bgColor: { bgcolor: theme.palette.secondary.light },
     },
     {
-      imageSrc: '/storyset/Security-On-amico.svg',
+      imageSrc: '/storyset/Security-On-amico.webp',
       titleKey: 'home.private.title',
       subtitleKey: 'home.private.subtitle',
       ctaKey: 'home.private.cta',
@@ -74,7 +74,7 @@ const Home: React.FC = (): React.ReactElement => {
       <PageSEO titleKey={'seo.home.title'} descriptionKey={'seo.home.description'} />
 
       <HeroSection
-        imageSrc={'/storyset/Work-in-progress-amico.svg'}
+        imageSrc={'/storyset/Work-in-progress-amico.webp'}
         titleKey={'home.hero.title_part1'}
         accentKey={'home.hero.title_accent'}
         subtitleKey={'home.hero.subtitle'}

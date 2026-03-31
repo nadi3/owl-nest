@@ -69,7 +69,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               component="img"
               src={imageSrc}
               alt="Hero illustration"
-              loading="lazy"
               sx={{
                 width: '100%',
                 height: 'auto',
