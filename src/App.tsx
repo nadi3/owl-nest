@@ -7,17 +7,20 @@ import { useImpatienceDetector } from '@/hooks/useImpatienceDetector.ts';
 import { ImpatiencePopup } from '@/components/useless/ImpatiencePopup.tsx';
 import { useMemo } from 'react';
 import { useThemeStore } from '@/store/useThemeStore.ts';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   useImpatienceDetector();
   const mode = useThemeStore((state) => state.mode); // 1. On récupère le mode
   const theme = useMemo(() => getOwlTheme(mode), [mode]); // 2. On génère le thème
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-      <ImpatiencePopup />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+        <ImpatiencePopup />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

@@ -1,6 +1,7 @@
 import { Box, useTheme } from '@mui/material';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 const PublicTools = () => {
   const theme = useTheme();
@@ -34,6 +35,8 @@ const PublicTools = () => {
 
   return (
     <Box>
+      <PageSEO titleKey={'seo.tools.title'} descriptionKey={'seo.tools.description'} />
+
       <HeroSection
         imageSrc={'/storyset/Digital-tools-amico.svg'}
         titleKey={'tools.hero.title_part1'}

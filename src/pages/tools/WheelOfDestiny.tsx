@@ -11,6 +11,7 @@ import ChoiceManager from '@/components/tools/ChoiceManager.tsx';
 import WheelCanvas from '@/components/tools/WheelCanvas.tsx';
 import { useWheelStore } from '@/store/tools/useWheelStore.ts';
 import { ToolLayout } from '@/layouts/ToolLayout.tsx';
+import { PageSEO } from '@/components/common/PageSEO.tsx';
 
 const WheelOfDestiny: React.FC = () => {
   const { t } = useTranslation();
@@ -113,6 +114,8 @@ const WheelOfDestiny: React.FC = () => {
       configContent={configPanel}
       toolContainerRef={wheelContainerRef}
     >
+      <PageSEO titleKey={'seo.tools_wheel.title'} descriptionKey={'seo.tools_wheel.description'} />
+
       {showConfetti && (
         <Confetti
           width={containerSize.width}

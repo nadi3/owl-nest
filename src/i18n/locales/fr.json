@@ -362,5 +362,43 @@
       "message": "Je ne sais pas ce qu'il se passe, mais ça ne marche pas."
     },
     "back": "Retour à l'accueil"
+  },
+  "seo": {
+    "home": {
+      "title": "Accueil",
+      "description": "Laboratoire modulaire d'expérimentations numériques, services utilitaires et documentation technique."
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "description": "Exploration de mes projets, réalisations techniques et parcours de développeur."
+    },
+    "private": {
+      "title": "Zone Privée",
+      "description": "Accès restreint aux modules expérimentaux et outils internes."
+    },
+    "tools": {
+      "title": "Outils Publics",
+      "description": "Une collection d'outils utilitaires pour simplifier vos tâches numériques quotidiennes."
+    },
+    "tools_anonymizer": {
+      "title": "Anonymiseur",
+      "description": "Outil de protection de la vie privée utilisant le Machine Learning pour détecter et flouter les visages."
+    },
+    "tools_wheel": {
+      "title": "Roue du Destin",
+      "description": "Laissez le hasard décider pour vous avec notre roue interactive personnalisable."
+    },
+    "tools_audioVisualizer": {
+      "title": "Visualiseur Audio",
+      "description": "Expérience visuelle interactive synchronisée en temps réel avec vos pistes audio."
+    },
+    "useless": {
+      "title": "Laboratoire Inutile",
+      "description": "Expérimentations absurdes, interfaces décalées et modules sans but précis."
+    },
+    "credits": {
+      "title": "Crédits",
+      "description": "Remerciements, technologies utilisées et ressources graphiques du projet Owl Nest."
+    }
   }
 }
