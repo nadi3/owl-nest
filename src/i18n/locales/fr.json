@@ -47,22 +47,17 @@
   "useless": {
     "title": "Le Lab",
     "desc": "Des petits projets pour tester des idées, sans forcément chercher à être utile.",
-    "disabled": "Bientôt disponible",
-    "enabled": "Lancer",
     "items": {
       "fleeing-mouse": {
         "title": "Attrape souris",
-        "subtitle": "UX / Interaction",
         "description": "Un petit défi : cette souris fera tout pour éviter ton curseur."
       },
       "suffering": {
         "title": "Le bouton sensible",
-        "subtitle": "UX / Interaction",
         "description": "Un exercice de cruauté digitale gratuite."
       },
       "wait-button": {
         "title": "Bouton d'attente",
-        "subtitle": "UX / Interaction",
         "description": "Un bouton qui simule une attente interminable, pour tester ta patience et la comparer aux autres utilisateurs."
       }
     },
@@ -292,7 +287,6 @@
       "title": "Anonymiseur de Photo",
       "subtitle": "Une solution de confidentialité basée sur l'intelligence artificielle pour détecter et flouter les visages sur n'importe quelle image. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : aucune donnée n'est envoyée vers un serveur.",
       "cta": "Anonymiser une image",
-      "description": "Téléchargez une photo, et cet outil détectera les visages pour les flouter automatiquement, protégeant ainsi la vie privée de vos amis et de votre famille.",
       "upload": "Charger une photo",
       "preview": "Prévisualisation",
       "facesDetected": "{{count}} visage(s) détecté(s)",
