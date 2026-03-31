@@ -6,7 +6,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import ScienceIcon from '@mui/icons-material/Science';
 import BuildIcon from '@mui/icons-material/Build';
 import WorkIcon from '@mui/icons-material/Work';
-import LockIcon from '@mui/icons-material/Lock';
 import { MenuIcon } from 'lucide-react';
 
 /**
@@ -23,7 +22,6 @@ const NavSpeedDial: React.FC = () => {
     { icon: <ScienceIcon />, name: t('nav.lab'), path: '/useless' },
     { icon: <BuildIcon />, name: t('nav.tools'), path: '/tools' },
     { icon: <WorkIcon />, name: t('nav.portfolio'), path: '/portfolio' },
-    { icon: <LockIcon />, name: t('nav.private'), path: '/private' },
   ];
 
   return (

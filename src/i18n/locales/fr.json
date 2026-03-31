@@ -310,23 +310,9 @@
     }
   },
   "private": {
-    "title": "Espace Privé",
-    "desc": "L'envers du décor. Gestion interne du serveur et fichiers personnels.",
-    "protected": {
-      "title": "Accès Sécurisé",
-      "desc": "Cette zone est protégée par Authentik et Cloudflare Zero Trust."
-    },
-    "items": {
-      "nextcloud": {
-        "title": "Nextcloud",
-        "subtitle": "Stockage Cloud",
-        "description": "Mon alternative privée à Google Drive, installée directement sur mon SSD."
-      },
-      "sonarqube": {
-        "title": "SonarQube",
-        "subtitle": "Qualité du code",
-        "description": "L'outil qui surveille mon code pour traquer les bugs et la dette technique."
-      }
+    "wip": {
+      "title": "Zone en travaux",
+      "subtitle": "Accès restreint. Le chantier est en cours."
     }
   },
   "credits": {

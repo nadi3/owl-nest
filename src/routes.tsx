@@ -3,13 +3,13 @@ import MainLayout from '@/layouts/MainLayout';
 import Home from '@/pages/Home';
 import PublicTools from '@/pages/tools/PublicTools.tsx';
 import Portfolio from '@/pages/portfolio/Portfolio.tsx';
-import PrivateIndex from '@/pages/private/PrivateIndex.tsx';
 import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
 import { AnonymizerPage } from '@/pages/tools/AnonymizerPage.tsx';
 import UselessPage from '@/pages/useless/UselessPage.tsx';
+import { PrivatePage } from '@/pages/private/PrivatePage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -43,7 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'private',
-        element: <PrivateIndex />,
+        element: <PrivatePage />,
       },
       {
         path: 'credits',
