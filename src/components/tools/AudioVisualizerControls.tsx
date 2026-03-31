@@ -5,17 +5,14 @@
  */
 
 import React from 'react';
-import {
-  Box,
-  Stack,
-  Typography,
-  MenuItem,
-  Select,
-  type SelectChangeEvent,
-  Slider,
-  FormControlLabel,
-  Switch,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { type SelectChangeEvent } from '@mui/material/Select';
+import Slider from '@mui/material/Slider';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { useTranslation } from 'react-i18next';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
 import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';

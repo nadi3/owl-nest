@@ -3,7 +3,7 @@
  * @description A generic error page component used to display HTTP errors like 404 Not Found.
  */
 
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '@/components/common/PageHeader';
 import { AlertTriangle } from 'lucide-react';

@@ -1,5 +1,11 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Link, Divider, Stack } from '@mui/material';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 import { useTranslation } from 'react-i18next';
 import { Mail, ExternalLink } from 'lucide-react';
 import GitHubIcon from '@mui/icons-material/GitHub';

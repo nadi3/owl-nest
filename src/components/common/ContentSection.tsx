@@ -1,15 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Typography,
-  Stack,
-  Grid,
-  Box,
-  useTheme,
-  type SxProps,
-  type Theme,
-  type GridDirection,
-} from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Grid, { type GridDirection } from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import { useTheme, type SxProps, type Theme } from '@mui/material/styles';
 import AnimatedSectionWrapper from '../home/AnimatedSectionWrapper.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
 import {
@@ -85,6 +80,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
               component="img"
               src={imageSrc}
               alt={t(titleKey)}
+              loading="lazy"
               sx={{
                 width: '100%',
                 height: 'auto',

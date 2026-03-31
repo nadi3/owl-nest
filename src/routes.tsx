@@ -5,17 +5,24 @@
  */
 
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import MainLayout from '@/layouts/MainLayout';
-import Home from '@/pages/Home';
-import PublicTools from '@/pages/tools/PublicTools.tsx';
-import Portfolio from '@/pages/portfolio/Portfolio.tsx';
-import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
-import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
-import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
-import { AnonymizerPage } from '@/pages/tools/AnonymizerPage.tsx';
-import UselessPage from '@/pages/useless/UselessPage.tsx';
-import { PrivatePage } from '@/pages/private/PrivatePage.tsx';
+
+const Home = lazy(() => import('@/pages/Home'));
+const PublicTools = lazy(() => import('@/pages/tools/PublicTools.tsx'));
+const Portfolio = lazy(() => import('@/pages/portfolio/Portfolio.tsx'));
+const Credits = lazy(() => import('@/pages/Credits.tsx'));
+const WheelOfDestiny = lazy(() => import('@/pages/tools/WheelOfDestiny.tsx'));
+const AudioVisualizer = lazy(() => import('@/pages/tools/AudioVisualizer.tsx'));
+const UselessPage = lazy(() => import('@/pages/useless/UselessPage.tsx'));
+
+const AnonymizerPage = lazy(() =>
+  import('@/pages/tools/AnonymizerPage.tsx').then((module) => ({ default: module.AnonymizerPage }))
+);
+const PrivatePage = lazy(() =>
+  import('@/pages/private/PrivatePage.tsx').then((module) => ({ default: module.PrivatePage }))
+);
 
 /**
  * The main router configuration for the application.
@@ -34,7 +41,11 @@ import { PrivatePage } from '@/pages/private/PrivatePage.tsx';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainLayout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,

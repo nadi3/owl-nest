@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, type ButtonProps, styled, alpha } from '@mui/material';
+import Button, { type ButtonProps } from '@mui/material/Button';
+import { styled, alpha } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 /**

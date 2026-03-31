@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Tooltip, Typography, Stack, IconButton } from '@mui/material';
+import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
 import { Info } from 'lucide-react';
 import { percentToHex, getTimeProgress } from '@/utils/useless/timeUtils.ts';
 import { useTranslation } from 'react-i18next';

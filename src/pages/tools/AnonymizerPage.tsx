@@ -5,17 +5,15 @@
  */
 
 import { type ChangeEvent, useRef } from 'react';
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Typography,
-  Switch,
-  Avatar,
-  Stack,
-  Divider,
-  Card,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
+import Card from '@mui/material/Card';
 import { useTranslation } from 'react-i18next';
 import { Upload, Download, RefreshCw, Image as ImageIcon } from 'lucide-react';
 

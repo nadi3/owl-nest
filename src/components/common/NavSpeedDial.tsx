@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { SpeedDial, SpeedDialAction, useTheme } from '@mui/material';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { useTheme } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import ScienceIcon from '@mui/icons-material/Science';
 import BuildIcon from '@mui/icons-material/Build';

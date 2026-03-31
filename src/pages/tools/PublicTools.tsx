@@ -4,7 +4,8 @@
  * the available tools with descriptive sections.
  */
 
-import { Box, useTheme } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 import HeroSection from '@/components/common/HeroSection.tsx';
 import ContentSection from '@/components/common/ContentSection.tsx';
 import { PageSEO } from '@/components/common/PageSEO.tsx';

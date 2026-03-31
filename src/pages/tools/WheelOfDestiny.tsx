@@ -4,7 +4,10 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, TextField, Stack, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { FullscreenIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Confetti from 'react-confetti';
