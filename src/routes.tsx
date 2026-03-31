@@ -8,6 +8,8 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import MainLayout from '@/layouts/MainLayout';
 import ErrorPage from '@/pages/ErrorPage.tsx';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = lazy(() => import('@/pages/Home'));
 const PublicTools = lazy(() => import('@/pages/tools/PublicTools.tsx'));
@@ -22,6 +24,12 @@ const AnonymizerPage = lazy(() =>
 );
 const PrivatePage = lazy(() =>
   import('@/pages/private/PrivatePage.tsx').then((module) => ({ default: module.PrivatePage }))
+);
+
+const PageLoader = () => (
+  <Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <CircularProgress />
+  </Box>
 );
 
 /**
@@ -42,7 +50,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageLoader />}>
         <MainLayout />
       </Suspense>
     ),
