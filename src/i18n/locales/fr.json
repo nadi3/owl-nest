@@ -281,6 +281,13 @@
       }
     },
     "anonymizer": {
+      "info_title": "Comment ça marche ?",
+      "info_text": "Téléchargez une photo pour commencer. Notre algorithme détecte automatiquement les visages localement dans votre navigateur. Vous pouvez ensuite choisir individuellement quels visages flouter avant de télécharger l'image finale.",
+      "placeholder": "Aucune image sélectionnée",
+      "placeholder_sub": "Chargez une photo depuis le panneau de configuration pour commencer l'anonymisation.",
+      "config": {
+        "actions": "Actions & Image"
+      },
       "title": "Anonymiseur de Photo",
       "subtitle": "Une solution de confidentialité basée sur l'intelligence artificielle pour détecter et flouter les visages sur n'importe quelle image. Pour garantir une sécurité totale, le traitement s'effectue intégralement en local : aucune donnée n'est envoyée vers un serveur.",
       "cta": "Anonymiser une image",

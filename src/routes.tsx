@@ -8,7 +8,6 @@ import Credits from '@/pages/Credits.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
 import WheelOfDestiny from '@/pages/tools/WheelOfDestiny.tsx';
 import AudioVisualizer from '@/pages/tools/AudioVisualizer.tsx';
-import { AnonymizerLayout } from '@/layouts/AnonymizerLayout.tsx';
 import { AnonymizerPage } from '@/pages/tools/AnonymizerPage.tsx';
 import UselessPage from '@/pages/useless/UselessPage.tsx';
 
@@ -35,16 +34,7 @@ export const router = createBrowserRouter([
           { index: true, element: <PublicTools /> },
           { path: 'wheel', element: <WheelOfDestiny /> },
           { path: 'visualizer', element: <AudioVisualizer /> },
-          {
-            path: 'anonymizer',
-            element: <AnonymizerLayout />,
-            children: [
-              {
-                index: true,
-                element: <AnonymizerPage />,
-              },
-            ],
-          },
+          { path: 'anonymizer', element: <AnonymizerPage /> },
         ],
       },
       {
