@@ -335,16 +335,28 @@
   },
   "errors": {
     "400": { "title": "Erreur", "message": "La requête transmise présente une anomalie." },
-    "401": { "title": "Authentification", "message": "Tu dois être connecté pour accéder à cette ressource." },
-    "403": { "title": "Accès refusé", "message": "Tu ne disposes pas des permissions nécessaires pour entrer ici." },
+    "401": {
+      "title": "Authentification",
+      "message": "Tu dois être connecté pour accéder à cette ressource."
+    },
+    "403": {
+      "title": "Accès refusé",
+      "message": "Tu ne disposes pas des permissions nécessaires pour entrer ici."
+    },
     "404": { "title": "Page introuvable", "message": "Cette zone n'existe pas ou a été déplacée." },
     "408": { "title": "Délai dépassé", "message": "Le serveur a mis trop de temps à répondre." },
     "429": {
       "title": "Saturation",
       "message": "Trop de requêtes simultanées. Merci de patienter un instant."
     },
-    "500": { "title": "Erreur serveur", "message": "Le système a rencontré une anomalie imprévue." },
-    "502": { "title": "Passerelle défectueuse", "message": "Le service ne répond pas correctement." },
+    "500": {
+      "title": "Erreur serveur",
+      "message": "Le système a rencontré une anomalie imprévue."
+    },
+    "502": {
+      "title": "Passerelle défectueuse",
+      "message": "Le service ne répond pas correctement."
+    },
     "503": {
       "title": "Maintenance",
       "message": "Une opération de maintenance est probablement en cours."
