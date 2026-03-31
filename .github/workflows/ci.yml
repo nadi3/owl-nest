@@ -17,11 +17,18 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Lint & Format
-        run: npm run lint 
+        run: npm run lint
       - name: Type-check
         run: npm run type-check
       - name: Build React App
         run: npm run build
+
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli@0.13.x
+          lhci autoreview
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   docker-check:
     runs-on: ubuntu-latest
