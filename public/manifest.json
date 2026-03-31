@@ -1,0 +1,21 @@
+{
+  "short_name": "Owl Nest",
+  "name": "Owl Nest - Digital Lab",
+  "icons": [
+    {
+      "src": "logo-owl.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "og-image.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#003A69",
+  "background_color": "#003A69"
+}
