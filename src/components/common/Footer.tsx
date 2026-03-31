@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
             alignItems="center"
             sx={{ gap: 0.5, color: 'primary.main', fontWeight: 600 }}
           >
-            {t('credits.site')} <ExternalLink size={12} />
+            {t('common.git')} <ExternalLink size={12} />
           </Link>
         </Box>
       </Container>

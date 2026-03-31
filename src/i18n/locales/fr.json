@@ -14,7 +14,8 @@
     "discover": "Découvrir",
     "light_mode": "Mode clair",
     "dark_mode": "Mode sombre",
-    "back": "Retour"
+    "back": "Retour",
+    "git": "Voir sur GitHub"
   },
   "home": {
     "hero": {
@@ -327,16 +328,16 @@
     }
   },
   "credits": {
-    "title": "Crédits Open Source",
-    "desc": "Ce site a été construit avec des outils que j'apprécie et qui font avancer le web.",
-    "site": "Voir le code source",
+    "title": "Crédits & Open Source",
+    "desc": "Owl Nest repose sur des technologies ouvertes et des ressources créatives qui façonnent le web moderne.",
     "see": "Voir les crédits",
+    "site": "Consulter le site officiel",
     "descriptions": {
-      "react": "Le framework pour l'interface.",
-      "mui": "Pour les composants et le design system.",
-      "framer-motion": "Pour les animations et les transitions fluides.",
-      "lucide": "Pour les icônes simples et légères.",
-      "traefik": "Le chef d'orchestre qui gère le trafic vers mes conteneurs."
+      "storyset": "Illustrations personnalisables qui donnent vie à l'identité visuelle du projet.",
+      "react": "Bibliothèque principale pour une interface utilisateur réactive et modulaire.",
+      "mui": "Système de conception et composants pour une expérience utilisateur cohérente.",
+      "framer-motion": "Moteur d'animation utilisé pour les transitions et interactions fluides.",
+      "lucide": "Set d'icônes épurées pour une navigation claire et légère."
     }
   },
   "errors": {

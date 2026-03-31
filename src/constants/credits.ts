@@ -2,6 +2,14 @@ import type { Credit } from '@/types/credits';
 
 export const CREDITS_DATA: Credit[] = [
   {
+    id: 'storyset',
+    name: 'Storyset',
+    category: 'Illustrations',
+    license: 'Free with attribution',
+    url: 'https://storyset.com/',
+    descriptionKey: 'credits.descriptions.storyset',
+  },
+  {
     id: 'react',
     name: 'React',
     category: 'Core',
@@ -12,7 +20,7 @@ export const CREDITS_DATA: Credit[] = [
   {
     id: 'mui',
     name: 'Material UI',
-    category: 'UI',
+    category: 'UI Framework',
     license: 'MIT',
     url: 'https://mui.com/',
     descriptionKey: 'credits.descriptions.mui',
@@ -28,17 +36,9 @@ export const CREDITS_DATA: Credit[] = [
   {
     id: 'lucide',
     name: 'Lucide React',
-    category: 'UI',
+    category: 'Icons',
     license: 'ISC',
     url: 'https://lucide.dev/',
     descriptionKey: 'credits.descriptions.lucide',
-  },
-  {
-    id: 'traefik',
-    name: 'Traefik',
-    category: 'Infrastructure',
-    license: 'Apache 2.0',
-    url: 'https://traefik.io/',
-    descriptionKey: 'credits.descriptions.traefik',
   },
 ];
