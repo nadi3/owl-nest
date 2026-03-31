@@ -68,6 +68,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             <Box
               component="img"
               src={imageSrc}
+              width={450}
+              height={450}
               alt="Hero illustration"
               sx={{
                 width: '100%',

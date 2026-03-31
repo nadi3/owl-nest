@@ -79,6 +79,8 @@ const ContentSection: React.FC<ContentSectionProps> = ({
             <Box
               component="img"
               src={imageSrc}
+              width={450}
+              height={450}
               alt={t(titleKey)}
               loading="lazy"
               sx={{
