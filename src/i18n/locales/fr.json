@@ -47,22 +47,17 @@
   "useless": {
     "title": "Le Lab",
     "desc": "Des projets expérimentaux conçus pour explorer des concepts d'interaction, sans finalité utilitaire immédiate.",
-    "disabled": "Prochainement disponible",
-    "enabled": "Lancer",
     "items": {
       "fleeing-mouse": {
         "title": "Attrape-souris",
-        "subtitle": "UX / Interaction",
         "description": "Un défi technique simple : cette interface fera tout pour éviter ton curseur."
       },
       "suffering": {
         "title": "Le bouton sensible",
-        "subtitle": "UX / Interaction",
         "description": "Une étude sur la persévérance et la frustration numérique."
       },
       "wait-button": {
         "title": "Bouton d'attente",
-        "subtitle": "UX / Interaction",
         "description": "Un dispositif simulant une attente indéterminée pour évaluer ta patience face au vide numérique."
       }
     },
