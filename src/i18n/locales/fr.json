@@ -255,7 +255,8 @@
       "title": "Visualiseur Audio 3D",
       "subtitle": "Une expérience immersive qui transforme les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont les formes et les couleurs sont entièrement modulables selon les préférences.",
       "cta": "Créer une visualisation",
-      "description": "Chargez un MP3 et regardez la musique prendre vie en 3D.",
+      "info_title": "Comment ça marche ?",
+      "info_text": "Importez un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes animées dont la taille évolue en temps réel. Personnalisez l'apparence via le panneau de contrôle pour une expérience visuelle unique.",
       "controls": {
         "title": "Contrôles",
         "upload": "Charger MP3",

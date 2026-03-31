@@ -26,18 +26,21 @@ interface ToolLayoutProps {
   configContent?: React.ReactNode;
   children: React.ReactNode;
   toolContainerRef?: React.RefObject<HTMLDivElement | null>;
+  configPosition?: 'side' | 'bottom';
 }
 
-export const ToolLayout: React.FC<ToolLayoutProps> = ({
+export const ToolLayout: React.FC<ToolLayoutProps & { configPosition?: 'side' | 'bottom' }> = ({
   infoTitle,
   infoText,
   configContent,
   children,
   toolContainerRef,
+  configPosition = 'side',
 }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [showConfig, setShowConfig] = useState(!!configContent);
   const { t } = useTranslation();
+  const isBottom = configPosition === 'bottom';
 
   return (
     <Box
@@ -45,9 +48,26 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      sx={{ width: '100%', minHeight: '100vh', pt: { xs: 8, md: 4 }, pb: 8 }}
+      sx={{
+        width: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        pt: { xs: 8, md: 4 },
+        pb: 4,
+      }}
     >
-      <Box sx={{ width: '100%', maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 } }}>
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: isBottom ? '1400px' : '1200px',
+          mx: 'auto',
+          px: { xs: 2, sm: 3 },
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <Stack
           direction="row"
           spacing={2}
@@ -114,55 +134,42 @@ export const ToolLayout: React.FC<ToolLayoutProps> = ({
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 4, md: 0 },
-            minHeight: { xs: 'auto', md: '70vh' },
+            flexDirection: isBottom ? 'column' : { xs: 'column', md: 'row' },
+            gap: 4,
+            flexGrow: 1,
           }}
         >
-          <AnimatePresence initial={false}>
-            {showConfig && configContent && (
-              <Box
-                component={motion.div}
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: 'auto' }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                sx={{ overflow: 'hidden', flexShrink: 0 }}
-              >
-                <Box
-                  sx={{ width: { xs: '100%', md: '380px' }, pr: { md: 4 }, pb: { xs: 2, md: 0 } }}
-                >
-                  {configContent}
-                </Box>
-              </Box>
-            )}
-          </AnimatePresence>
-
           <Box
             ref={toolContainerRef}
             component={motion.div}
             layout
-            variants={itemVariants}
             sx={{
               flexGrow: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
               position: 'relative',
-              minHeight: '60vh',
-              borderRadius: 4,
-              transition: 'background-color 0.3s ease',
+              height: isBottom ? '60vh' : 'auto',
+              overflow: 'hidden',
               '&:fullscreen': {
-                backgroundColor: 'background.default',
                 width: '100vw',
                 height: '100vh',
-                padding: 4,
               },
             }}
           >
             {children}
           </Box>
+
+          <AnimatePresence>
+            {showConfig && configContent && (
+              <Box
+                component={motion.div}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                sx={{ width: '100%', maxWidth: isBottom ? '100%' : { md: '380px' } }}
+              >
+                {configContent}
+              </Box>
+            )}
+          </AnimatePresence>
         </Box>
       </Box>
     </Box>
