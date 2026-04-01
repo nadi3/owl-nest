@@ -249,7 +249,7 @@ const OfflineExportController: React.FC = () => {
 
     const runExport = async () => {
       try {
-        const fps = 30;
+        const fps = 60;
         const width = gl.domElement.width;
         const height = gl.domElement.height;
 
@@ -269,21 +269,25 @@ const OfflineExportController: React.FC = () => {
           codec: 'avc1.4d002a',
           width,
           height,
-          bitrate: 5_000_000,
+          bitrate: 6_000_000,
           framerate: fps,
           avc: { format: 'avc' },
         });
 
+        setExportStatus('analyzing');
         const { framesData, totalFrames } = await offlineExportService.analyzeAudioOffline(
           audioFile,
           fps,
-          (percent) => setExportProgress(percent)
+          (p) => setExportProgress(p)
         );
         setExportStatus('rendering');
 
         for (let i = 0; i < totalFrames; i++) {
           audioVisualizerService.setForcedFrequencyData(framesData[i]);
-          advance(i * (1000 / fps));
+
+          const currentTimeInSeconds = i / fps;
+          advance(currentTimeInSeconds);
+
           gl.render(scene, camera);
 
           const bitmap = await createImageBitmap(gl.domElement);
@@ -291,16 +295,15 @@ const OfflineExportController: React.FC = () => {
           const duration = Math.round(1e6 / fps);
 
           const frame = new VideoFrame(bitmap, { timestamp, duration });
-          encoder.encode(frame, { keyFrame: i % fps === 0 });
+          encoder.encode(frame, { keyFrame: i % 60 === 0 });
           frame.close();
 
-          while (encoder.encodeQueueSize > 20) {
-            await new Promise((r) => setTimeout(r, 5));
+          if (encoder.encodeQueueSize > 10) {
+            await new Promise((r) => setTimeout(r, 1));
           }
 
-          if (i % 15 === 0) {
+          if (i % 10 === 0) {
             setExportProgress((i / totalFrames) * 100);
-            await new Promise((r) => setTimeout(r, 0));
           }
         }
 
@@ -308,10 +311,8 @@ const OfflineExportController: React.FC = () => {
         await encoder.flush();
         muxer.finalize();
 
-        const webmBuffer = target.buffer;
-
         setExportStatus('muxing');
-        const mp4Url = await offlineExportService.muxToMp4(webmBuffer, audioFile);
+        const mp4Url = await offlineExportService.muxToMp4(target.buffer, audioFile);
         completeExport(mp4Url);
       } catch (e) {
         console.error('Export failed:', e);

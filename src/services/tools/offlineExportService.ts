@@ -8,59 +8,63 @@ import { fetchFile, toBlobURL } from '@ffmpeg/util';
 class OfflineExportService {
   private ffmpeg: FFmpeg | null = null;
 
-  /**
-   * Analyse l'intégralité du fichier audio en arrière-plan et retourne
-   * un tableau contenant les données de fréquence pour chaque image de la vidéo.
-   */
   public async analyzeAudioOffline(
     audioFile: File,
     fps: number = 30,
     onProgress: (percent: number) => void
   ): Promise<{ framesData: Uint8Array[]; totalFrames: number }> {
     const arrayBuffer = await audioFile.arrayBuffer();
-    const ctx = new globalThis.AudioContext();
+    const ctx = new AudioContext();
     const audioBuffer = await ctx.decodeAudioData(arrayBuffer);
     ctx.close();
 
     const duration = audioBuffer.duration;
-    const totalFrames = Math.floor(duration * fps);
+    const totalFrames = Math.ceil(duration * fps);
     const binCount = 128;
     const framesData: Uint8Array[] = new Array(totalFrames);
 
-    const offlineCtx = new globalThis.OfflineAudioContext(
-      1,
-      audioBuffer.length,
-      audioBuffer.sampleRate
-    );
+    const bufferSize = 256;
+    const offlineCtx = new OfflineAudioContext(1, audioBuffer.length, audioBuffer.sampleRate);
+
     const source = offlineCtx.createBufferSource();
     source.buffer = audioBuffer;
 
     const analyser = offlineCtx.createAnalyser();
     analyser.fftSize = 256;
-    analyser.smoothingTimeConstant = 0.8;
+    analyser.smoothingTimeConstant = 0;
 
-    const processor = offlineCtx.createScriptProcessor(4096, 1, 1);
+    const processor = offlineCtx.createScriptProcessor(bufferSize, 1, 1);
 
     source.connect(analyser);
     analyser.connect(processor);
     processor.connect(offlineCtx.destination);
 
-    let lastCapturedFrame = -1;
+    let lastFrameFilled = -1;
 
     processor.onaudioprocess = (e) => {
-      const currentTime = e.playbackTime;
-      const frameIndex = Math.floor(currentTime * fps);
+      const playbackTime = e.playbackTime;
+      const targetFrame = Math.floor(playbackTime * fps);
 
-      if (frameIndex > lastCapturedFrame && frameIndex < totalFrames) {
-        const data = new Uint8Array(binCount);
-        analyser.getByteFrequencyData(data);
-        framesData[frameIndex] = data;
-        lastCapturedFrame = frameIndex;
+      const data = new Uint8Array(binCount);
+      analyser.getByteFrequencyData(data);
 
-        // Mise à jour de la progression (0 à 100%)
-        if (frameIndex % 20 === 0) {
-          onProgress((frameIndex / totalFrames) * 100);
+      for (let i = lastFrameFilled + 1; i <= targetFrame; i++) {
+        if (i < totalFrames) {
+          if (i > 0 && framesData[i - 1]) {
+            const smoothed = new Uint8Array(binCount);
+            for (let j = 0; j < binCount; j++) {
+              smoothed[j] = Math.floor(data[j] * 0.7 + framesData[i - 1][j] * 0.3);
+            }
+            framesData[i] = smoothed;
+          } else {
+            framesData[i] = new Uint8Array(data);
+          }
         }
+      }
+      lastFrameFilled = targetFrame;
+
+      if (targetFrame % 50 === 0) {
+        onProgress((targetFrame / totalFrames) * 100);
       }
     };
 
@@ -69,9 +73,7 @@ class OfflineExportService {
     await offlineCtx.startRendering();
 
     for (let i = 0; i < totalFrames; i++) {
-      if (!framesData[i]) {
-        framesData[i] = i > 0 ? new Uint8Array(framesData[i - 1]) : new Uint8Array(binCount);
-      }
+      if (!framesData[i]) framesData[i] = i > 0 ? framesData[i - 1] : new Uint8Array(binCount);
     }
 
     onProgress(100);
@@ -93,14 +95,6 @@ class OfflineExportService {
     const extension = audioFile.name.split('.').pop() || 'mp3';
     const audioFileName = `audio.${extension}`;
 
-    try {
-      await ffmpeg.deleteFile('video.mp4');
-      await ffmpeg.deleteFile(audioFileName);
-      await ffmpeg.deleteFile('output.mp4');
-    } catch (e) {
-      /* Files don't exist yet */
-    }
-
     await ffmpeg.writeFile('video.mp4', new Uint8Array(videoBuffer));
     await ffmpeg.writeFile(audioFileName, await fetchFile(audioFile));
 
@@ -116,6 +110,10 @@ class OfflineExportService {
       '-b:a',
       '192k',
       '-shortest',
+      '-map',
+      '0:v:0',
+      '-map',
+      '1:a:0',
       'output.mp4',
     ]);
 
