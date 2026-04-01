@@ -45,4 +45,9 @@ export interface AudioVisualizerState {
   setExportStatus: (status: 'idle' | 'analyzing' | 'rendering' | 'muxing') => void;
   setExportProgress: (progress: number) => void;
   completeExport: (url: string) => void;
+  currentTime: number;
+  duration: number;
+  setCurrentTime: (time: number) => void;
+  setDuration: (duration: number) => void;
+  seek: (time: number) => void;
 }

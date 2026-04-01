@@ -80,6 +80,16 @@ class AudioVisualizerService {
     this.audio?.pause();
   }
 
+  public getAudioElement() {
+    return this.audio;
+  }
+
+  public seek(time: number) {
+    if (this.audio) {
+      this.audio.currentTime = time;
+    }
+  }
+
   public setForcedFrequencyData(data: Uint8Array | null) {
     this.forcedData = data;
   }

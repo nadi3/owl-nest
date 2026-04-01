@@ -29,6 +29,9 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>()((set, get)
   exportStatus: 'idle',
   exportProgress: 0,
 
+  currentTime: 0,
+  duration: 0,
+
   settings: {
     backgroundColor: initialTheme.palette.background.default,
     bassColor: initialTheme.palette.primary.main,
@@ -38,6 +41,13 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>()((set, get)
     opacity: 0.85,
     showImage: true,
     customImage: null,
+  },
+
+  setCurrentTime: (time) => set({ currentTime: time }),
+  setDuration: (duration) => set({ duration: duration }),
+  seek: (time) => {
+    audioVisualizerService.seek(time);
+    set({ currentTime: time });
   },
 
   setAudioFile: (file) => {
