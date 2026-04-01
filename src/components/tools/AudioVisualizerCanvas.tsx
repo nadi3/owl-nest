@@ -116,12 +116,19 @@ const VisualizerScene: React.FC = () => {
     const rawIntensities = [];
 
     for (let i = 0; i <= SEGMENTS; i++) {
-      const halfSegments = SEGMENTS / 2;
-      const dataI = i <= halfSegments ? i : SEGMENTS - i;
+      let dataI: number;
+      if (settings.shape === 'line' && !settings.mirrorHorizontal) {
+        dataI = i;
+      } else {
+        const halfSegments = SEGMENTS / 2;
+        dataI = i <= halfSegments ? i : SEGMENTS - i;
+      }
 
-      const bassIndex = Math.floor(dataI * 0.3);
-      const midIndex = Math.floor(20 + dataI * 0.6);
-      const trebleIndex = Math.floor(60 + dataI * 0.8);
+      const ratio = dataI / (settings.mirrorHorizontal ? SEGMENTS / 2 : SEGMENTS);
+
+      const bassIndex = Math.floor(ratio * 2);
+      const midIndex = Math.floor(2 + ratio * 21);
+      const trebleIndex = Math.floor(23 + ratio * 70);
 
       const b = (frequencyData[bassIndex] || 0) / 255;
       const m = (frequencyData[midIndex] || 0) / 255;
@@ -254,7 +261,15 @@ const VisualizerScene: React.FC = () => {
   return (
     <group>
       <group>{renderRibbons()}</group>
-      {settings.shape === 'line' && <group scale={[1, -1, 1]}>{renderRibbons()}</group>}
+      {settings.shape === 'line' && settings.mirrorVertical && (
+        <group scale={[1, -1, 1]}>{renderRibbons()}</group>
+      )}
+      {settings.shape === 'line' && settings.showBaseLine && (
+        <mesh position={[0, 0, 0.01]}>
+          <planeGeometry args={[viewport.width, 0.05]} />
+          <meshBasicMaterial color={settings.backgroundColor} toneMapped={false} />
+        </mesh>
+      )}
     </group>
   );
 };

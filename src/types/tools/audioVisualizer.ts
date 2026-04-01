@@ -22,6 +22,9 @@ export interface VisualizerSettings {
   showImage: boolean;
   /** URL (blob) of the uploaded image. Null = logo by default */
   customImage: string | null;
+  mirrorHorizontal: boolean;
+  mirrorVertical: boolean;
+  showBaseLine: boolean;
 }
 
 export interface AudioVisualizerState {

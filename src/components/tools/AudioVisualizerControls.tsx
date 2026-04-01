@@ -188,10 +188,16 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               label={t('tools.audioVisualizer.colors.background')}
               settingKey="backgroundColor"
             />
-            <ColorPicker label={t('tools.audioVisualizer.colors.bass')} settingKey="bassColor" />
-            <ColorPicker label={t('tools.audioVisualizer.colors.mids')} settingKey="midColor" />
             <ColorPicker
-              label={t('tools.audioVisualizer.colors.treble')}
+              label={t('tools.audioVisualizer.colors.bass', { range: '20-250Hz' })}
+              settingKey="bassColor"
+            />
+            <ColorPicker
+              label={t('tools.audioVisualizer.colors.mids', { range: '250Hz-4kHz' })}
+              settingKey="midColor"
+            />
+            <ColorPicker
+              label={t('tools.audioVisualizer.colors.treble', { range: '4-16kHz' })}
               settingKey="trebleColor"
             />
           </Stack>
@@ -265,6 +271,44 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
                     <input type="file" accept="image/*" hidden onChange={handleImageUpload} />
                   </NestButton>
                 )}
+              </Stack>
+            )}
+
+            {settings.shape === 'line' && (
+              <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      size="small"
+                      checked={settings.mirrorHorizontal}
+                      onChange={(e) => updateSetting('mirrorHorizontal', e.target.checked)}
+                    />
+                  }
+                  label={t('tools.audioVisualizer.controls.mirrorHorizontal')}
+                  sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.75rem' } }}
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      size="small"
+                      checked={settings.mirrorVertical}
+                      onChange={(e) => updateSetting('mirrorVertical', e.target.checked)}
+                    />
+                  }
+                  label={t('tools.audioVisualizer.controls.mirrorVertical')}
+                  sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.75rem' } }}
+                />
+                <FormControlLabel
+                  control={
+                    <Switch
+                      size="small"
+                      checked={settings.showBaseLine}
+                      onChange={(e) => updateSetting('showBaseLine', e.target.checked)}
+                    />
+                  }
+                  label={t('tools.audioVisualizer.controls.showBaseLine')}
+                  sx={{ '& .MuiFormControlLabel-label': { fontSize: '0.75rem' } }}
+                />
               </Stack>
             )}
 
