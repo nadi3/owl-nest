@@ -2,9 +2,10 @@
  * @file AudioVisualizerCanvas.tsx
  * @description React Three Fiber canvas for rendering the 3D audio wave.
  * Uses continuous custom BufferGeometries (Ribbons) for a stacked area chart effect.
+ * Updated with Dynamic Scaling Engine to prevent clipping and allow organic band growth.
  */
 
-import React, { Suspense, useMemo, useEffect } from 'react';
+import React, { Suspense, useMemo, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -34,7 +35,6 @@ const createRibbonGeometry = (segments: number) => {
     const v2 = i * 2 + 1;
     const v3 = (i + 1) * 2;
     const v4 = (i + 1) * 2 + 1;
-
     indices.push(v1, v2, v3, v2, v4, v3);
   }
 
@@ -97,41 +97,61 @@ const VisualizerScene: React.FC = () => {
   const { settings, isPlaying, exportStatus } = useAudioVisualizerStore();
   const { viewport } = useThree();
 
+  const smoothedScaleRef = useRef(1);
+
   const bassGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
   const midGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
   const trebleGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     const frequencyData = audioVisualizerService.getFrequencyData();
+    const isVisualizing = isPlaying || exportStatus !== 'idle';
+    if (!isVisualizing || !frequencyData) return;
 
     const availableWidth = viewport.width * 1.02;
     const spacing = availableWidth / SEGMENTS;
     const circleRadius = Math.min(viewport.width, viewport.height) * 0.2;
-    const maxAmplitude = viewport.height * 0.15;
 
-    const bassPos = bassGeo.attributes.position.array as Float32Array;
-    const midPos = midGeo.attributes.position.array as Float32Array;
-    const treblePos = trebleGeo.attributes.position.array as Float32Array;
-
-    const isVisualizing = isPlaying || exportStatus !== 'idle';
+    let frameMaxTotal = 0.01;
+    const rawIntensities = [];
 
     for (let i = 0; i <= SEGMENTS; i++) {
       const halfSegments = SEGMENTS / 2;
       const dataI = i <= halfSegments ? i : SEGMENTS - i;
 
-      let bassH = 0.05,
-        midH = 0.05,
-        trebleH = 0.05;
+      const bassIndex = Math.floor(dataI * 0.3);
+      const midIndex = Math.floor(20 + dataI * 0.6);
+      const trebleIndex = Math.floor(60 + dataI * 0.8);
 
-      if (isVisualizing && frequencyData) {
-        const bassIndex = Math.floor(dataI * 0.3);
-        const midIndex = Math.floor(20 + dataI * 0.6);
-        const trebleIndex = Math.floor(60 + dataI * 0.8);
+      const b = (frequencyData[bassIndex] || 0) / 255;
+      const m = (frequencyData[midIndex] || 0) / 255;
+      const t = (frequencyData[trebleIndex] || 0) / 255;
 
-        bassH = (frequencyData[bassIndex] / 255) * maxAmplitude + 0.05;
-        midH = (frequencyData[midIndex] / 255) * maxAmplitude + 0.05;
-        trebleH = (frequencyData[trebleIndex] / 255) * maxAmplitude + 0.05;
-      }
+      const total = b + m + t;
+      if (total > frameMaxTotal) frameMaxTotal = total;
+      rawIntensities.push({ b, m, t });
+    }
+
+    const targetMaxExpansion = viewport.height * 0.25;
+    const idealScale = targetMaxExpansion / frameMaxTotal;
+
+    smoothedScaleRef.current = THREE.MathUtils.lerp(
+      smoothedScaleRef.current,
+      idealScale,
+      delta * 3
+    );
+    const currentScale = smoothedScaleRef.current;
+
+    const bassPos = bassGeo.attributes.position.array as Float32Array;
+    const midPos = midGeo.attributes.position.array as Float32Array;
+    const treblePos = trebleGeo.attributes.position.array as Float32Array;
+
+    for (let i = 0; i <= SEGMENTS; i++) {
+      const { b, m, t } = rawIntensities[i];
+
+      const bassH = b * currentScale + 0.05;
+      const midH = m * currentScale + 0.05;
+      const trebleH = t * currentScale + 0.05;
 
       const zOffset = 0;
       let p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, p3x, p3y, p3z;
