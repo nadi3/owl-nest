@@ -2,15 +2,18 @@
  * @file AudioVisualizerCanvas.tsx
  * @description React Three Fiber canvas for rendering the 3D audio wave.
  * Uses continuous custom BufferGeometries (Ribbons) for a stacked area chart effect.
+ * Updated with Dynamic Scaling Engine to prevent clipping and allow organic band growth.
  */
 
-import React, { Suspense, useMemo } from 'react';
+import React, { Suspense, useMemo, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
 import { audioVisualizerService } from '@/services/tools/audioVisualizerService.ts';
 import { useTexture } from '@react-three/drei';
+import { ArrayBufferTarget, Muxer } from 'mp4-muxer';
+import { offlineExportService } from '@/services/tools/offlineExportService.ts';
 
 const SEGMENTS = 64;
 
@@ -32,7 +35,6 @@ const createRibbonGeometry = (segments: number) => {
     const v2 = i * 2 + 1;
     const v3 = (i + 1) * 2;
     const v4 = (i + 1) * 2 + 1;
-
     indices.push(v1, v2, v3, v2, v4, v3);
   }
 
@@ -56,7 +58,8 @@ const CenterImage: React.FC<{ url: string }> = ({ url }) => {
   const texture = useTexture(url);
   const { viewport } = useThree();
   const imageRadius = Math.min(viewport.width, viewport.height) * 0.2;
-  React.useEffect(() => {
+
+  useEffect(() => {
     if (!texture) return;
 
     if (texture.image && texture.image instanceof HTMLImageElement) {
@@ -91,49 +94,67 @@ const CenterImage: React.FC<{ url: string }> = ({ url }) => {
  * @returns {React.ReactElement} A group containing the visualizer meshes.
  */
 const VisualizerScene: React.FC = () => {
-  const { settings, isPlaying } = useAudioVisualizerStore();
+  const { settings, isPlaying, exportStatus } = useAudioVisualizerStore();
   const { viewport } = useThree();
+
+  const smoothedScaleRef = useRef(1);
 
   const bassGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
   const midGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
   const trebleGeo = useMemo(() => createRibbonGeometry(SEGMENTS), []);
 
-  useFrame(() => {
+  useFrame((_state, delta) => {
     const frequencyData = audioVisualizerService.getFrequencyData();
+    const isVisualizing = isPlaying || exportStatus !== 'idle';
+    if (!isVisualizing || !frequencyData) return;
 
     const availableWidth = viewport.width * 1.02;
     const spacing = availableWidth / SEGMENTS;
     const circleRadius = Math.min(viewport.width, viewport.height) * 0.2;
-    const maxAmplitude = viewport.height * 0.15;
+
+    let frameMaxTotal = 0.01;
+    const rawIntensities = [];
+
+    for (let i = 0; i <= SEGMENTS; i++) {
+      const halfSegments = SEGMENTS / 2;
+      const dataI = i <= halfSegments ? i : SEGMENTS - i;
+
+      const bassIndex = Math.floor(dataI * 0.3);
+      const midIndex = Math.floor(20 + dataI * 0.6);
+      const trebleIndex = Math.floor(60 + dataI * 0.8);
+
+      const b = (frequencyData[bassIndex] || 0) / 255;
+      const m = (frequencyData[midIndex] || 0) / 255;
+      const t = (frequencyData[trebleIndex] || 0) / 255;
+
+      const total = b + m + t;
+      if (total > frameMaxTotal) frameMaxTotal = total;
+      rawIntensities.push({ b, m, t });
+    }
+
+    const targetMaxExpansion = viewport.height * 0.25;
+    const idealScale = targetMaxExpansion / frameMaxTotal;
+
+    smoothedScaleRef.current = THREE.MathUtils.lerp(
+      smoothedScaleRef.current,
+      idealScale,
+      delta * 3
+    );
+    const currentScale = smoothedScaleRef.current;
 
     const bassPos = bassGeo.attributes.position.array as Float32Array;
     const midPos = midGeo.attributes.position.array as Float32Array;
     const treblePos = trebleGeo.attributes.position.array as Float32Array;
 
     for (let i = 0; i <= SEGMENTS; i++) {
-      const halfSegments = SEGMENTS / 2;
-      const dataI = i <= halfSegments ? i : SEGMENTS - i;
+      const { b, m, t } = rawIntensities[i];
 
-      let bassH = 0.05,
-        midH = 0.05,
-        trebleH = 0.05;
-
-      if (isPlaying && frequencyData) {
-        const bassIndex = Math.floor(dataI * 0.3);
-        const midIndex = Math.floor(20 + dataI * 0.6);
-        const trebleIndex = Math.floor(60 + dataI * 0.8);
-
-        bassH = (frequencyData[bassIndex] / 255) * maxAmplitude + 0.05;
-        midH = (frequencyData[midIndex] / 255) * maxAmplitude + 0.05;
-        trebleH = (frequencyData[trebleIndex] / 255) * maxAmplitude + 0.05;
-      }
+      const bassH = b * currentScale + 0.05;
+      const midH = m * currentScale + 0.05;
+      const trebleH = t * currentScale + 0.05;
 
       const zOffset = 0;
-
-      let p0x, p0y, p0z;
-      let p1x, p1y, p1z;
-      let p2x, p2y, p2z;
-      let p3x, p3y, p3z;
+      let p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, p3x, p3y, p3z;
 
       if (settings.shape === 'line') {
         const x = (i - SEGMENTS / 2) * spacing;
@@ -238,6 +259,103 @@ const VisualizerScene: React.FC = () => {
   );
 };
 
+const OfflineExportController: React.FC = () => {
+  const { gl, scene, camera, advance } = useThree();
+  const { exportStatus, audioFile, setExportStatus, setExportProgress, completeExport } =
+    useAudioVisualizerStore();
+
+  useEffect(() => {
+    if (exportStatus !== 'analyzing' || !audioFile) return;
+
+    const runExport = async () => {
+      try {
+        const fps = 60;
+        const width = gl.domElement.width;
+        const height = gl.domElement.height;
+
+        const target = new ArrayBufferTarget();
+        const muxer = new Muxer({
+          target: target,
+          video: { codec: 'avc', width, height },
+          fastStart: 'in-memory',
+        });
+
+        const encoder = new VideoEncoder({
+          output: (chunk, meta) => muxer.addVideoChunk(chunk, meta as any),
+          error: (e) => console.error('Encoder error', e),
+        });
+
+        encoder.configure({
+          codec: 'avc1.4d002a',
+          width,
+          height,
+          bitrate: 6_000_000,
+          framerate: fps,
+          avc: { format: 'avc' },
+        });
+
+        setExportStatus('analyzing');
+        const { framesData, totalFrames } = await offlineExportService.analyzeAudioOffline(
+          audioFile,
+          fps,
+          (p) => setExportProgress(p)
+        );
+        setExportStatus('rendering');
+
+        for (let i = 0; i < totalFrames; i++) {
+          audioVisualizerService.setForcedFrequencyData(framesData[i]);
+
+          const currentTimeInSeconds = i / fps;
+          advance(currentTimeInSeconds);
+
+          gl.render(scene, camera);
+
+          const bitmap = await createImageBitmap(gl.domElement);
+          const timestamp = Math.round((i * 1e6) / fps);
+          const duration = Math.round(1e6 / fps);
+
+          const frame = new VideoFrame(bitmap, { timestamp, duration });
+          encoder.encode(frame, { keyFrame: i % 60 === 0 });
+          frame.close();
+
+          if (encoder.encodeQueueSize > 10) {
+            await new Promise((r) => setTimeout(r, 1));
+          }
+
+          if (i % 10 === 0) {
+            setExportProgress((i / totalFrames) * 100);
+          }
+        }
+
+        audioVisualizerService.setForcedFrequencyData(null);
+        await encoder.flush();
+        muxer.finalize();
+
+        setExportStatus('muxing');
+        const mp4Url = await offlineExportService.muxToMp4(target.buffer, audioFile);
+        completeExport(mp4Url);
+      } catch (e) {
+        console.error('Export failed:', e);
+        setExportStatus('idle');
+      }
+    };
+
+    runExport();
+  }, [
+    exportStatus,
+    audioFile,
+    gl,
+    scene,
+    camera,
+    advance,
+    setExportStatus,
+    setExportProgress,
+    completeExport,
+  ]);
+
+  return null;
+};
+
 /**
  * The main canvas component for the audio visualizer.
  * It sets up the React Three Fiber Canvas, manages the background color,
@@ -249,8 +367,11 @@ const VisualizerScene: React.FC = () => {
  */
 const AudioVisualizerCanvas: React.FC = () => {
   const settings = useAudioVisualizerStore((state) => state.settings);
+  const exportStatus = useAudioVisualizerStore((state) => state.exportStatus);
   const backgroundColor = settings.backgroundColor;
   const imageUrl = settings.customImage || '/logo-owl.png';
+
+  const isExporting = exportStatus !== 'idle';
 
   return (
     <Box
@@ -261,7 +382,12 @@ const AudioVisualizerCanvas: React.FC = () => {
         transition: 'background-color 0.3s ease',
       }}
     >
-      <Canvas camera={{ position: [0, 0, 25], fov: 50 }}>
+      <Canvas
+        camera={{ position: [0, 0, 25], fov: 50 }}
+        gl={{ preserveDrawingBuffer: true }}
+        frameloop={isExporting ? 'never' : 'always'}
+      >
+        <OfflineExportController />
         <VisualizerScene />
         {settings.shape === 'circle' && settings.showImage && (
           <Suspense fallback={null}>

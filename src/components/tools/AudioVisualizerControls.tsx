@@ -1,10 +1,9 @@
 /**
  * @file AudioVisualizerControls.tsx
- * @description Control panel for the Audio Visualizer.
- * Allows users to upload an MP3 file, load a default demo, and adjust visual settings.
+ * @description Panneau de contrôle de l'Audio Visualizer avec mise à jour automatique du temps et icônes de lecture.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -13,8 +12,14 @@ import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import CircularProgress from '@mui/material/CircularProgress';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import { Maximize, Play, Pause, SkipBack, Upload, Download } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
+import { audioVisualizerService } from '@/services/tools/audioVisualizerService.ts';
 import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';
 import { NestCard } from '@/components/common/NestCard.tsx';
 import { NestButton } from '@/components/common/NestButton.tsx';
@@ -54,19 +59,50 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
   onToggleFullscreen,
 }: AudioVisualizerControlsProps): React.ReactElement => {
   const { t } = useTranslation();
-  const { isPlaying, settings, setAudioFile, setIsPlaying, updateSetting } =
-    useAudioVisualizerStore();
+  const {
+    isPlaying,
+    settings,
+    setAudioFile,
+    setIsPlaying,
+    updateSetting,
+    audioFile,
+    startExport,
+    exportStatus,
+    exportProgress,
+    currentTime,
+    duration,
+    setCurrentTime,
+    setDuration,
+    seek,
+  } = useAudioVisualizerStore();
 
-  /**
-   * Handles the user selecting a local audio file.
-   * It takes the first file from the input event and sets it in the global store.
-   * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event.
-   */
+  const isExporting = exportStatus !== 'idle';
+
+  useEffect(() => {
+    const audio = audioVisualizerService.getAudioElement();
+    if (!audio) return;
+
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handleLoadedMetadata = () => setDuration(audio.duration);
+
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    return () => {
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, [audioFile, setCurrentTime, setDuration]);
+
+  const formatTime = (time: number) => {
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
-    if (file) {
-      setAudioFile(file);
-    }
+    if (file) setAudioFile(file);
   };
 
   /**
@@ -128,13 +164,14 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
         type="color"
         value={settings[settingKey] as string}
         onChange={(e) => updateSetting(settingKey, e.target.value)}
+        disabled={isExporting}
         style={{
           width: '32px',
           height: '32px',
           padding: '0',
           border: 'none',
           borderRadius: '4px',
-          cursor: 'pointer',
+          cursor: isExporting ? 'not-allowed' : 'pointer',
           backgroundColor: 'transparent',
         }}
       />
@@ -143,73 +180,69 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
 
   return (
     <NestCard title={t('tools.audioVisualizer.controls.title')}>
-      <Stack
-        direction={{ xs: 'column', md: 'row' }}
-        spacing={3}
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        <Stack direction="row" spacing={2} alignItems="center">
-          <NestButton nestVariant="contained" component="label">
-            {t('tools.audioVisualizer.controls.upload')}
-            <input type="file" accept="audio/mp3, audio/wav" hidden onChange={handleFileUpload} />
-          </NestButton>
-
-          <NestButton nestVariant="ghost" onClick={handleLoadDemo}>
-            {t('tools.audioVisualizer.controls.demo')}
-          </NestButton>
-
-          <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
-            {t(
-              isPlaying
-                ? 'tools.audioVisualizer.controls.pause'
-                : 'tools.audioVisualizer.controls.play'
-            )}
-          </NestButton>
-
-          <NestButton nestVariant="ghost" onClick={onToggleFullscreen}>
-            {t('tools.audioVisualizer.controls.fullscreen')}
-          </NestButton>
-        </Stack>
-
-        <Stack direction="row" spacing={3} alignItems="center">
-          <Box sx={{ minWidth: 100 }}>
-            <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
-              {t('tools.audioVisualizer.controls.shape')}
-            </Typography>
-            <Select
-              size="small"
-              value={settings.shape}
-              onChange={handleShapeChange}
-              sx={{ backgroundColor: 'background.paper' }}
-            >
-              <MenuItem value="line">{t('tools.audioVisualizer.shapes.line')}</MenuItem>
-              <MenuItem value="circle">{t('tools.audioVisualizer.shapes.circle')}</MenuItem>
-            </Select>
-          </Box>
-
-          <Box sx={{ width: 120 }}>
-            <Typography variant="caption" color="text.secondary" display="block">
-              {t('tools.audioVisualizer.controls.opacity')}
-            </Typography>
-            <Slider
-              size="small"
-              value={settings.opacity}
-              min={0.1}
-              max={1}
-              step={0.05}
-              onChange={(_, newValue) => updateSetting('opacity', newValue)}
-              valueLabelDisplay="auto"
-              valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
+      <Stack spacing={2}>
+        {/* LIGNE 1 : RÉGLAGES VISUELS */}
+        <Stack direction="row" spacing={3} alignItems="center" justifyContent="space-between">
+          <Stack direction="row" spacing={2}>
+            <ColorPicker
+              label={t('tools.audioVisualizer.colors.background')}
+              settingKey="backgroundColor"
             />
+            <ColorPicker label={t('tools.audioVisualizer.colors.bass')} settingKey="bassColor" />
+            <ColorPicker label={t('tools.audioVisualizer.colors.mids')} settingKey="midColor" />
+            <ColorPicker
+              label={t('tools.audioVisualizer.colors.treble')}
+              settingKey="trebleColor"
+            />
+          </Stack>
+
+          <Stack
+            direction="row"
+            spacing={3}
+            alignItems="center"
+            sx={{ flexGrow: 1, justifyContent: 'flex-end' }}
+          >
+            <Box sx={{ minWidth: 100 }}>
+              <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
+                {t('tools.audioVisualizer.controls.shape')}
+              </Typography>
+              <Select
+                size="small"
+                value={settings.shape}
+                onChange={handleShapeChange}
+                disabled={isExporting}
+                sx={{ backgroundColor: 'background.paper', height: 32 }}
+              >
+                <MenuItem value="line">{t('tools.audioVisualizer.shapes.line')}</MenuItem>
+                <MenuItem value="circle">{t('tools.audioVisualizer.shapes.circle')}</MenuItem>
+              </Select>
+            </Box>
+
+            <Box sx={{ width: 120 }}>
+              <Typography variant="caption" color="text.secondary" display="block">
+                {t('tools.audioVisualizer.controls.opacity')}
+              </Typography>
+              <Slider
+                size="small"
+                value={settings.opacity}
+                min={0.1}
+                max={1}
+                step={0.05}
+                disabled={isExporting}
+                onChange={(_, newValue) => updateSetting('opacity', newValue as number)}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
+              />
+            </Box>
 
             {settings.shape === 'circle' && (
-              <Stack direction="row" spacing={2} alignItems="center">
+              <Stack direction="row" spacing={1} alignItems="center">
                 <FormControlLabel
                   control={
                     <Switch
                       size="small"
                       checked={settings.showImage}
+                      disabled={isExporting}
                       onChange={(e) => updateSetting('showImage', e.target.checked)}
                     />
                   }
@@ -221,31 +254,117 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
                     },
                   }}
                 />
-
                 {settings.showImage && (
-                  <NestButton nestVariant="contained" component="label" size="small">
+                  <NestButton
+                    nestVariant="contained"
+                    component="label"
+                    size="small"
+                    disabled={isExporting}
+                  >
                     {t('tools.audioVisualizer.controls.uploadImage')}
-                    <input
-                      type="file"
-                      accept="image/png, image/jpeg, image/webp"
-                      hidden
-                      onChange={handleImageUpload}
-                    />
+                    <input type="file" accept="image/*" hidden onChange={handleImageUpload} />
                   </NestButton>
                 )}
               </Stack>
             )}
-          </Box>
+
+            <Tooltip title={t('tools.audioVisualizer.controls.fullscreen')}>
+              <IconButton onClick={onToggleFullscreen} sx={{ color: 'text.primary' }}>
+                <Maximize size={20} />
+              </IconButton>
+            </Tooltip>
+          </Stack>
         </Stack>
 
-        <Stack direction="row" spacing={2}>
-          <ColorPicker
-            label={t('tools.audioVisualizer.colors.background')}
-            settingKey="backgroundColor"
-          />
-          <ColorPicker label={t('tools.audioVisualizer.colors.bass')} settingKey="bassColor" />
-          <ColorPicker label={t('tools.audioVisualizer.colors.mids')} settingKey="midColor" />
-          <ColorPicker label={t('tools.audioVisualizer.colors.treble')} settingKey="trebleColor" />
+        <Divider />
+
+        <Stack direction="row" spacing={3} alignItems="center">
+          <Stack direction="row" spacing={1}>
+            <NestButton
+              nestVariant="contained"
+              component="label"
+              disabled={isExporting}
+              size="small"
+              startIcon={<Upload size={16} />}
+            >
+              {t('tools.audioVisualizer.controls.upload')}
+              <input type="file" accept="audio/mp3, audio/wav" hidden onChange={handleFileUpload} />
+            </NestButton>
+            <NestButton
+              nestVariant="ghost"
+              onClick={handleLoadDemo}
+              disabled={isExporting}
+              size="small"
+            >
+              {t('tools.audioVisualizer.controls.demo')}
+            </NestButton>
+
+            <NestButton
+              nestVariant="ghost"
+              onClick={() => setIsPlaying(!isPlaying)}
+              disabled={isExporting || !audioFile}
+              size="small"
+              startIcon={isPlaying ? <Pause size={16} /> : <Play size={16} />}
+            >
+              {t(
+                isPlaying
+                  ? 'tools.audioVisualizer.controls.pause'
+                  : 'tools.audioVisualizer.controls.play'
+              )}
+            </NestButton>
+          </Stack>
+
+          <Stack direction="row" spacing={2} alignItems="center" sx={{ flexGrow: 1, px: 2 }}>
+            <Typography variant="caption" sx={{ fontFamily: 'monospace', minWidth: 40 }}>
+              {formatTime(currentTime)}
+            </Typography>
+            <Slider
+              size="small"
+              value={currentTime}
+              max={duration || 100}
+              disabled={!audioFile || isExporting}
+              onChange={(_, value) => seek(value as number)}
+              sx={{ color: 'primary.main' }}
+            />
+            <Typography variant="caption" sx={{ fontFamily: 'monospace', minWidth: 40 }}>
+              {formatTime(duration)}
+            </Typography>
+            <IconButton size="small" onClick={() => seek(0)} disabled={!audioFile || isExporting}>
+              <SkipBack size={16} />
+            </IconButton>
+          </Stack>
+
+          <Stack direction="row" spacing={2} alignItems="center">
+            {audioFile && (
+              <NestButton
+                nestVariant="contained"
+                nestColor="primary"
+                onClick={startExport}
+                disabled={isExporting}
+                size="small"
+                startIcon={<Download size={16} />}
+              >
+                Export MP4
+              </NestButton>
+            )}
+
+            {isExporting && (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <CircularProgress
+                  variant={exportStatus === 'rendering' ? 'determinate' : 'indeterminate'}
+                  value={exportStatus === 'rendering' ? exportProgress : undefined}
+                  size={20}
+                />
+                <Typography variant="caption" color="text.secondary">
+                  {exportStatus === 'analyzing'
+                    ? 'Analyse...'
+                    : exportStatus === 'rendering'
+                      ? `${Math.round(exportProgress)}%`
+                      : 'Finalisation...'}
+                </Typography>
+              </Box>
+            )}
+          </Stack>
         </Stack>
       </Stack>
     </NestCard>

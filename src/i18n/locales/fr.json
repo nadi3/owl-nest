@@ -251,7 +251,7 @@
       "subtitle": "Une expérience immersive transformant les fréquences audio en animations dynamiques. Après l'import d'un fichier MP3, l'outil génère des visuels synchronisés dont tu peux moduler les formes et les couleurs selon tes préférences.",
       "cta": "Créer une visualisation",
       "info_title": "Comment ça marche ?",
-      "info_text": "Importe un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes dont la taille évolue en temps réel. Personnalise l'apparence via le panneau de contrôle pour une expérience visuelle unique.",
+      "info_text": "Importe un fichier MP3 pour analyser ses fréquences. Les basses, les médiums et les aigus sont représentés par des formes dont la taille évolue en temps réel. Personnalise l'apparence via le panneau de contrôle pour une expérience visuelle unique. Tu peux ensuite télécharger un mp4 qui contiendra ta musique et l'animation créée en rythme. Attention, la vidéo est créée par ton navigateur, cela peut donc prendre un peu de temps selon la longueur de la musique et les performances de ton ordinateur.",
       "controls": {
         "title": "Contrôles",
         "upload": "Charger MP3",

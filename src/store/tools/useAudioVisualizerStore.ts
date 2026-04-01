@@ -22,9 +22,16 @@ const initialTheme = getOwlTheme('light');
  *
  * @constant
  */
-export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
+export const useAudioVisualizerStore = create<AudioVisualizerState>()((set, get) => ({
   audioFile: null,
-  isPlaying: false, // On remet à false par défaut
+  isPlaying: false,
+
+  exportStatus: 'idle',
+  exportProgress: 0,
+
+  currentTime: 0,
+  duration: 0,
+
   settings: {
     backgroundColor: initialTheme.palette.background.default,
     bassColor: initialTheme.palette.primary.main,
@@ -36,13 +43,20 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
     customImage: null,
   },
 
+  setCurrentTime: (time) => set({ currentTime: time }),
+  setDuration: (duration) => set({ duration: duration }),
+  seek: (time) => {
+    audioVisualizerService.seek(time);
+    set({ currentTime: time });
+  },
+
   setAudioFile: (file) => {
     if (file) {
       audioVisualizerService.loadAudio(file);
-      set({ audioFile: file, isPlaying: true });
+      set({ audioFile: file, isPlaying: true, exportStatus: 'idle', exportProgress: 0 });
       audioVisualizerService.play();
     } else {
-      set({ audioFile: null, isPlaying: false });
+      set({ audioFile: null, isPlaying: false, exportStatus: 'idle' });
       audioVisualizerService.pause();
     }
   },
@@ -63,4 +77,27 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>((set) => ({
         [key]: value,
       },
     })),
+
+  startExport: () => {
+    const { audioFile } = get();
+    if (audioFile) {
+      audioVisualizerService.pause(); // Coupe la musique pendant l'export
+      set({ isPlaying: false, exportStatus: 'analyzing', exportProgress: 0 });
+    }
+  },
+
+  setExportStatus: (status) => set({ exportStatus: status }),
+
+  setExportProgress: (progress) => set({ exportProgress: progress }),
+
+  completeExport: (url) => {
+    set({ exportStatus: 'idle', exportProgress: 0 });
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'owl-nest-visualizer.mp4';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  },
 }));
