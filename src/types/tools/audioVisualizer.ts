@@ -31,10 +31,18 @@ export interface AudioVisualizerState {
   isPlaying: boolean;
   /** User-defined visualization settings. */
   settings: VisualizerSettings;
-  /** Sets a new audio file to be processed. */
+
+  exportStatus: 'idle' | 'analyzing' | 'rendering' | 'muxing';
+  exportProgress: number;
+
   setAudioFile: (file: File | null) => void;
   /** Toggles the play/pause state of the visualizer. */
   setIsPlaying: (isPlaying: boolean) => void;
   /** Updates a specific setting in the visualizer configuration. */
   updateSetting: <K extends keyof VisualizerSettings>(key: K, value: VisualizerSettings[K]) => void;
+
+  startExport: () => void;
+  setExportStatus: (status: 'idle' | 'analyzing' | 'rendering' | 'muxing') => void;
+  setExportProgress: (progress: number) => void;
+  completeExport: (url: string) => void;
 }

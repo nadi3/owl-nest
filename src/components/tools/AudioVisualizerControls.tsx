@@ -13,6 +13,7 @@ import Select, { type SelectChangeEvent } from '@mui/material/Select';
 import Slider from '@mui/material/Slider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslation } from 'react-i18next';
 import { useAudioVisualizerStore } from '@/store/tools/useAudioVisualizerStore.ts';
 import type { VisualizerShape } from '@/types/tools/audioVisualizer.ts';
@@ -54,19 +55,23 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
   onToggleFullscreen,
 }: AudioVisualizerControlsProps): React.ReactElement => {
   const { t } = useTranslation();
-  const { isPlaying, settings, setAudioFile, setIsPlaying, updateSetting } =
-    useAudioVisualizerStore();
+  const {
+    isPlaying,
+    settings,
+    setAudioFile,
+    setIsPlaying,
+    updateSetting,
+    audioFile,
+    startExport,
+    exportStatus,
+    exportProgress,
+  } = useAudioVisualizerStore();
 
-  /**
-   * Handles the user selecting a local audio file.
-   * It takes the first file from the input event and sets it in the global store.
-   * @param {React.ChangeEvent<HTMLInputElement>} event - The file input change event.
-   */
+  const isExporting = exportStatus !== 'idle';
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0] || null;
-    if (file) {
-      setAudioFile(file);
-    }
+    if (file) setAudioFile(file);
   };
 
   /**
@@ -128,13 +133,14 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
         type="color"
         value={settings[settingKey] as string}
         onChange={(e) => updateSetting(settingKey, e.target.value)}
+        disabled={isExporting}
         style={{
           width: '32px',
           height: '32px',
           padding: '0',
           border: 'none',
           borderRadius: '4px',
-          cursor: 'pointer',
+          cursor: isExporting ? 'not-allowed' : 'pointer',
           backgroundColor: 'transparent',
         }}
       />
@@ -150,22 +156,54 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
         justifyContent="space-between"
       >
         <Stack direction="row" spacing={2} alignItems="center">
-          <NestButton nestVariant="contained" component="label">
+          <NestButton nestVariant="contained" component="label" disabled={isExporting}>
             {t('tools.audioVisualizer.controls.upload')}
             <input type="file" accept="audio/mp3, audio/wav" hidden onChange={handleFileUpload} />
           </NestButton>
 
-          <NestButton nestVariant="ghost" onClick={handleLoadDemo}>
+          <NestButton nestVariant="ghost" onClick={handleLoadDemo} disabled={isExporting}>
             {t('tools.audioVisualizer.controls.demo')}
           </NestButton>
 
-          <NestButton nestVariant="ghost" onClick={() => setIsPlaying(!isPlaying)}>
+          <NestButton
+            nestVariant="ghost"
+            onClick={() => setIsPlaying(!isPlaying)}
+            disabled={isExporting}
+          >
             {t(
               isPlaying
                 ? 'tools.audioVisualizer.controls.pause'
                 : 'tools.audioVisualizer.controls.play'
             )}
           </NestButton>
+
+          {audioFile && (
+            <NestButton
+              nestVariant="contained"
+              nestColor="primary"
+              onClick={startExport}
+              disabled={isExporting}
+            >
+              Export MP4
+            </NestButton>
+          )}
+
+          {isExporting && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <CircularProgress
+                variant={exportStatus === 'rendering' ? 'determinate' : 'indeterminate'}
+                value={exportStatus === 'rendering' ? exportProgress : undefined}
+                size={24}
+              />
+              <Typography variant="caption" color="text.secondary">
+                {exportStatus === 'analyzing'
+                  ? 'Analyse...'
+                  : exportStatus === 'rendering'
+                    ? `${Math.round(exportProgress)}%`
+                    : 'Finalisation...'}
+              </Typography>
+            </Box>
+          )}
 
           <NestButton nestVariant="ghost" onClick={onToggleFullscreen}>
             {t('tools.audioVisualizer.controls.fullscreen')}
@@ -181,6 +219,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               size="small"
               value={settings.shape}
               onChange={handleShapeChange}
+              disabled={isExporting}
               sx={{ backgroundColor: 'background.paper' }}
             >
               <MenuItem value="line">{t('tools.audioVisualizer.shapes.line')}</MenuItem>
@@ -198,6 +237,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
               min={0.1}
               max={1}
               step={0.05}
+              disabled={isExporting}
               onChange={(_, newValue) => updateSetting('opacity', newValue)}
               valueLabelDisplay="auto"
               valueLabelFormat={(val) => `${Math.round(val * 100)}%`}
@@ -210,6 +250,7 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
                     <Switch
                       size="small"
                       checked={settings.showImage}
+                      disabled={isExporting}
                       onChange={(e) => updateSetting('showImage', e.target.checked)}
                     />
                   }
@@ -223,7 +264,12 @@ const AudioVisualizerControls: React.FC<AudioVisualizerControlsProps> = ({
                 />
 
                 {settings.showImage && (
-                  <NestButton nestVariant="contained" component="label" size="small">
+                  <NestButton
+                    nestVariant="contained"
+                    component="label"
+                    size="small"
+                    disabled={isExporting}
+                  >
                     {t('tools.audioVisualizer.controls.uploadImage')}
                     <input
                       type="file"

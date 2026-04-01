@@ -22,12 +22,8 @@ class AudioVisualizerService {
   private source: MediaElementAudioSourceNode | null = null;
   private dataArray: Uint8Array | null = null;
 
-  /**
-   * Initializes the audio context and all necessary nodes for audio processing.
-   * This method is idempotent; it will only run once. It sets up the `AudioContext`,
-   * `AnalyserNode`, and connects them to the audio source.
-   * @private
-   */
+  private forcedData: Uint8Array | null = null;
+
   private init() {
     if (this.audioContext) return;
 
@@ -84,12 +80,13 @@ class AudioVisualizerService {
     this.audio?.pause();
   }
 
-  /**
-   * Retrieves the current frequency data from the audio analyser.
-   * @returns {Uint8Array | null} An array of byte values representing the frequency spectrum,
-   * or `null` if the analyser is not ready.
-   */
+  public setForcedFrequencyData(data: Uint8Array | null) {
+    this.forcedData = data;
+  }
+
   public getFrequencyData(): Uint8Array | null {
+    if (this.forcedData) return this.forcedData;
+
     if (!this.analyser || !this.dataArray) return null;
 
     this.analyser.getByteFrequencyData(this.dataArray as any);
