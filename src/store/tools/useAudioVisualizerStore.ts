@@ -41,6 +41,9 @@ export const useAudioVisualizerStore = create<AudioVisualizerState>()((set, get)
     opacity: 0.85,
     showImage: true,
     customImage: null,
+    mirrorHorizontal: true,
+    mirrorVertical: true,
+    showBaseLine: false,
   },
 
   setCurrentTime: (time) => set({ currentTime: time }),

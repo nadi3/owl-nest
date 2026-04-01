@@ -262,7 +262,11 @@
         "shape": "Forme de l'onde",
         "opacity": "Opacité",
         "showImage": "Image centrale",
-        "uploadImage": "Changer l'image"
+        "uploadImage": "Changer l'image",
+        "mirrorHorizontal": "Symétrie G/D",
+        "mirrorVertical": "Symétrie H/B",
+        "showBaseLine": "Ligne de base",
+        "//": "... restants ..."
       },
       "shapes": {
         "line": "Ligne",
@@ -270,9 +274,9 @@
       },
       "colors": {
         "background": "Fond",
-        "bass": "Basses",
-        "mids": "Moyens",
-        "treble": "Aigus"
+        "bass": "Basses ({{range}})",
+        "mids": "Moyens ({{range}})",
+        "treble": "Aigus ({{range}})"
       }
     },
     "anonymizer": {
