@@ -16,7 +16,7 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.owl-nest.rule=Host(`owl-nest.ch` || `www.owl-nest.ch`)"
+      - "traefik.http.routers.owl-nest.rule=Host(`owl-nest.ch`) || Host(`www.owl-nest.ch`)"
       - "traefik.http.routers.owl-nest.entrypoints=web"
       - "traefik.http.services.owl-nest.loadbalancer.server.port=8080"
 
