@@ -276,7 +276,8 @@ const OfflineExportController: React.FC = () => {
 
         const { framesData, totalFrames } = await offlineExportService.analyzeAudioOffline(
           audioFile,
-          fps
+          fps,
+          (percent) => setExportProgress(percent)
         );
         setExportStatus('rendering');
 
@@ -292,6 +293,10 @@ const OfflineExportController: React.FC = () => {
           const frame = new VideoFrame(bitmap, { timestamp, duration });
           encoder.encode(frame, { keyFrame: i % fps === 0 });
           frame.close();
+
+          while (encoder.encodeQueueSize > 20) {
+            await new Promise((r) => setTimeout(r, 5));
+          }
 
           if (i % 15 === 0) {
             setExportProgress((i / totalFrames) * 100);

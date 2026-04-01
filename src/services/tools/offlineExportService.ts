@@ -14,7 +14,8 @@ class OfflineExportService {
    */
   public async analyzeAudioOffline(
     audioFile: File,
-    fps: number = 30
+    fps: number = 30,
+    onProgress: (percent: number) => void
   ): Promise<{ framesData: Uint8Array[]; totalFrames: number }> {
     const arrayBuffer = await audioFile.arrayBuffer();
     const ctx = new globalThis.AudioContext();
@@ -24,11 +25,11 @@ class OfflineExportService {
     const duration = audioBuffer.duration;
     const totalFrames = Math.floor(duration * fps);
     const binCount = 128;
-    const framesData = new Array(totalFrames).fill(0).map(() => new Uint8Array(binCount));
+    const framesData: Uint8Array[] = new Array(totalFrames);
 
-    const offlineCtx = new OfflineAudioContext(
+    const offlineCtx = new globalThis.OfflineAudioContext(
       1,
-      audioBuffer.sampleRate * duration,
+      audioBuffer.length,
       audioBuffer.sampleRate
     );
     const source = offlineCtx.createBufferSource();
@@ -39,42 +40,47 @@ class OfflineExportService {
     analyser.smoothingTimeConstant = 0.8;
 
     const processor = offlineCtx.createScriptProcessor(4096, 1, 1);
-    let currentFrame = 0;
-
-    processor.onaudioprocess = () => {
-      const time = offlineCtx.currentTime;
-      const targetFrame = Math.floor(time * fps);
-      const data = new Uint8Array(binCount);
-      analyser.getByteFrequencyData(data);
-
-      while (currentFrame <= targetFrame && currentFrame < totalFrames) {
-        framesData[currentFrame] = new Uint8Array(data);
-        currentFrame++;
-      }
-    };
 
     source.connect(analyser);
     analyser.connect(processor);
     processor.connect(offlineCtx.destination);
+
+    let lastCapturedFrame = -1;
+
+    processor.onaudioprocess = (e) => {
+      const currentTime = e.playbackTime;
+      const frameIndex = Math.floor(currentTime * fps);
+
+      if (frameIndex > lastCapturedFrame && frameIndex < totalFrames) {
+        const data = new Uint8Array(binCount);
+        analyser.getByteFrequencyData(data);
+        framesData[frameIndex] = data;
+        lastCapturedFrame = frameIndex;
+
+        // Mise à jour de la progression (0 à 100%)
+        if (frameIndex % 20 === 0) {
+          onProgress((frameIndex / totalFrames) * 100);
+        }
+      }
+    };
+
     source.start(0);
 
     await offlineCtx.startRendering();
 
-    while (currentFrame < totalFrames) {
-      framesData[currentFrame] = framesData[currentFrame - 1] || new Uint8Array(binCount);
-      currentFrame++;
+    for (let i = 0; i < totalFrames; i++) {
+      if (!framesData[i]) {
+        framesData[i] = i > 0 ? new Uint8Array(framesData[i - 1]) : new Uint8Array(binCount);
+      }
     }
 
+    onProgress(100);
     return { framesData, totalFrames };
   }
 
-  public async muxToMp4(webmBuffer: ArrayBuffer, audioFile: File): Promise<string> {
+  public async muxToMp4(videoBuffer: ArrayBuffer, audioFile: File): Promise<string> {
     if (!this.ffmpeg) this.ffmpeg = new FFmpeg();
     const ffmpeg = this.ffmpeg;
-
-    ffmpeg.on('log', ({ message }) => {
-      console.log('[FFmpeg]', message);
-    });
 
     if (!ffmpeg.loaded) {
       const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
@@ -87,7 +93,15 @@ class OfflineExportService {
     const extension = audioFile.name.split('.').pop() || 'mp3';
     const audioFileName = `audio.${extension}`;
 
-    await ffmpeg.writeFile('video.mp4', new Uint8Array(webmBuffer));
+    try {
+      await ffmpeg.deleteFile('video.mp4');
+      await ffmpeg.deleteFile(audioFileName);
+      await ffmpeg.deleteFile('output.mp4');
+    } catch (e) {
+      /* Files don't exist yet */
+    }
+
+    await ffmpeg.writeFile('video.mp4', new Uint8Array(videoBuffer));
     await ffmpeg.writeFile(audioFileName, await fetchFile(audioFile));
 
     await ffmpeg.exec([
@@ -99,6 +113,8 @@ class OfflineExportService {
       'copy',
       '-c:a',
       'aac',
+      '-b:a',
+      '192k',
       '-shortest',
       'output.mp4',
     ]);
